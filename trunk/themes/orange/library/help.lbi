@@ -1,0 +1,25 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#FDE5C7">
+  <tr>
+    <td><img src="../images/help.gif"></td>
+  </tr>
+  <tr>
+    <td><table  border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" id="help">
+  
+    <!-- {foreach from=$helps item=help_cat} -->
+   <tr> <td class="help-title"><div><span>&middot;{$help_cat.cat_name}</span></div></td></tr>
+  <tr><td class="help-list"><ul>
+        <!-- {foreach from=$help_cat.article item=item}-->
+        <li><a href="{$item.url}" title="{$item.title|escape:html}">{$item.short_title}</a></li>
+        <!--{/foreach}-->
+      </ul></td></tr>
+  <!-- {/foreach} -->
+  
+  
+</table></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+

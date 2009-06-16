@@ -1,0 +1,21 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<table width="100%" id="top10">
+  <tr>
+    <td><div class="top1">
+</div> </td>
+  </tr>
+  <!-- {foreach name=top_goods from=$top_goods item=goods}-->
+    
+	 <tr>
+    <td><a href="{$goods.url}" title="{$goods.name|escape:html}"><img src="../images/top_{$smarty.foreach.top_goods.iteration}.gif" alt="" /> {$goods.short_name}</a>
+   </td>
+  </tr> <!--{/foreach}-->
+</table>
+
+<table width="100%" >
+  <tr>
+    <td height="5"></td>
+  </tr>
+</table>
+
+<!--End sort-box02-->

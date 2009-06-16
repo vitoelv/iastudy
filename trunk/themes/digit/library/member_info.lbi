@@ -1,0 +1,105 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $user_info} -->
+<div class="col-box">
+  <h3>{$lang.hello},{$user_info.username|truncate:18}</h3>
+  <div class="col-box-content">
+    <p>{$lang.welcome_return}！</p>
+    <p>{$lang.now_account} {$user_info.user_money} {$lang.balance}，{$user_info.user_points} {$lang.along_with} {$user_info.user_bonus} {$lang.preferential}</p>
+    <p><a href="user.php">{$lang.edit_user_info}</a> | <a href="user.php?act=logout">{$lang.logout}</a></p>
+  </div>
+</div><!-- /col-box -->
+<!-- {else} -->
+<div class="col-box">
+  <h3>会员登录</h3>
+  <div class="col-box-content">
+    <form id="ECS_LOGINFORM" name="ECS_LOGINFORM" method="post" action="javascript:signIn()">
+      <label for="username">{$lang.member_name}:</label>
+      <input id="username" name="username" class="login-input" type="text" value="{$ecs_username}" tabindex="1" />
+      <label for="password">{$lang.password}:</label>
+      <input id="password" name="password" class="login-input" type="password" tabindex="2" />
+      <!-- 判断是否启用验证码{if $enabled_captcha} -->
+      <label for="captcha">{$lang.comment_captcha}:</label>
+      <input type="text" size="5" name="captcha" id="captcha" class="login-input" tabindex="3" />
+      <img src="captcha.php?is_login=1&amp;{$rand}" alt="captcha" style="vertical-align:middle;margin-left:2px;cursor:pointer;" onClick="this.src='captcha.php?is_login=1&amp;'+Math.random()" />
+      <!-- {/if} -->
+      <p style="padding-top: 10px">
+        <input type="submit" class="login-btn" value="登录" />
+        <input type="reset" class="login-btn" value="重置" />
+      </p>
+      <p>
+        <a href="user.php?act=register">&gt;&gt;{$lang.sign_up}</a><br />
+        <a href="user.php?act=get_password">&gt;&gt;{$lang.forgot_password}</a>
+      </p>
+    </form>
+  </div>
+</div><!-- /col-box -->
+<script type="text/javascript">
+//<![CDATA[
+{literal}
+/**
+ * 会员登录
+ */
+function signIn()
+{
+  var frm = document.forms['ECS_LOGINFORM'];
+
+  if (frm)
+  {
+    var username = frm.elements['username'].value;
+    var password = frm.elements['password'].value;
+    var captcha = '';
+    if (frm.elements['captcha'])
+    {
+      captcha = frm.elements['captcha'].value;
+    }
+
+    if (username.length == 0 || password.length == 0)
+    {
+{/literal}
+       alert("{$lang.empty_username_password}");
+{literal}
+        return;
+    }
+    else
+    {
+       Ajax.call('user.php?act=signin', 'username=' + username + '&password=' + encodeURIComponent(password) + '&captcha=' + captcha, signinResponse, "POST", "TEXT");
+    }
+  }
+  else
+  {
+    alert('Template error!');
+  }
+}
+
+function signinResponse(result)
+{
+  var userName = document.forms['ECS_LOGINFORM'].elements['username'].value;
+  var mzone = document.getElementById("ECS_MEMBERZONE");
+  var res   = result.parseJSON();
+
+  if (res.error > 0)
+  {
+    // 登录失败
+    alert(res.content);
+    if(res.html)
+  {
+      mzone.innerHTML = res.html;
+    document.forms['ECS_LOGINFORM'].elements['username'].value = userName;
+  }
+  }
+  else
+  {
+    if (mzone)
+    {
+      mzone.innerHTML = res.content;
+    }
+    else
+    {
+      alert("Template Error!");
+    }
+  }
+}
+{/literal}
+//]]>
+</script>
+{/if}

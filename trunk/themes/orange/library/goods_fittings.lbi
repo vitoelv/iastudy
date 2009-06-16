@@ -1,0 +1,28 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $fittings} -->
+<table width="100%">
+  <tr><td><div class="title-03">
+  <div class="title-03-arrow">相关配件</div>
+</div></td></tr></table>
+<div id="fl"><table><tr><td>
+  <form action="javascript:;" method="post" name="ECS_FORMFITTINGS" id="ECS_FORMFITTINGS">
+  <ul class="item-list">
+    <!-- {cycle values=''} -->
+    <!-- {foreach from=$fittings item=goods} -->
+    <li >
+      <p class="photo"><a href="{$goods.url}" target="_blank"><img src="{$goods.goods_thumb}" alt="{$goods.name|escape:html}" /></a></p>
+      <div class="info">
+        <p class="name"><a href="{$goods.url}">{$goods.short_name|escape:html}</a></p>
+        <p class="price">
+          {$lang.shop_price}<span class="market-price">{$goods.shop_price}</span><br />
+          {$lang.fittings_price}<span class="goods-price">{$goods.fittings_price}</span>
+        </p>
+        <p class="buy-btn"><a href="javascript:addToCart({$goods.goods_id},{$goods_id})"><img src="../images/buy-btn.gif" alt="buy" /></a></p>
+      </div>
+    </li>
+    <!-- {/foreach} -->
+  </ul>
+  </form></td></tr></table>
+</div>
+<!--End sort-box01-->
+<!--{/if}-->

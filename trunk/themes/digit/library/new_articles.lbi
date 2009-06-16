@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="col-box">
+  <h3>最新文章</h3>
+  <div class="col-box-content">
+    <ul class="article-list" style="list-style:none;">
+      <!--{foreach from=$new_articles item=article}-->
+      <li>[<a href="{$article.cat_url}">{$article.cat_name}</a>] <a href="{$article.url}" title="{$article.title|escape:html}">{$article.short_title}</a></li>
+      <!--{/foreach}-->
+    </ul>
+  </div>
+</div>
+<div class="col-box">
+  <h3>网站公告</h3>
+  <div class="col-box-content">
+    {$shop_notice}
+  </div>
+</div><!-- /col-box -->
