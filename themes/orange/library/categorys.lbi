@@ -1,0 +1,15 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $cat_list} -->
+<div class="col-box" id="category-tree">
+  <div class="title-04">
+        <div class="title-04-arrow">商品分类</div>
+      </div>
+  <div class="col-box-content">
+    <ul>
+      <!-- {foreach from=$cat_list item=cat} -->
+      <li><a href="{$cat.url}">{$cat.cat_name|escape:html}</a> <!-- {if $cat.goods_num} --><span class="textDesc">({$cat.goods_num})</span><!-- {/if} --></li>
+      <!-- {/foreach} -->
+    </ul>
+  </div>
+</div><!-- /col-box -->
+<!-- {/if} -->

@@ -1,0 +1,195 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files="common.js"}
+</head>
+<body><!-- #BeginLibraryItem "/library/page_header.lbi" -->
+<div id="page-top">
+  <div id="logo-topnav">
+    <div id="logo"> <img src="images/logo.gif" alt="Gif Shop" style="float:left;" />
+      <div id="topnav"> <a href="flow.php">{$lang.view_cart}</a> - <a href="pick_out.php">{$lang.pick_out}</a> - <a href="group_buy.php">{$lang.group_buy_goods}</a> - <a href="snatch.php">{$lang.snatch}</a> - <a href="catalog.php" onmouseover="showCatalog(this)" onmouseout="hideCatalog()">{$lang.catalog}</a> - <a href="tag_cloud.php">{$lang.tag_cloud}</a> - <a href="user.php">{$lang.user_center}</a> </div>
+    </div>
+  </div>
+  <!--End #logo-nav-->
+  <div id="global-nav">
+    <div id="main-nav">
+      <ul>
+        <li><a href="index.php" name="top" id="top">{$lang.home}</a></li>
+        <!-- {foreach from=$nav_list item=nav} -->
+        <li><a href="{$nav.url}">{$nav.label}</a></li>
+        <!-- {/foreach} -->
+      </ul>
+    </div>
+    <!-- End #main-nav -->
+  </div>
+  <!-- global-nav -->
+</div>
+<!--End #page-top-->
+<div id="ECS_CATALOG" class="catalog-div" style="display:none"
+onmouseover="if (this.style.display != 'block') this.style.display='block';"
+onmouseout="if (this.style.display != 'none') this.style.display = 'none';">
+  <ul>
+    <!--{assign var="level" value=0}-->
+    <!-- {foreach from=$catalog_list item=cat} -->
+    <!-- {if $level > $cat.level} -->
+  </ul>
+  <!-- {/if}-->
+  <!-- {if $level < $cat.level} -->
+  <ul>
+    <!-- {/if} -->
+    <li class="{if" $cat.level eq="eq" "0"}"top-cate"{else}"snd-cate"{/if}><a href="{$cat.url}"{if $cat.cat_desc neq="neq" ''} title="{$cat.cat_desc}"{/if}>{$cat.cat_name}</a></li>
+    <!--{assign var="level" value=$cat.level}-->
+    <!-- {/foreach} -->
+  </ul>
+</div>
+<!-- #EndLibraryItem --><div id="globalWrapper"><!-- TemplateBeginEditable name="当前位置区域" --><!-- TemplateEndEditable --><!-- TemplateBeginEditable name="搜索条上方通栏广告位" --> <!-- TemplateEndEditable --><!-- TemplateBeginEditable name="搜索表单区域" --><!-- #BeginLibraryItem "/library/search_form.lbi" -->
+<div id="globalSearch">
+  <div style="background:url(images/search-rl.gif) no-repeat center left;">
+    <div style="background:url(images/search-rl.gif) no-repeat center right;height:44px;">
+      <form id="searchForm" name="searchForm" method="post" action="library/search.php" style="padding:10px 0 0 30px;">
+        <img src="images/search-icon.gif" alt="" style="float:left;" />
+        <input name="keywords" type="text" id="keyword" />
+        <select name="category" id="category" style="float:left;height:20px;">
+          <option value="0">{$lang.all_category}</option>
+          
+    {$category_list}
+    
+        </select>
+        <input type="image" src="images/search-submit.gif" style="float:left;margin-left:10px !important;margin-left:8px;" />
+        <span style="float:right;padding:5px 20px;"><a href="library/search.php?act=advanced_search">{$lang.advanced_search}</a> | <a href="library/index.php">使用帮助</a></span>
+      </form>
+    </div>
+  </div>
+</div>
+<!--End #globalSearch-->
+<!-- #EndLibraryItem --><!-- TemplateEndEditable --><div id="container">
+    <div id="page-left"> <!-- TemplateBeginEditable name="主区域左侧" --><!-- #BeginLibraryItem "/library/member.lbi" -->
+
+{insert_scripts files="transport.js,utils.js"}
+<div id="ECS_MEMBERZONE" style="float:left;width:185px;height:193px;"> {* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面 *}{insert name="member_info"} </div>
+<!--End #login-->
+<!-- #EndLibraryItem --><!-- #BeginLibraryItem "/library/category_tree.lbi" -->
+<div class="title-01" >
+  <div class="title-01-arrow">商品分类</div>
+</div>
+<div class="sort-box01" id="category-tree">
+  <!--{foreach from=$categories item=cat}-->
+  <dl>
+    <dt><a href="{$cat.url}">{$cat.name|escape:html}</a></dt>
+    <!--{foreach from=$cat.children item=child}-->
+    <dd><a href="{$child.url}">{$child.name|escape:html}</a></dd>
+    <!--{/foreach}-->
+  </dl>
+  <!-- {/foreach}-->
+  <div class="hack"></div>
+</div>
+<!--End sort-box01 -->
+<!-- #EndLibraryItem --><!-- #BeginLibraryItem "/library/history.lbi" -->
+<div class="title-01">
+  <div class="title-01-arrow">浏览历史</div>
+</div>
+<div class="sort-box01" id="history">
+  <ul>
+    {insert name="history"}
+  </ul>
+</div>
+<!--End sort-box02-->
+<!-- #EndLibraryItem --><!-- TemplateEndEditable --> </div>
+    <!--End #page-left-->
+    <div id="page-middle">
+      <!-- TemplateBeginEditable name="主区域中间上" --><!-- TemplateEndEditable -->
+      <div class="title-01" >
+        <div class="title-01-arrow">{$article.title|escape:html}</div>
+      </div>
+      <div class="sort-box01" style="padding:10px;">
+        <p style="text-align:right;margin-bottom:15px;">{$article.author|escape:html} <span style="font-size:10px;color:#888;">/ {$article.add_time}</span></p>
+          {$article.content}
+          <!-- {if $article.open_type eq 2 or $article.open_type eq 1} -->
+          <p class="globalArtileRelative"><a href="{$article.file_url}" target="_blank">{$lang.relative_file}</a></p>
+          <!-- {/if} -->
+          <!-- {if $prev_article or $next_article} -->
+          <p style="padding:20px 10px 10px;">
+            <!-- 下一篇文章 {if $prev_article} -->
+            {$lang.prev_article}：<a href="article.php?id={$prev_article.article_id}">{$prev_article.title}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- {/if} -->
+            <!-- 上一篇文章 {if $next_article} -->
+            {$lang.next_article}：<a href="article.php?id={$next_article.article_id}">{$next_article.title}</a>
+            <!-- {/if} -->
+          </p>
+          <!-- {/if} -->
+		  </div>
+      <!--End sort-box01--><!-- TemplateBeginEditable name="主区域中间下" --><!-- #BeginLibraryItem "/library/comments.lbi" -->
+
+{insert_scripts files="transport.js,utils.js"}
+<div class="title-03">
+  <div class="title-04-arrow">用户评论</div>
+</div>
+<div id="ECS_COMMENT" class="sort-box01" style="padding:10px;"> {* ECSHOP 提醒您：动态载入comments_list.lbi，显示评论列表和评论表单 *}{insert name="comments" type=$type id=$id} </div>
+<!-- #EndLibraryItem --><!-- TemplateEndEditable --> </div>
+    <!--End #page-middle-->
+    <div id="page-right"> <!-- TemplateBeginEditable name="主区域右侧" --><!-- TemplateEndEditable --> </div>
+    <!--End #page-right-->
+    <br />
+    <div class="hack"></div>
+  </div>
+  <!-- End #container -->
+</div>
+<!--End #globalWrapper-->
+<div id="footer"><!-- #BeginLibraryItem "/library/page_footer.lbi" -->
+<div id="footer0">
+  <table width="940" height="80">
+    <tr>
+      <td width="180">&nbsp;</td>
+      <td><a href="library/article.php?id=5"><img src="images/footbgt1.gif" border="0" /></a></td>
+      <td ><a href="library/group_buy.php"><img src="images/footbgt2.gif" border="0" /></a></td>
+      <td><a href="library/user.php"><img src="images/footbgt3.gif" border="0" /></a></td>
+    </tr>
+  </table>
+</div>
+<div id="globalSearch">
+  <div style="background:url(../images/search-rl.gif) no-repeat center left;">
+    <div style="background:url(../images/search-rl2.gif) no-repeat center right;height:34px;">
+      <table height="31" align="right">
+        <tr>
+          <td><!-- {foreach name=sch_nav_list from=$sch_nav_bottom_list item=nav} -->
+              <a href="{$nav.url}" 
+              <!-- {if $nav.opennew eq 1} -->
+            target="_blank"
+            <!-- {/if} -->
+>{$nav.name}</a>
+            <!-- {if !$smarty.foreach.sch_nav_list.last} -->
+            <!-- {/if} -->
+            <!-- {/foreach} -->
+          </td>
+          <td width="10">&nbsp;</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+<!--End #article-->
+<div>{$copyright}</div>
+<div>
+  <!-- ICP 证书{if $icp_number} -->
+  {$lang.icp_number}:<a href="http://www.miibeian.gov.cn/" target="_blank">{$icp_number}</a><br />
+  <!-- 结束ICP 证书{/if} -->
+  {insert name="query_info"}<br />
+</div>
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+{$stats_code}<!-- #EndLibraryItem --></div>
+</body>
+</html>

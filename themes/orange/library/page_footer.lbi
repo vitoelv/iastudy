@@ -1,0 +1,44 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="footer0"><table width="940" height="80">
+  <tr><td width="180">&nbsp;</td>
+  <td><a href="article.php?id=5"><img src="../images/footbgt1.gif" border="0"></a></td>
+      <td ><a href="group_buy.php"><img src="../images/footbgt2.gif" border="0"></a></td>
+      
+<td><a href="user.php"><img src="../images/footbgt3.gif" border="0"></a></td>
+</tr></table>
+</div>
+<div id="globalSearch">
+  <div style="background:url(../images/search-rl.gif) no-repeat center left;">
+    <div style="background:url(../images/search-rl2.gif) no-repeat center right;height:34px;">
+	<table height="31" align="right">
+	  <tr><td>
+  <!-- {foreach name=nav_bottom_list from=$navigator_list.bottom item=nav} -->
+    <a href="{$nav.url}" <!-- {if $nav.opennew eq 1} --> target="_blank" <!-- {/if} -->>{$nav.name}</a> 
+    <!-- {if !$smarty.foreach.nav_bottom_list.last} -->
+    
+    <!-- {/if} -->
+  <!-- {/foreach} -->
+</td>
+	    <td width="10">&nbsp;</td>
+	  </tr></table>
+</div></div></div>
+
+<!--End #article-->
+
+<div>{$copyright}</div>
+<div>
+ 
+  <!-- ICP 证书{if $icp_number} -->
+  <p id="icpInfo">{$lang.icp_number}: <a href="http://www.miibeian.gov.cn/" target="_blank">{$icp_number}</a></p>
+  <!-- 结束ICP 证书{/if} -->
+  
+  <p id="qureyInfo">{insert name='query_info'}</p>
+  <p id="PoweredBy"><a href="http://www.ecshop.com" target="_blank" style="font-size:10px">Powered by <strong><span style="color: #3366FF">ECShop</span> <span style="color: #FF9966">{$ecs_version}</span></strong></a></p>
+  <!-- {if $stats_code} -->
+  <div align="center">{$stats_code}</div>
+  <!-- {/if} -->
+  <script type="text/javascript">
+  //<![CDATA[
+  var process_request = "{$lang.process_request}";
+  //]]>
+  </script>

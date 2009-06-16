@@ -1,0 +1,25 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $bought_goods} -->
+<div class="col-box">
+  <h3>{$lang.shopping_and_other}</h3>
+  <ul class="item-list">
+    <!-- {cycle values=''} -->
+    <!-- {foreach from=$bought_goods item=goods} -->
+    <li class="{cycle values='item,item-right'}">
+      <p class="photo"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.short_name}" /></a></p>
+      <div class="info">
+        <p class="name"><a href="{$goods.url}">{$goods.short_name}</a></p>
+        <p class="price">
+          <!-- {if $goods.promote_price neq ""} -->
+          {$lang.promote_price}<span class="goods-price">{$goods.formated_promote_price}</span>
+          <!--{else}-->
+          {$lang.shop_price}<span class="goods-price">{$goods.shop_price}</span>
+          <!--{/if}-->
+        </p>
+        <p class="buy-btn"><a href="javascript:addToCart({$goods.goods_id})"><img src="../images/buy-btn.gif" alt="buy" /></a> <a href="javascript:collect({$goods.goods_id})"><img src="../images/fav-btn.gif" alt="fav" /></a></p>
+      </div>
+    </li>
+    <!--{/foreach}-->
+  </ul>
+</div>
+<!--{/if}-->
