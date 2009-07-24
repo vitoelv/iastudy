@@ -13,7 +13,7 @@
  * $Date: 2008-01-18 13:08:42 +0800 (星期五, 18 一月 2008) $
  * $Id: index.php 13996 2008-01-18 05:08:42Z fenghl $
 */
-
+$_LANG['view_students'] = '查看报名学员';
 $_LANG['shop_guide'] = '开店向导';
 $_LANG['set_navigator'] = '设置导航栏';
 $_LANG['about'] = '关于 IAStudy';
