@@ -8,7 +8,7 @@
     <div id="logo"><img src="images/logo.gif" alt="IAStudy" /></div>
     <div id="top_nav">
       <ul>
-    <li{if $navigator_list.config.index eq 1} id="cur"{/if}><a href="../index.php"><span>{$lang.home}</span></a></li>
+    <li{if $navigator_list.config.index eq 1} id="cur"{/if}><a href="../index.html"><span>{$lang.home}</span></a></li>
     <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
     <li{if $nav.active eq 1} class="current"{/if}><a href="{$nav.url}" <!-- {if $nav.opennew eq 1} -->target="_blank"<!-- {/if} -->><span>{$nav.name}</span></a></li>
     <!-- {/foreach} -->
