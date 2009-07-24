@@ -218,6 +218,11 @@ $_LANG['shop_info'] = '网店信息';
 $_LANG['shop_help'] = '网店帮助';
 $_LANG['vote_list'] = '在线调查';
 
+/* 报名学员管理 */
+$_LANG['03_student_list'] = '学员列表';
+$_LANG['student_add'] = '添加学员';
+
+
 /* 会员管理 */
 $_LANG['08_unreply_msg'] = '会员留言';
 $_LANG['03_users_list'] = '会员列表';
