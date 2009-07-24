@@ -424,7 +424,9 @@ function register()
   var home_phone = frm.elements['other[home_phone]'] ? Utils.trim(frm.elements['other[home_phone]'].value) : '';
   var office_phone = frm.elements['other[office_phone]'] ? Utils.trim(frm.elements['other[office_phone]'].value) : '';
   var mobile_phone = frm.elements['other[mobile_phone]'] ? Utils.trim(frm.elements['other[mobile_phone]'].value) : '';
-
+  
+  var real_name = frm.elements['other[real_name]'] ? Utils.trim(frm.elements['other[real_name]'].value) : '';
+  var address = frm.elements['other[address]'] ? Utils.trim(frm.elements['other[address]'].value) : '';
 
   var msg = "";
   // 检查输入
@@ -505,6 +507,23 @@ function register()
       msg += mobile_phone_invalid + '\n';
     }
   }
+  
+  if (home_phone.length==0 && mobile_phone.length==0){
+  	msg += msg_phone_blank + '\n';
+  }
+  
+  if (real_name.length == 0)
+  {
+    msg += msg_realname_blank + '\n';
+  }    
+
+  if (address.length == 0)
+  {
+    msg += msg_address_blank + '\n';
+  }  
+  
+  
+  
   if (msg.length > 0)
   {
     alert(msg);

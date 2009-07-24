@@ -1,0 +1,196 @@
+
+.zh {
+	color: #D50000;
+	font-size: 12px;
+}
+.zi {
+	FONT-SIZE: 12px; COLOR: #666666; LINE-HEIGHT: 180%; TEXT-DECORATION: none
+}
+.zi:hover {
+	FONT-SIZE: 12px; COLOR: #000084; LINE-HEIGHT: 180%; TEXT-DECORATION: underline
+}
+.zi16 {
+	FONT-SIZE: 16px;
+	COLOR: #666666;
+	LINE-HEIGHT: 180%;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+}
+.zi16:hover {
+	FONT-SIZE: 16px;
+	COLOR: #000084;
+	LINE-HEIGHT: 180%;
+	TEXT-DECORATION: underline blink;
+	font-weight: bold;
+}
+.zib {
+	FONT-SIZE: 12px;
+	COLOR: #CC0000;
+	TEXT-DECORATION: blink;
+	font-weight: bold;
+	height: 1px;
+	filter: DropShadow(Color=ffffff, OffX=1, OffY=1, Positive=1);
+	letter-spacing: 2px;
+}
+.zib:hover {
+	FONT-SIZE: 12px;
+	COLOR: #000084;
+	TEXT-DECORATION: blink;
+	font-weight: bold;
+}
+.zib1 {
+	FONT-SIZE: 12px;
+	COLOR: #000084;
+	TEXT-DECORATION: blink;
+	font-weight: normal;
+	height: 1px;
+	filter: DropShadow(Color=ffffff, OffX=1, OffY=1, Positive=1);
+	letter-spacing: 2px;
+}
+.zib1_active {
+	FONT-SIZE: 12px;
+	COLOR: #FF0000;
+	TEXT-DECORATION: blink;
+	font-weight: normal;
+	height: 1px;
+	filter: DropShadow(Color=ffffff, OffX=1, OffY=1, Positive=1);
+	letter-spacing: 2px;
+}
+.zib1:hover {
+	FONT-SIZE: 12px;
+	COLOR: #CC0000;
+	TEXT-DECORATION: blink;
+	font-weight: normal;
+}
+
+#yasi A:hover {
+	background-color: #FFFFFF;
+	background-image: url(r2.jpg);
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 60px;
+	padding-top: 7px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+#tf A:hover {
+	background-color: #FF0000;
+	background-image: url(r1.jpg);
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 60px;
+	padding-top: 7px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+#xyz A:hover {
+	background-color: #FF0000;
+	background-image: url(r1.jpg);
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 60px;
+	padding-top: 7px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+#jsj A:hover {
+	background-color: #FF0000;
+	background-image: url(r1.jpg);
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 60px;
+	padding-top: 7px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+#zy A:hover {
+	background-color: #FF0000;
+	background-image: url(r1.jpg);
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 60px;
+	padding-top: 7px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 0px;
+}
+.zibz {
+	FONT-SIZE: 12px;
+	COLOR: #CC0000;
+	TEXT-DECORATION: blink;
+	font-weight: normal;
+	height: 1px;
+	filter: DropShadow(Color=ffffff, OffX=1, OffY=1, Positive=1);
+	padding-top: 5px;
+}
+.zibz:hover {
+	FONT-SIZE: 12px;
+	COLOR: #000084;
+	TEXT-DECORATION: blink;
+	font-weight: normal;
+}
+.zi04 {
+	FONT-SIZE: 12px;
+	COLOR: #182683;
+	TEXT-DECORATION: none;
+	filter: DropShadow(Color=ffffff, OffX=1, OffY=1, Positive=1);
+}
+.zi04:hover {
+	FONT-SIZE: 12px; COLOR: #FF0000; TEXT-DECORATION: none
+}
+.zi04:active {
+	FONT-SIZE: 12px; COLOR: #FF0000; TEXT-DECORATION: none
+}
+
+.zi03 {
+	FONT-SIZE: 12px;
+	COLOR: #FF0000;
+	TEXT-DECORATION: none;
+	line-height: 180%;
+}
+.zi03:link,.zi03:visited {
+	FONT-SIZE: 12px;
+	COLOR: #FF0000;
+	TEXT-DECORATION: none;
+	line-height: 180%;
+}
+.zi03:hover {
+	FONT-SIZE: 12px; COLOR: #000084; TEXT-DECORATION: underline
+}
+.zi1 {
+	FONT-SIZE: 12px; COLOR: #CC0000; TEXT-DECORATION: none
+}
+.zi1:hover {
+	FONT-SIZE: 12px; COLOR: #000084; TEXT-DECORATION: underline
+}
+
+.zi_yh {
+	FONT-SIZE: 14px;
+	COLOR: #AD1900;
+	TEXT-DECORATION: none;
+	font-weight: bold;
+}
+.zi_yh:hover {
+	FONT-SIZE: 14px;
+	COLOR: #000084;
+	TEXT-DECORATION: underline blink;
+	font-weight: bold;
+}
+.mzi {
+	font-size: 12px;
+	color: #06066F;
+	text-decoration: none;
+	font-family: "ËÎÌו";
+	line-height: 180%;
+}
+.mzi:hover {
+	font-size: 12px;
+	color: #CC0000;
+	text-decoration: underline blink;
+	font-family: "ËÎÌו";
+	line-height: 180%;
+}

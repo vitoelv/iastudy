@@ -55,7 +55,7 @@ elseif ($_REQUEST['act'] == 'add')
     $smarty->assign('form_action', 'insert');
 
     assign_query_info();
-    $smarty->assign('brand', array('sort_order'=>0, 'is_show'=>1));
+    $smarty->assign('brand', array('sort_order'=>0, 'is_show'=>1, 'brand_type'=>1));
     $smarty->display('brand_info.htm');
 }
 elseif ($_REQUEST['act'] == 'insert')
@@ -64,6 +64,7 @@ elseif ($_REQUEST['act'] == 'insert')
     admin_priv('brand_manage');
 
     $is_show = isset($_REQUEST['is_show']) ? intval($_REQUEST['is_show']) : 0;
+    $brand_type = isset($_REQUEST['brand_type']) ? intval($_REQUEST['brand_type']) : 0;
 
     $is_only = $exc->is_only('brand_name', $_POST['brand_name']);
 
@@ -86,8 +87,8 @@ elseif ($_REQUEST['act'] == 'insert')
 
     /*插入数据*/
 
-    $sql = "INSERT INTO ".$ecs->table('brand')."(brand_name, site_url, brand_desc, brand_logo, is_show, sort_order) ".
-           "VALUES ('$_POST[brand_name]', '$site_url', '$_POST[brand_desc]', '$img_name', '$is_show', '$_POST[sort_order]')";
+    $sql = "INSERT INTO ".$ecs->table('brand')."(brand_name, site_url, brand_desc, brand_logo, is_show, brand_type, sort_order) ".
+           "VALUES ('$_POST[brand_name]', '$site_url', '$_POST[brand_desc]', '$img_name', '$is_show', '$brand_type', '$_POST[sort_order]')";
     $db->query($sql);
 
     admin_log($_POST['brand_name'],'add','brand');
@@ -111,7 +112,7 @@ elseif ($_REQUEST['act'] == 'edit')
 {
     /* 权限判断 */
     admin_priv('brand_manage');
-    $sql = "SELECT brand_id, brand_name, site_url, brand_logo, brand_desc, brand_logo, is_show, sort_order ".
+    $sql = "SELECT brand_id, brand_name, site_url, brand_logo, brand_desc, brand_logo, is_show, brand_type, sort_order ".
             "FROM " .$ecs->table('brand'). " WHERE brand_id='$_REQUEST[id]'";
     $brand = $db->GetRow($sql);
 
@@ -144,12 +145,13 @@ elseif ($_REQUEST['act'] == 'updata')
     }
 
     $is_show = isset($_REQUEST['is_show']) ? intval($_REQUEST['is_show']) : 0;
+    $brand_type = isset($_REQUEST['brand_type']) ? intval($_REQUEST['brand_type']) : 0;
      /*处理URL*/
     $site_url = sanitize_url( $_POST['site_url'] );
 
     /* 处理图片 */
     $img_name = basename($image->upload_image($_FILES['brand_logo'],'brandlogo'));
-    $param = "brand_name = '$_POST[brand_name]',  site_url='$site_url', brand_desc='$_POST[brand_desc]', is_show='$is_show', sort_order='$_POST[sort_order]' ";
+    $param = "brand_name = '$_POST[brand_name]',  site_url='$site_url', brand_desc='$_POST[brand_desc]', is_show='$is_show', brand_type='$brand_type', sort_order='$_POST[sort_order]' ";
     if (!empty($img_name))
     {
         //有图片上传

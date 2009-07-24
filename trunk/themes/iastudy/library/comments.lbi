@@ -2,6 +2,6 @@
 
 {insert_scripts files="transport.js,utils.js"}
 <div class="article-comments">
-  <div class="title">热门评论</div>
+  <div class="title2"><img src="../images/subtitle2.gif"/>&nbsp;热门评论</div>
   <div id="ECS_COMMENT">{* IAStudy 提醒您：动态载入comments_list.lbi，显示评论列表和评论表单 *}{insert name='comments' type=$type id=$id}</div>
 </div>

@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>滑动门</title>
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+	font-size:12px;
+}
+body{
+	margin:5px;
+}
+.Tab{
+	width:300px;
+}
+.TabBar{
+	width:300px;
+	list-style-type:none;
+	overflow:auto;
+}.TabBarNormal
+{
+	float:left;
+	width:60px;
+	border:1px solid #0066cc;
+	border-bottom:0px solid #fff;
+	line-height:24px;
+	text-align:center;
+	margin:0 3px;
+	
+}
+.TabBarActive{
+	float:left;
+	width:60px;
+	border:1px solid #0066cc;
+	border-bottom:0px solid #fff;
+	background-color:#CCCCCC;
+	line-height:25px;
+	text-align:center;
+	margin:0 3px;
+	color:red
+}
+.TabContent{
+	width:98%;
+	height:200px;
+	border:1px solid #0066cc;
+	padding:5px;
+	position:absolute;
+	margin-top:-1px;
+}
+</style>
+</head>
+<body>
+<div class="Tab">
+	<ul class="TabBar">
+	<li id="tab1" class="TabBarActive" onmouseover="showTab(1);"><a href="/other/lastupdate.shtml">最新更新</a></li>
+	<li id="tab2" class="TabBarNormal" onmouseover="showTab(2);"><a href="/other/top100.shtml">下载排行</a></li>
+	<li id="tab3" class="TabBarNormal" onmouseover="showTab(3);"><a href="/other/top100.shtml">软件更新</a></li>
+	</ul>
+	<div class="TabContent" id="tabContent1">这里是最新更新</div>
+	<div class="TabContent" id="tabContent2" >这里是下载排行，<a href="/">CodeFans.net</a>提供有质量源码下载。</div>
+	<div class="TabContent" id="tabContent3" >这里是软件更新</div>
+</div>
+<script type="text/javascript">
+var activeTab =1;
+var activeTabContent = 1;
+var i;
+for (i=2;i<=3;i++) {
+	document.getElementById("tabContent"+i).style.display="none";
+}
+function showTabContent(n) {
+	document.getElementById("tabContent"+activeTabContent).style.display="none";
+	document.getElementById("tabContent"+n).style.display="";
+	activeTabContent=n;
+}
+function showTab(n) {
+	document.getElementById("tab"+activeTab).className="TabBarNormal";
+	document.getElementById("tab"+n).className="TabBarActive";
+	activeTab=n;
+	showTabContent(n);
+}
+</script>
+</body>
+</html>

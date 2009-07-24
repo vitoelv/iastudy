@@ -1,10 +1,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if !empty($shop_notice)} -->
 <div class="title-02">
   <div class="title">最新公告</div>
   <div id="ECS_NOTICE_BODY"> {$shop_notice} </div>
 </div>
+<!-- {/if} -->
+
 <div class="title-02">
-  <div class="title">最新文章</div>
+  <div class="title">最新资讯</div>
   <div class="new-articles">
     <ul>
       <!-- {foreach name=new_articles from=$new_articles item=article} -->

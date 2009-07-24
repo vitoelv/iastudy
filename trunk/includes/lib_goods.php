@@ -329,7 +329,7 @@ function get_category_recommend_goods($type = '', $cats = '', $brand = 0, $min =
 function get_goods_info($goods_id)
 {
     $time = gmtime();
-    $sql = 'SELECT g.*,(g.market_price-g.shop_price) as save_money, c.measure_unit, b.brand_id, b.brand_name AS goods_brand, m.type_money AS bonus_money, ' .
+    $sql = 'SELECT g.*,(g.market_price-g.shop_price) as save_money, c.measure_unit, b.brand_id, b.brand_name AS goods_brand, b.brand_type, m.type_money AS bonus_money, ' .
                 'IFNULL(AVG(r.comment_rank), 0) AS comment_rank, ' .
                 "IFNULL(mp.user_price, g.shop_price * '$_SESSION[discount]') AS rank_price " .
             'FROM ' . $GLOBALS['ecs']->table('goods') . ' AS g ' .
@@ -353,7 +353,7 @@ function get_goods_info($goods_id)
         /* 获得商品的销售价格 */
         $row['market_price']        = price_format($row['market_price']);
         $row['shop_price_formated'] = price_format($row['shop_price']);
-
+		$row['save_money'] = $row['save_money'];
         $row['shop_save_money_formated'] = price_format($row['save_money']);
         
 
@@ -432,6 +432,8 @@ function get_goods_info($goods_id)
         {
             $row['goods_thumb'] = $GLOBALS['_CFG']['no_picture'];
         }
+        
+        $row['click_count']   = $row['click_count'] + 500;
 
         return $row;
     }
@@ -1098,7 +1100,7 @@ function auction_status($auction)
  */
 function goods_info($goods_id)
 {
-    $sql = "SELECT g.*, b.brand_name " .
+    $sql = "SELECT g.*, b.brand_name, b.brand_type " .
             "FROM " . $GLOBALS['ecs']->table('goods') . " AS g " .
                 "LEFT JOIN " . $GLOBALS['ecs']->table('brand') . " AS b ON g.brand_id = b.brand_id " .
             "WHERE g.goods_id = '$goods_id'";

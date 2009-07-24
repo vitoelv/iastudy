@@ -117,12 +117,12 @@ onmouseout="if (this.style.display != 'none') this.style.display = 'none';">
       <tr>
         <td align="center"><textarea name="textarea" cols="50" rows="10" readonly="readonly">
           此段内容为用户注册协议。
-          一、本服务协议双方为****网络有限公司（下称“**”）与**网用户，本服务协议具有合同效力。
+          一、本服务协议双方为我爱学习网与用户，本服务协议具有合同效力。
 
-本服务协议内容包括协议正文及所有**已经发布的或将来可能发布的各类规则。所有规则为协议不可分割的一部分，与协议正文具有同等法律效力。 
+本服务协议内容包括协议正文及所有已经发布的或将来可能发布的各类规则。所有规则为协议不可分割的一部分，与协议正文具有同等法律效力。 
 　　在本服务协议中没有以“规则”字样表示的链接文字所指示的文件不属于本服务协议的组成部分，而是其它内容的协议或有关参考数据，与本协议没有法律上的直接关系。 
-　　用户在使用**提供的各项服务的同时，承诺接受并遵守各项相关规则的规定。**有权根据需要不时地制定、修改本协议或各类规则，如本协议有任何变更，**将在网站上刊载公告，通知予用户。如用户不同意相关变更，必须停止使用“服务”。经修订的协议一经在**网公布后，立即自动生效。各类规则会在发布后生效，亦成为本协议的一部分。登录或继续使用“服务”将表示用户接受经修订的协议。除另行明确声明外，任何使“服务”范围扩大或功能增强的新内容均受本协议约束。 
-　　用户确认本服务协议后，本服务协议即在用户和**之间产生法律效力。请用户务必在注册之前认真阅读全部服务协议内容，如有任何疑问，可向**咨询。 1)无论用户事实上是否在注册之前认真阅读了本服务协议，只要用户点击协议正本下方的“确认”按钮并按照**注册程序成功注册为用户，用户的行为仍然表示其同意并签署了本服务协议。 2)本协议不涉及用户与**其它用户之间因网上交易而产生的法律关系及法律纠纷。 
+　　用户在使用我爱学习网提供的各项服务的同时，承诺接受并遵守各项相关规则的规定。我爱学习网有权根据需要不时地制定、修改本协议或各类规则，如本协议有任何变更，我爱学习网将在网站上刊载公告，通知予用户。如用户不同意相关变更，必须停止使用“服务”。经修订的协议一经在我爱学习网公布后，立即自动生效。各类规则会在发布后生效，亦成为本协议的一部分。登录或继续使用“服务”将表示用户接受经修订的协议。除另行明确声明外，任何使“服务”范围扩大或功能增强的新内容均受本协议约束。 
+　　用户确认本服务协议后，本服务协议即在用户和我爱学习网之间产生法律效力。请用户务必在注册之前认真阅读全部服务协议内容，如有任何疑问，可向我爱学习网咨询。 1)无论用户事实上是否在注册之前认真阅读了本服务协议，只要用户点击协议正本下方的“确认”按钮并按照我爱学习网注册程序成功注册为用户，用户的行为仍然表示其同意并签署了本服务协议。 2)本协议不涉及用户与我爱学习网其它用户之间因网上交易而产生的法律关系及法律纠纷。 
 </textarea></td>
       </tr>
       <tr>
@@ -161,7 +161,42 @@ onmouseout="if (this.style.display != 'none') this.style.display = 'none';">
             <td><input name="confirm_password" type="password" id="conform_password" class="textInput" />
               <span style="color:#F00;"> *</span></td>
           </tr>
-                    <tr>
+          <tr>
+            <th>{$lang.other_sex}:</th>
+            <td>
+              	<select name="other[sex]" size="1">
+				    <option value="1">男</option>
+				    <option value="2">女</option>
+				    <option value="0">保密</option>
+  				</select>
+  				<span style="color:#F00;"> *</span>
+            </td>
+          </tr> 
+          <tr>
+            <th>{$lang.other_real_name}:</th>
+            <td><input name="other[real_name]" type="text" class="textInput" /><span style="color:#F00;"> *</span></td>
+          </tr>               
+          <tr>
+            <th>{$lang.other_home_phone}:</th>
+            <td><input name="other[home_phone]" type="text" class="textInput" /><span style="color:#F00;"> *</span></td>
+          </tr>
+          <tr>
+            <th>{$lang.other_mobile_phone}:</th>
+            <td><input name="other[mobile_phone]" type="text" class="textInput" /><span style="color:#F00;"> *</span></td>
+          </tr>
+          <tr>
+            <th>{$lang.other_address}:</th>
+            <td><input name="other[address]" type="text" class="textInput" /><span style="color:#F00;"> *</span></td>
+          </tr>    
+          <tr>
+            <th>{$lang.other_postcode}:</th>
+            <td><input name="other[postcode]" type="text" class="textInput" /></td>
+          </tr>                 
+          <tr>
+            <th>{$lang.other_age}:</th>
+            <td><input name="other[age]" type="text" class="textInput" /></td>
+          </tr>            
+          <tr>
             <th>{$lang.other_msn}:</th>
             <td><input name="other[msn]" type="text" class="textInput" /></td>
           </tr>
@@ -173,14 +208,7 @@ onmouseout="if (this.style.display != 'none') this.style.display = 'none';">
             <th>{$lang.other_office_phone}:</th>
             <td><input name="other[office_phone]" type="text" class="textInput" /></td>
           </tr>
-          <tr>
-            <th>{$lang.other_home_phone}:</th>
-            <td><input name="other[home_phone]" type="text" class="textInput" /></td>
-          </tr>
-          <tr>
-            <th>{$lang.other_mobile_phone}:</th>
-            <td><input name="other[mobile_phone]" type="text" class="textInput" /></td>
-          </tr>
+
           <!-- 判断是否启用验证码{if $enabled_captcha} -->
           <tr>
             <th>{$lang.comment_captcha}:</th>
@@ -201,7 +229,7 @@ onmouseout="if (this.style.display != 'none') this.style.display = 'none';">
 
           <tr>
             <td>&nbsp;</td>
-            <td><input name="act" type="hidden" value="act_register" />
+            <td><input name="act" type="hidden" value="act_register" />            	
             <input type="image" src="images/reg_btn.gif" alt="注册新用户" width="94" height="22" border="0" name="Submit"></td>
           </tr>
           <tr>
