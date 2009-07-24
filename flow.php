@@ -18,6 +18,7 @@ define('IN_ECS', true);
 
 require(dirname(__FILE__) . '/includes/init.php');
 require(ROOT_PATH . 'includes/lib_order.php');
+require_once(ROOT_PATH . 'includes/lib_common.php');
 
 /* 载入语言文件 */
 require_once(ROOT_PATH . 'languages/' .$_CFG['lang']. '/shopping_flow.php');
@@ -439,7 +440,7 @@ elseif ($_REQUEST['step'] == 'checkout')
 
     if ($db->getOne($sql) == 0)
     {
-        show_message($_LANG['no_goods_in_cart'], '', '', 'warning');
+        show_message($_LANG['no_goods_in_cart'], $_LANG['back_home'], './', 'warning');
     }
 
     /*
@@ -457,6 +458,7 @@ elseif ($_REQUEST['step'] == 'checkout')
 
     /* 对商品信息赋值 */
     $cart_goods = cart_goods($flow_type); // 取得商品列表，计算合计
+ 
     $smarty->assign('goods_list', $cart_goods);
 
     /* 对是否允许修改购物车赋值 */
@@ -595,6 +597,13 @@ elseif ($_REQUEST['step'] == 'checkout')
         $smarty->assign('allow_use_integral', 1);
         $smarty->assign('order_max_integral', flow_available_points());  // 可用积分
         $smarty->assign('your_integral',      $user_info['pay_points']); // 用户积分
+    }
+    if ($_SESSION['user_id'] > 0){
+    	$smarty->assign('user_login', 1);
+    	$smarty->assign('user_name', $user_info['user_name']);
+    }
+    else {
+		$smarty->assign('user_login', 0);
     }
 
     /* 保存 session */
@@ -1188,7 +1197,7 @@ elseif ($_REQUEST['step'] == 'done')
         "AND parent_id = 0 AND is_gift = 0 AND rec_type = '$flow_type'";
     if ($db->getOne($sql) == 0)
     {
-        show_message($_LANG['no_goods_in_cart'], '', '', 'warning');
+        show_message($_LANG['no_goods_in_cart'], $_LANG['back_home'], './', 'warning');
     }
 
     /*
@@ -1604,15 +1613,6 @@ elseif ($_REQUEST['step'] == 'done2')
     /* 取得购物类型 */
     $flow_type = isset($_SESSION['flow_type']) ? intval($_SESSION['flow_type']) : CART_GENERAL_GOODS;
 
-    /* 检查购物车中是否有商品 */
-    $sql = "SELECT COUNT(*) FROM " . $ecs->table('cart') .
-        " WHERE session_id = '" . SESS_ID . "' " .
-        "AND parent_id = 0 AND is_gift = 0 AND rec_type = '$flow_type'";
-    if ($db->getOne($sql) == 0)
-    {
-        show_message($_LANG['no_goods_in_cart'], '', '', 'warning');
-    }
-
    	$user_type= isset($_POST['user_type']) ? intval($_POST['user_type']) : 2;
 	$user_name = isset($_POST['user_name']) ? trim($_POST['user_name']) : '';
 	$true_name = isset($_POST['true_name']) ? trim($_POST['true_name']) : '';
@@ -1626,214 +1626,79 @@ elseif ($_REQUEST['step'] == 'done2')
 	$postscript       = isset($_POST['postscript']) ? trim($_POST['postscript']) : '';   
 	$payment       = isset($_POST['payment']) ? trim($_POST['payment']) : '';   
 	$course_id	= isset($_POST['course_id']) ? trim($_POST['course_id']) : ''; 
-   	if($user_type==1 && $_SESSION['user_id'] !=0){ //user login
-	    $sql = "SELECT user_name, email, sex, home_phone, mobile_phone ".
-	        " FROM " .$ecs->table('users'). " WHERE user_id='".$_SESSION['user_id']. "'";
-	    $user = $db->GetRow($sql);	   
-	    $user_name    = $user['user_name'];
-	    $email    = $user['email'];
-	    $sex    = $user['sex'];
-	    $telephone    = $user['home_phone'];
-	    $mobile_phone = $user['mobile_phone'];
-   	}
-   	else{ //user not login
-   		/*
-	    $sql = "INSERT INTO " . $GLOBALS['ecs']->table('users').
-	                 "(user_name, email, sex, home_phone, mobile_phone)".
-	           " VALUES('".$user_name. "','" .$email."','".
-	                 $sex. "','" . $telephone . "','" . $mobile_phone . "')";
-   		$query = $db->query($sql);
-   		if($query==false){
-   			show_message($_LANG['username_exists2'], '', '', 'warning');  
-   		} */
-   	}
+	$postcode = isset($_POST['postcode']) ? trim($_POST['postcode']) : ''; 
+	$qq = isset($_POST['qq']) ? trim($_POST['qq']) : '';
+	$direct_signup = isset($_POST['direct_signup']) ? trim($_POST['direct_signup']) : '0';
+	if($direct_signup == 0 ){
+	    /* 检查购物车中是否有商品 */
+	    $sql = "SELECT COUNT(*) FROM " . $ecs->table('cart') .
+	        " WHERE session_id = '" . SESS_ID . "' " .
+	        "AND parent_id = 0 AND is_gift = 0 AND rec_type = '$flow_type'";
+	    if ($db->getOne($sql) == 0 )
+	    {
+	        show_message($_LANG['no_goods_in_cart'], $_LANG['back_home'], './', 'warning');
+	    }
+	   	if($user_type==1 && $_SESSION['user_id'] > 0){ //user login
+		    $sql = "SELECT user_name, email, sex, home_phone, mobile_phone, real_name, address, postcode, age".
+		        " FROM " .$ecs->table('users'). " WHERE user_id='".$_SESSION['user_id']. "'";
+		    $user = $db->GetRow($sql);	   
+		    $user_name    = $user['user_name'];
+		    $email    = $user['email'];
+		    $sex    = $user['sex'];
+		    $telephone    = $user['home_phone'];
+		    $mobile_phone = $user['mobile_phone'];
+		    $true_name = $user['real_name'];
+		    $address = $user['address'];
+		    $postcode = $user['postcode'];
+		    $age = $user['age'];
+		    $qq = $user['qq'];
+		    //$user_info = user_info($_SESSION['user_id']);
+	   	}
+	   	else{ //user not login
+	
+	   	}
+	}
+    if (empty($course_id))
+    {
+        show_message($_LANG['no_goods_in_cart'], $_LANG['back_home'], './', 'warning');
+    } 
+    if (empty($true_name) && empty($telephone) && empty($mobile_phone))
+    {
+        show_message($_LANG['no_valid_info'].$user_type, '', '', 'warning');
+    }
 
+    $status = 0;
+    if($direct_signup == 1 ){
+    	$status = -1;	   	
+    }
+	$request_ip = GetIP();
 	$time = gmtime();
+	$signup_date = date("Y-m-d H:i:s");
     $sql = "INSERT INTO " . $GLOBALS['ecs']->table('course_signup') . 
                 "(user_name, true_name, sex, record, telephone, mobile_phone, " .
-                "address, email, age, payment,postscript,course_id,signup_time)".
+                "address,postcode, email, age, payment,postscript,course_id,signup_date,request_ip,qq," .
+                "status,signup_time)".
 	            " VALUES('".$user_name. "','" .$true_name. "','" .$sex. "','" .$record. "','" .$telephone. "','" .
-    					$mobile_phone. "','" .$address. "','" .$email. "','" .$age. "','" .$payment. "','" .
-    					$postscript. "','" .$course_id ."', '" . $time . "')";
+    					$mobile_phone. "','" .$address. "','" .$postcode. "','" .$email. "','" .$age. "','" .$payment. "','" .
+    					$postscript. "','" .$course_id ."', '" .$signup_date ."', '".$request_ip ."', '".$qq ."', '". 
+    					$status ."', '".$time . "')";
     $db->query($sql);  
+	$new_signup_id = $db->insert_id();
 
-   	
-    /*
-     * 检查用户是否已经登录
-     * 如果用户已经登录了则检查是否有默认的收货地址
-     * 如果没有登录则跳转到登录和注册页面
-     */
-    if (empty($_SESSION['direct_shopping']) && $_SESSION['user_id'] == 0)
-    {
-        /* 用户没有登录且没有选定匿名购物，转向到登录页面 */
-    	//ecs_header("Location: flow.php?step=login\n");
-        //exit;
-    }      
-    
+	if($direct_signup == 0 ){
+		/* 插入订单商品 */
+		$sql = "INSERT INTO " . $ecs->table('order_goods') . "( " .
+		          "order_id, goods_id, goods_name, goods_sn, goods_number, market_price, ".
+		          "goods_price, goods_attr, is_real, extension_code, parent_id, is_gift) ".
+		      " SELECT '$new_signup_id', goods_id, goods_name, goods_sn, goods_number, market_price, ".
+		          "goods_price, goods_attr, is_real, extension_code, parent_id, is_gift ".
+		      " FROM " .$ecs->table('cart') .
+		      " WHERE session_id = '".SESS_ID."' AND rec_type = '$flow_type'";
+		$db->query($sql);
 	
-	/* 插入订单商品 */
-    /*
-    $new_order_id = $db->insert_id();
-	$sql = "INSERT INTO " . $ecs->table('order_goods') . "( " .
-	          "order_id, goods_id, goods_name, goods_sn, goods_number, market_price, ".
-	          "goods_price, goods_attr, is_real, extension_code, parent_id, is_gift) ".
-	      " SELECT '$new_order_id', goods_id, goods_name, goods_sn, goods_number, market_price, ".
-	          "goods_price, goods_attr, is_real, extension_code, parent_id, is_gift ".
-	      " FROM " .$ecs->table('cart') .
-	      " WHERE session_id = '".SESS_ID."' AND rec_type = '$flow_type'";
-	$db->query($sql);
-    */    
-
-    //$sql = "UPDATE " . $ecs->table('order_goods') . " SET parent_id = 0 WHERE order_id = '" . $new_order_id . "'";
-    //$db->query($sql);	
-    
-	if($_SESSION['user_id'] == 10){ //never happens
-		    $order = array(
-		        'shipping_id'     => intval($_POST['shipping']),
-		        'pay_id'          => intval($_POST['payment']),
-		        'pack_id'         => isset($_POST['pack']) ? intval($_POST['pack']) : 0,
-		        'card_id'         => isset($_POST['card']) ? intval($_POST['card']) : 0,
-		        'card_message'    => isset($_POST['card_message']) ? trim($_POST['card_message']) : '',
-		        'surplus'         => isset($_POST['surplus']) ? floatval($_POST['surplus']) : 0.00,
-		        'integral'        => isset($_POST['integral']) ? intval($_POST['integral']) : 0,
-		        'bonus_id'        => isset($_POST['bonus']) ? intval($_POST['bonus']) : 0,
-		        'need_inv'        => empty($_POST['need_inv']) ? 0 : 1,
-		        'inv_type'        => empty($_POST['inv_type']) ? '' : $_POST['inv_type'],
-		        'inv_payee'       => isset($_POST['inv_payee']) ? trim($_POST['inv_payee']) : '',
-		        'inv_content'     => isset($_POST['inv_content']) ? $_POST['inv_content'] : '',
-		        'postscript'      => isset($_POST['postscript']) ? trim($_POST['postscript']) : '',
-		        'how_oos'         => isset($_LANG['oos'][$_POST['how_oos']]) ? addslashes($_LANG['oos'][$_POST['how_oos']]) : '',
-		        'need_insure'     => isset($_POST['need_insure']) ? intval($_POST['need_insure']) : 0,
-		        'user_id'         => $_SESSION['user_id'],
-		        'add_time'        => gmtime(),
-		        'order_status'    => OS_UNCONFIRMED,
-		        'shipping_status' => SS_UNSHIPPED,
-		        'pay_status'      => PS_UNPAYED,
-		        'agency_id'       => get_agency_by_regions(array($consignee['country'], $consignee['province'], $consignee['city'], $consignee['district']))
-		        );
-		
-		    /* 扩展信息 */
-		    if (isset($_SESSION['flow_type']) && intval($_SESSION['flow_type']) != CART_GENERAL_GOODS)
-		    {
-		        $order['extension_code'] = $_SESSION['extension_code'];
-		        $order['extension_id'] = $_SESSION['extension_id'];
-		    }
-		    else
-		    {
-		        $order['extension_code'] = '';
-		        $order['extension_id'] = 0;
-		    }
-		
-		    /* 检查积分余额是否合法 */
-		    $user_id = $_SESSION['user_id'];
-		    if ($user_id > 0)
-		    {
-		        $user_info = user_info($user_id);
-		
-		        $order['surplus'] = min($order['surplus'], $user_info['user_money'] + $user_info['credit_line']);
-		        if ($order['surplus'] < 0)
-		        {
-		            $order['surplus'] = 0;
-		        }
-		
-		        // 查询用户有多少积分
-		        $flow_points = flow_available_points();  // 该订单允许使用的积分
-		        $user_points = $user_info['pay_points']; // 用户的积分总数
-		
-		        $order['integral'] = min($order['integral'], $user_points, $flow_points);
-		        if ($order['integral'] < 0)
-		        {
-		            $order['integral'] = 0;
-		        }
-		    }
-		    else
-		    {
-		        $order['surplus']  = 0;
-		        $order['integral'] = 0;
-		    }
-		
-		
-		    /* 订单中的商品 */
-		    $cart_goods = cart_goods($flow_type);
-		
-		    if (empty($cart_goods))
-		    {
-		        show_message($_LANG['no_goods_in_cart'], $_LANG['back_home'], './', 'warning');
-		    }
-		
-		    /* 检查商品总额是否达到最低限购金额 */
-		    if (cart_amount(true, CART_GENERAL_GOODS) < $_CFG['min_goods_amount'])
-		    {
-		        show_message(sprintf($_LANG['goods_amount_not_enough'], price_format($_CFG['min_goods_amount'], false)));
-		    }
-		
-		     /* 订单中的总额 */
-		    $total = order_fee($order, $cart_goods, $consignee);
-		
-		    $order['bonus']        = $total['bonus'];
-		    $order['goods_amount'] = $total['goods_price'];
-		    $order['discount']     = $total['discount'];
-		    $order['surplus']      = $total['surplus'];
-		    $order['tax']          = $total['tax'];
-		
-		    /* 支付方式 */
-		    if ($order['pay_id'] > 0)
-		    {
-		        $payment = payment_info($order['pay_id']);
-		        $order['pay_name'] = addslashes($payment['pay_name']);
-		    }
-		    $order['pay_fee'] = $total['pay_fee'];
-		    $order['cod_fee'] = $total['cod_fee'];
-		
-		    /* 插入订单表 */
-		    $error_no = 0;
-		    do
-		    {
-		        $order['order_sn'] = get_order_sn(); //获取新订单号
-		        $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('order_info'), $order, 'INSERT');
-		
-		        $error_no = $GLOBALS['db']->errno();
-		
-		        if ($error_no > 0 && $error_no != 1062)
-		        {
-		            die($GLOBALS['db']->errorMsg());
-		        }
-		    }
-		    while ($error_no == 1062); //如果是订单号重复则重新提交数据
-		
-		    $new_order_id = $db->insert_id();
-		    $order['order_id'] = $new_order_id;
-		
-		    /* 插入订单商品 */
-		    $sql = "INSERT INTO " . $ecs->table('order_goods') . "( " .
-		                "order_id, goods_id, goods_name, goods_sn, goods_number, market_price, ".
-		                "goods_price, goods_attr, is_real, extension_code, parent_id, is_gift) ".
-		            " SELECT '$new_order_id', goods_id, goods_name, goods_sn, goods_number, market_price, ".
-		                "goods_price, goods_attr, is_real, extension_code, parent_id, is_gift ".
-		            " FROM " .$ecs->table('cart') .
-		            " WHERE session_id = '".SESS_ID."' AND rec_type = '$flow_type'";
-		    $db->query($sql);
-		
-		    /* 处理余额、积分、红包 */
-		    if ($order['user_id'] > 0 && $order['surplus'] > 0)
-		    {
-		        log_account_change($order['user_id'], $order['surplus'] * (-1), 0, 0, 0, sprintf($_LANG['pay_order'], $order['order_sn']));
-		    }
-		    if ($order['user_id'] > 0 && $order['integral'] > 0)
-		    {
-		        log_account_change($order['user_id'], 0, 0, 0, $order['integral'] * (-1), sprintf($_LANG['pay_order'], $order['order_sn']));
-		    }
-		    if ($order['bonus_id'] > 0)
-		    {
-		        use_bonus($order['bonus_id'], $new_order_id);
-		    }
-		
-		    /* 如果使用库存，且下订单时减库存，则减少库存 */
-		    if ($_CFG['use_storage'] == '1' && $_CFG['stock_dec_time'] == SDT_PLACE)
-		    {
-		        change_order_goods_storage($order['order_id']);
-		    }
-	} //will remove
+	    $sql = "UPDATE " . $ecs->table('order_goods') . " SET parent_id = 0 WHERE order_id = '" . $new_signup_id . "'";
+	    $db->query($sql);
+	}	
 
     /* 给商家发邮件 */
 	/*
@@ -1863,7 +1728,53 @@ elseif ($_REQUEST['step'] == 'done2')
     unset($_SESSION['flow_order']);
     unset($_SESSION['direct_shopping']);
     
-    show_message($_LANG['course_signup_success'], 'goods.php', 'goods.php', 'warning');  
+    show_message($_LANG['course_signup_success']. $new_signup_id, $_LANG['back_index_page'], 'index.php', 'warning');  
+}
+elseif ($_REQUEST['step'] == 'consult_signup'){
+	/*------------------------------------------------------ */
+	//-- 用户请专业学习顾问
+	/*------------------------------------------------------ */
+    include('includes/cls_json.php');
+
+    $msg = $_LANG['consult_submit_error'];
+    
+    $json   = new JSON;
+    $result   = array('error' => 0, 'content' => '');
+	
+    //$content    = isset($_REQUEST['content']) ? explode(',', $_REQUEST['content']) : array();
+    //$content    = isset($_REQUEST['content']) ? json_decode($_REQUEST['content']) : array();
+    $true_name =  isset($_POST['real_name']) ? trim($_POST['real_name']) : ''; //$content['true_name'];
+    $telephone = isset($_POST['telephone']) ? trim($_POST['telephone']) : ''; //$content['telephone'];
+    $email = isset($_POST['email']) ? trim($_POST['email']) : ''; //$content['email'];
+    $course_name = isset($_POST['course_name']) ? trim($_POST['course_name']) : ''; //$content['course_name'];
+    $course_id = isset($_POST['course_id']) ? trim($_POST['course_id']) : ''; //$content['course_id'];
+    $consult_time = isset($_POST['consult_time']) ? trim($_POST['consult_time']) : ''; //$content['consult_time'];
+    
+    $status = -1;
+    $business_type = 2; //1 is user signup, 2 is user consult
+	$request_ip = GetIP();
+	$time = gmtime();
+	$signup_date = date("Y-m-d H:i:s");
+    $sql = "INSERT INTO " . $GLOBALS['ecs']->table('course_signup') . 
+                "(true_name, telephone, " .
+                " email, course_id,course_name, signup_date,request_ip,business_type," .
+                "status,signup_time)".
+	            " VALUES('" .$true_name. "','" .$telephone. "','" .
+    					$email. "','" .$course_id. "','" .$course_name  ."', '" .$signup_date ."', '" 
+    					.$request_ip ."', '".$business_type ."', '".$status ."', '".$time . "')";    
+    
+	if (empty($true_name) || empty($telephone)){
+		$result['error']   = 1;  
+	}
+	else{    					
+   		$db->query($sql);
+   		$result['error']   = 0;  
+   		$msg = $_LANG['consult_submit_success'];	
+	}
+    
+    $result['content'] = $msg;    
+    
+    die($json->encode($result));		
 }
 elseif ($_REQUEST['step'] == 'update_cart')
 {
@@ -2445,6 +2356,20 @@ function cart_favourable_amount($favourable)
 
     /* 优惠范围内的商品总额 */
     return $GLOBALS['db']->getOne($sql);
+}
+
+function GetIP(){ 
+	if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown")) 
+		$ip = getenv("HTTP_CLIENT_IP"); 
+	else if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown")) 
+		$ip = getenv("HTTP_X_FORWARDED_FOR"); 
+	else if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown")) 
+		$ip = getenv("REMOTE_ADDR"); 
+	else if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown")) 
+		$ip = $_SERVER['REMOTE_ADDR']; 
+	else 
+		$ip = "unknown"; 
+	return($ip); 
 }
 
 ?>

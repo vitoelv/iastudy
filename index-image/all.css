@@ -1,0 +1,243 @@
+.top {
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #56513d;
+	background-image: url(topbg.jpg);
+	background-repeat: repeat-x;
+	text-align: center;
+}
+.topwz,topwz a:hover,topwz a:visited{
+	background:none;
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #4e4f4a;
+	text-decoration: none;
+ }
+.topwz a{
+	background:none;
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #4e4f4a;
+	text-decoration: none;
+ }
+.topsy,topsy a:hover,topsy a:visited {
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #464741;
+	background-color: #e7e7e7;
+	line-height: 23px;
+	text-decoration: none;
+}
+.topsy a{
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #464741;
+	background-color: #e7e7e7;
+	line-height: 23px;
+	text-decoration: none;
+}
+.yastd {
+	font-family: "宋体";
+	font-size: 12px;
+	color: #000000;
+	background-color: #fbfbe1;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #e1dd71;
+}
+.zhongtop,zhongtop a:hover,zhongtop a:visited {
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #56513d;
+	background-repeat: repeat-x;
+	text-align: center;
+}
+.zhongtop a{
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #56513d;
+	background-repeat: repeat-x;
+	text-align: center;
+	text-decoration: none;
+}
+.tesewz {
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #ff5403;
+}
+
+.yastd2,yastd2 a:hover,ystd2 a:visited {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #b4b4b4;
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 26px;
+	color: #000000;
+}
+.yastd2 a{
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 26px;
+	color: #000000;
+	text-decoration: none;
+}
+
+.sousuo,sousuo a:hover,sousuo a:visited {
+	font-family: "宋体"; 
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: bold;
+	color: #608100;
+}
+.sousuo a{
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 20px;
+	font-weight: bold;
+	color: #608100;
+	text-decoration: none;
+}
+
+.newpb{
+	font-size: 12px;
+	color: #333333;
+	font-family: "宋体";
+	background-position: left;
+	line-height: 26px;
+}
+.newpb a{
+	color:#333333;
+	font-size:12px;
+	background-position: left;
+	font-family: "新宋体";
+	line-height: 26px;
+	text-decoration: none;
+}
+.newpbn,newpbn a:hover,newpbn a:visited{
+	font-size: 12px;
+	color: #333333;
+	font-family: "宋体";
+	background-position: left;
+	line-height: 26px;
+	padding-left: 24px;
+}
+.newpbn a{
+	color:#333333;
+	font-size:12px;
+	background-position: left;
+	font-family: "新宋体";
+	line-height: 26px;
+	text-decoration: none;
+	padding-left: 24px;
+}
+.imgtb {
+	background-position: center center;
+	border: 1px solid #b8b8b8;
+}
+
+.leftan {
+	background-image: url(leftan.jpg);
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #3d3b3e;
+	text-align: center;
+}
+.peix {
+	border: 1px solid #e1dd71;
+}
+.leftlist {
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 26px;
+	color: #000000;
+	padding-left: 2px;
+}
+.bottom {
+	border: 1px solid #cccccc;
+}
+
+.leftlist a{
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 26px;
+	color: #000000;
+	text-decoration: none;
+}
+.leftlist a:hover{
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 26px;
+	color: #000000;
+}
+.leftlist a:visited{
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 26px;
+	color: #000000;
+}
+.newpb a:hover{
+	color:#333333;
+	font-size:12px;
+	background-position: left;
+	font-family: "新宋体";
+	line-height: 26px;
+	text-decoration: none;
+}
+.newpb a:visited{
+	color:#333333;
+	background-position: left;
+	text-decoration: none;
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 26px;
+}
+.leftbt,leftbt a:hover,leftbt a:visited{
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #505149;
+	background-image: url(topbg.jpg);
+	padding-right: 18px;
+	padding-left: 18px;
+}
+.leftbt a{
+	font-family: "宋体";
+	font-size: 12px;
+	font-weight: bold;
+	color: #505149;
+	padding-right: 18px;
+	padding-left: 18px;
+	text-decoration: none;
+}
+.lefttd {
+	padding-left: 36px;
+}
+
+.tuijia {
+	border: 1px solid #b3f000;
+}
+.wz,wz a:hover,wz a:visited {
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 26px;
+	color: #333333;
+	padding-left: 24px;
+}
+.wz a {
+	font-family: "宋体";
+	font-size: 12px;
+	line-height: 26px;
+	color: #333333;
+	padding-left: 24px;
+	text-decoration: none;
+}

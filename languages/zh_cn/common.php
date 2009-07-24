@@ -48,7 +48,7 @@ $_LANG['gzip_enabled'] = '，Gzip 已启用';
 $_LANG['gzip_disabled'] = '，Gzip 已禁用';
 $_LANG['memory_info'] = '，占用内存 %0.3f MB';
 $_LANG['cart_info'] = '您的课程书包中有 %d 件课程，总计金额 %s。';
-$_LANG['shopping_and_other'] = '购买过此课程的人还购买过';
+$_LANG['shopping_and_other'] = '报名此课程/专业的人还报名过';
 $_LANG['shop_price'] = '优惠价：';
 $_LANG['market_price'] = '原价：';
 $_LANG['goods_brief'] = '课程描述：';
@@ -63,7 +63,7 @@ $_LANG['article_author'] = '作者';
 $_LANG['article_add_time'] = '添加日期';
 $_LANG['relative_file'] = '[ 相关下载 ]';
 $_LANG['category'] = '分类';
-$_LANG['brand'] = '授课学校';
+$_LANG['brand'] = '学校名称';
 $_LANG['price_min'] = '最小价格';
 $_LANG['price_max'] = '最大价格';
 $_LANG['goods_name'] = '课程名称';
@@ -102,16 +102,20 @@ $_LANG['extension'] = '扩展选项';
 $_LANG['gram'] = '克';
 $_LANG['kilogram'] = '千克';
 $_LANG['goods_sn'] = '课程班号：';
+$_LANG['goods_sn2'] = '专业编号：';
 $_LANG['goods_brand'] = '学校名称：';
 $_LANG['goods_weight'] = '课程重量：';
 $_LANG['goods_number'] = '课程库存：';
-$_LANG['goods_give_integral'] = '购买此课程赠送：';
-$_LANG['goods_integral'] = '购买此课程可使用：';
-$_LANG['goods_bonus'] = '购买此课程可获得红包：';
+$_LANG['goods_give_integral'] = '报名此课程赠送：';
+$_LANG['goods_integral'] = '报名此课程可使用：';
+$_LANG['goods_bonus'] = '报名此课程可获得红包：';
 $_LANG['goods_rank'] = '用户评价：';
 $_LANG['goods_compare'] = '课程比较';
+$_LANG['goods_compare2'] = '专业比较';
 $_LANG['properties'] = '课程属性：';
+$_LANG['properties2'] = '专业属性：';
 $_LANG['brief'] = '课程简介：';
+$_LANG['brief2'] = '专业简介：';
 $_LANG['add_time'] = '上架时间：';
 $_LANG['residual_time'] = '剩余时间：';
 $_LANG['day'] = '天';
@@ -148,7 +152,7 @@ $_LANG['same_attrbiute_goods'] = '相同%s的课程';
 
 /* TAG */
 $_LANG['button_submit_tag'] = '添加我的标记';
-$_LANG['tag_exists'] = '您已经为该课程添加过一个标记，请不要重复提交.';
+$_LANG['tag_exists'] = '您已经为该课程/专业添加过一个标记，请不要重复提交.';
 $_LANG['tag_cloud'] = '标签云';
 $_LANG['tag_anonymous'] = '对不起，只有注册会员并且正常登录以后才能提交标记。';
 $_LANG['tag_cloud_desc'] = '标签云（Tag cloud）是用以表示一个网站中的内容标签。 标签（tag、关键词）是一种更为灵活、有趣的课程分类方式，您可以为每个课程添加一个或多个标签，那么可以通过点击这个标签查看课程其他会员提交的与您的标签一样的课程,能够让您使用最快的方式查找某一个标签的所有网店课程。比方说点击“红色”这个标签，就可以打开这样的一个页面，显示所有的以“红色” 为标签的网店课程';
@@ -456,6 +460,7 @@ $_LANG['along_with'] = '以及';
 $_LANG['preferential'] = '优惠券';
 $_LANG['edit_user_info'] = '进入用户中心';
 $_LANG['logout'] = '退出';
+$_LANG['welcome_user'] = '我爱学习网欢迎您在线报名(您已是注册用户，选择直接报名即可)';
 
 /* 课程品牌页 */
 $_LANG['official_site'] = '学校网站：';
@@ -538,15 +543,20 @@ $_LANG['auction_promotion'] = '[转让]';
 $_LANG['favourable_promotion'] = '[优惠]';
 $_LANG['wholesale_promotion'] = '[集体]';
 
+/*  我爱学习网语言常量定义 */
 
-/* course Item */
+/*  course Item */
 $_LANG['course_sign_up'] = '在线报名';
 $_LANG['course_sn'] = '课程班号';
+$_LANG['course_sn2'] = '专业编号';
 $_LANG['course_start_date'] = '开课日期';
+$_LANG['course_start_date2'] = '开学日期';
 $_LANG['course_start_time'] = '上课时间';
+$_LANG['course_start_time2'] = '报到时间';
 $_LANG['course_recruit_goal'] = '招生对象';
 $_LANG['course_material'] = '使用教材';
 $_LANG['course_goal'] = '课程目标';
+$_LANG['course_goal2'] = '专业目标';
 $_LANG['course_teacher_desc'] = '老师介绍';
 $_LANG['course_address'] = '上课地点';
 $_LANG['course_address_map'] = '交通路线';
@@ -557,4 +567,29 @@ $_LANG['course_discount_price'] = '优惠价';
 $_LANG['course_save_money'] = '立即节省';
 $_LANG['course_save_money_short'] = '省';
 
+/*  在线报名 */
+$_LANG['course_signup_tel'] = '报名电话';
+$_LANG['course_signup_phone'] = '010-69799625';
+
+/* 咨询 */
+$_LANG['consult_submit_error'] = '对不起，您提交的信息不完整，请重新提交！';
+$_LANG['consult_submit_success'] = '您已成功提交，您的专业学习顾问将会尽快和您联系！';
+
+/* Title */
+$_LANG['recommend_best'] = '精品课程/专业';
+$_LANG['recommend_hot'] = '热门课程/专业';
+$_LANG['recommend_new'] = '新推课程/专业';
+$_LANG['course_category'] = '课程/专业分类';
+$_LANG['course_major'] = '课程/专业';
+$_LANG['course_major0'] = '专业';
+$_LANG['course_major1'] = '课程';
+
+$_LANG['course_major_list'] = '课程/专业列表';
+$_LANG['course_major_list0'] = '专业列表';
+$_LANG['course_major_list1'] = '课程列表';
+
+$_LANG['course_detail'] = '详情';
+
+
+$_LANG['QQ'] = 'tencent://message/?uin=1109811037&Site=www.iastudy.com&Menu=yes';
 ?>

@@ -40,7 +40,7 @@
     <!-- {/foreach} -->
 </span><!-- /globalSearchKeywords -->
 <!-- {/if} -->
-<img src="library/images/az-topnav-cart.gif" width="19" height="16" border="0" alt="购物车" /><span id="ECS_CARTINFO">{insert_scripts files='transport.js'}{insert name='cart_info'}</span></div>
+<img src="library/images/az-topnav-cart.gif" width="19" height="16" border="0" alt="课程书包" /><span id="ECS_CARTINFO">{insert_scripts files='transport.js'}{insert name='cart_info'}</span></div>
     <div class="top-list">
   <form id="searchForm" name="searchForm" method="get" action="library/search.php" onSubmit="return checkSearchForm()">
         <span class="top-form14">{$lang.search_goods}</span>

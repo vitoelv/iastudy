@@ -28,7 +28,7 @@
 <!-- #BeginLibraryItem "/library/category_tree.lbi" -->
 
 <div class="title-01">
-  <div class="title-01-title">课程分类</div>
+  <div class="title-01-title">课程/专业分类</div>
 </div>
 <div id="category-tree">
   <!--{foreach from=$categories item=cat}-->
@@ -567,82 +567,19 @@ fx.sineInOut = function(pos){
  <!-- #EndLibraryItem -->
  
  <!-- #BeginLibraryItem "/library/promotion_info.lbi" --><!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/order_query.lbi" -->
+ <!-- #BeginLibraryItem "/library/goods_advisor.lbi" --><!-- #EndLibraryItem -->
 
 <script type="text/javascript">
 //<![CDATA[
   var invalid_order_sn = "{$lang.invalid_order_sn}"
 //]]>
 </script>
-<!-- {if empty($order_query)} -->
-<div class="title-02">
-  <div class="title">报名课程查询</div>
-  <ul>
-    <li>  <form name="ecsOrderQuery" action="javascript:;" id="ecsOrderQuery">
-    <input type="text" name="order_sn" class="text_input" />
-    <input type="button" onClick="orderQuery()" value="查询" class="button" />
-  </form></li>
-    <li>
-<div id="ECS_ORDER_QUERY">
-  <!-- {else} -->
-    <ul>
-      <!-- {if $order_query.user_id} -->
-      <li><strong>{$lang.order_number}</strong><br />
-        <a href="user.php?act=order_detail&amp;order_id={$order_query.order_id}" >{$order_query.order_sn}</a>
-      </li>
-      <!-- {else} -->
-      <li><strong>{$lang.order_number}</strong><br />
-        {$order_query.order_sn}
-      </li>
-      <!-- {/if} -->
-      <li><strong>{$lang.order_status}</strong><br />
-        {$order_query.order_status}
-      </li>
-      <!-- {if $order_query.invoice_no } -->
-      <li><strong>{$lang.consignment}</strong><br />
-        {$order_query.invoice_no}
-      </li>
-      <!-- {/if} -->
-      <!-- {if $order_query.shipping_date} -->
-      <li><strong>{$lang.shipping_date}</strong><br />
-        {$order_query.shipping_date}
-      </li>
-      <!-- {/if} -->
-    </ul>
-  <!-- {/if} -->
-    </li>
-  </ul>
-</div>
 
-
- <!-- #EndLibraryItem -->
-<!-- #BeginLibraryItem "/library/invoice_query.lbi" -->
-
-<!--{if $invoice_list}-->
-<div class="title-02">
-  <div class="title">发货查询</div>
-  <ul>
-    <!-- 发货单查询{foreach from=$invoice_list item=invoice} -->
-    <li>{$lang.order_number}:<span class="invoice-10">{$invoice.order_sn}</span></li>
-    <li class="invoice-li">
-      <table border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td style="padding:0">{$lang.consignment}:</td>
-          <td style="padding:0">{$invoice.invoice_no}</td>
-        </tr>
-      </table>
-    </li>
-    <!-- 结束发货单查询{/foreach}-->
-  </ul>
-</div>
-<!-- {/if} -->
-
- <!-- #EndLibraryItem -->
 <!-- #BeginLibraryItem "/library/top10.lbi" -->
 
 <!-- {if $top_goods} -->
 <div class="title-02">
-    <div class="title">课程排行</div>
+    <div class="title">课程/专业排行</div>
     <ul>
       <!-- {foreach name=top_goods from=$top_goods item=goods}-->
       <li class="top10-li-{$smarty.foreach.top_goods.iteration}"> <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name}</a></li>
@@ -676,7 +613,7 @@ fx.sineInOut = function(pos){
 
 <!-- {if $best_goods} -->
 <div class="title-03">
-              <div class="title">精品课程</div>
+              <div class="title">精品课程/专业</div>
               <div class="more"><a href="search.php?intro=best">more...</a> </div>
             <div class="box">
   <ul class="product-list">
@@ -707,7 +644,7 @@ fx.sineInOut = function(pos){
 
 <!-- {if $hot_goods} -->
 <div class="title-03">
-              <div class="title">热门课程</div>
+              <div class="title">热门课程/专业</div>
               <div class="more"><a href="search.php?intro=hot">more...</a> </div>
             <div class="box">
   <ul class="product-list">
@@ -737,7 +674,7 @@ fx.sineInOut = function(pos){
 
 <!-- {if $new_goods} -->
 <div class="title-03">
-              <div class="title">新推课程</div>
+              <div class="title">新推课程/专业</div>
               <div class="more"><a href="search.php?intro=new">more...</a> </div>
             <div class="box">
   <ul class="product-list">
@@ -821,16 +758,19 @@ fx.sineInOut = function(pos){
 		  <!-- TemplateBeginEditable name="右边" -->
 <!-- #BeginLibraryItem "/library/new_articles.lbi" -->
 
+<!-- {if !empty($shop_notice)} -->
 <div class="title-02">
   <div class="title">最新公告</div>
   <div id="ECS_NOTICE_BODY"> {$shop_notice} </div>
 </div>
+<!-- {/if} -->
+
 <div class="title-02">
   <div class="title">最新资讯</div>
   <div class="new-articles">
     <ul>
       <!-- {foreach name=new_articles from=$new_articles item=article} -->
-      <!-- {if $smarty.foreach.new_articles.iteration lte 6} 限制文章显示数量 -->
+      <!-- {if $smarty.foreach.new_articles.iteration lte 10} 限制文章显示数量 -->
       <li>[<a href="{$article.cat_url}">{$article.cat_name}</a>] <a href="{$article.url}" title="{$article.title|escape:html}">{$article.short_title|truncate:18}</a></li>
       <!-- {/if} -->
       <!-- {/foreach} -->

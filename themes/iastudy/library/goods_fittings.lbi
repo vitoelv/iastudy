@@ -1,6 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <!-- {if $fittings} -->
- <div class="goods-title">相关资源</div>
+ <div class="goods-title"><img src="../images/subtitle2.gif"/>&nbsp;相关资源</div>
     <ul class="product-list">
       <!-- {foreach from=$fittings item=goods} -->
       <li>

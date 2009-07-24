@@ -40,6 +40,13 @@
     </td>
   </tr>
   <tr>
+    <td class="label">{$lang.brand_type}</td>
+    <td><input type="radio" name="brand_type" value="1" {if $brand.brand_type eq 1}checked="checked"{/if} /> {$lang.type_organize}
+        <input type="radio" name="brand_type" value="0" {if $brand.brand_type eq 0}checked="checked"{/if} /> {$lang.type_school}
+        ({$lang.type_notes})
+    </td>
+  </tr>  
+  <tr>
     <td colspan="2" align="center"><br />
       <input type="submit" class="button" value="{$lang.button_submit}" />
       <input type="reset" class="button" value="{$lang.button_reset}" />

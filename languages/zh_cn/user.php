@@ -373,8 +373,13 @@ $_LANG['want_login'] = '我已有账号，我要登录';
 $_LANG['other_msn'] = 'MSN';
 $_LANG['other_qq'] = 'QQ';
 $_LANG['other_office_phone'] = '办公电话';
-$_LANG['other_home_phone'] = '家庭电话';
+$_LANG['other_home_phone'] = '联系电话';
 $_LANG['other_mobile_phone'] = '手机';
+$_LANG['other_sex'] = '性别';
+$_LANG['other_age'] = '年龄';
+$_LANG['other_real_name'] = '真实姓名';
+$_LANG['other_address'] = '通信地址';
+$_LANG['other_postcode'] = '邮编';
 
 $_LANG['msg_un_blank'] = '用户名不能为空';
 $_LANG['msg_un_length'] = '用户名最长不得超过7个汉字';
@@ -476,6 +481,10 @@ $_LANG['passport_js']['msg_can_rg'] = '* 可以注册';
 $_LANG['passport_js']['msg_email_blank'] = '* 邮件地址不能为空';
 $_LANG['passport_js']['msg_email_registered'] = '* 邮箱已存在,请重新输入';
 $_LANG['passport_js']['msg_email_format'] = '* 邮件地址不合法';
+
+$_LANG['passport_js']['msg_address_blank'] = '* 通信地址不能为空';
+$_LANG['passport_js']['msg_phone_blank'] = '* 联系电话和手机不能都为空，请至少提供一项';
+$_LANG['passport_js']['msg_realname_blank'] = '* 真实姓名不能为空';
 
 
 /* user_clips.dwt js 语言文件 */

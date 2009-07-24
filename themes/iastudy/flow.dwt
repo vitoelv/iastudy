@@ -104,16 +104,171 @@
           <div align="center">{$cart_gift_money}。</div>
         </div>
         <!-- {/if} -->
+
+
+
         
         <!-- {if $step eq "checkout"} -->
         <!-- 开始订单确认界面 -->
-        <script type="text/javascript">
-      var flow_no_payment = "{$lang.flow_no_payment}";
-      var flow_no_shipping = "{$lang.flow_no_shipping}";
-      </script>
+        <script language="JavaScript" type="text/javascript">
+	      	var flow_no_payment = "{$lang.flow_no_payment}";
+	      	var flow_no_shipping = "{$lang.flow_no_shipping}";
+		    var eval_user = false;
+			function select_user_type(type)
+			{
+			  	if (type)
+				{
+					document.getElementById('is_user').style.display = "";
+					document.getElementById('is_not_user').style.display = "none";
+				}
+				else 
+				{
+					document.getElementById('is_user').style.display = "none";
+					document.getElementById('is_not_user').style.display = "";
+				}			
+			}
+
+			function user_login()
+			{
+				var user_name = Utils.trim(document.getElementById('login_user_name').value);
+				var user_pass = Utils.trim(document.getElementById('login_user_pass').value);
+
+				var msg ='';
+				if (user_name.length == 0)
+				{
+				  msg += '- 请填写会员名称\n';
+				}
+				if (user_pass.length == 0)
+				{
+				  msg += '- 请输入您的登陆密码\n';
+				}
+
+				if (msg.length != 0)
+				{
+				    alert(msg);
+					return false;
+				}
+
+				var Response = function(result)
+				{
+					if (result.error)
+					{
+					  alert (result.content);
+					  eval_user = false;
+					  return false;
+					}
+					else
+					{
+					  select_user_type(1);
+					  eval_user = true;
+					  document.getElementById("is_user_login").innerHTML=result.content;
+					}
+				}
+
+				var captcha = '';
+				//alert(user_name);
+				Ajax.call('user.php?act=signin', 'username=' + user_name + '&password=' + encodeURIComponent(user_pass) + '&captcha=' + captcha, Response, "POST", "JSON");
+
+				return true;
+			}
+
+			function user_register_edit(action)
+			{
+			    eval_user = false;
+			    var user = new Object;
+			    //user.user_name = Utils.trim(document.getElementById('user_name').value);
+				user.true_name = Utils.trim(document.getElementById('true_name').value);
+				user.sex       = 0;
+				user.record    = Utils.trim(document.getElementById('record').value);
+				user.telephone = Utils.trim(document.getElementById('telephone').value);
+				user.mobile_phone = Utils.trim(document.getElementById('mobile_phone').value);
+				user.address   = Utils.trim(document.getElementById('address').value);
+				user.email     = Utils.trim(document.getElementById('email').value);
+				user.age       = Utils.trim(document.getElementById('age').value);
+				user.idcardno       = Utils.trim(document.getElementById('idcardno').value);
+				user.qq       = Utils.trim(document.getElementById('qq').value);
+
+				for (i = 0; i < document.signupForm.elements['sex'].length; i++)
+				{
+					if (document.signupForm.elements['sex'][i].checked)
+					{
+						 user.sex = document.signupForm.elements['sex'][i].value;
+					}
+				}
+
+				if (user.true_name.length == 0)
+				{
+				  alert('请填写您的真实姓名');
+					return false;
+				}
+				if (user.email.length > 0)
+				{
+					if (!Utils.isEmail(user.email))
+					{
+					  alert('请正确填写您的个人邮件帐户！');
+						return false;
+					}
+				}
+
+                if (user.mobile_phone.length == 0 && user.telephone.length ==0)
+				{
+				    alert('联系电话和手机不能都为空，请至少提供一项');
+					return false;
+				}
+				/*
+				var Response = function (result)
+				{
+				   if (result.error)
+					 {
+					   alert(result.message);
+					   return false;
+					 }
+					 else
+					 {
+					   alert(result.content);
+					   window.location.href = document.location.href + '#step2';
+					 }
+				}
+
+				if (action == 'insert')
+				{
+                  //alert(user.toJSONString());
+                  //return false;
+				  Ajax.call('flow.php?step=user_register', 'user=' + user.toJSONString(), Response, 'POST', 'JSON');
+				}
+				else
+				{
+				  Ajax.call('flow.php?step=user_update', 'user=' + user.toJSONString(), Response, 'POST', 'JSON');
+				}
+				*/
+				eval_user = true;
+				return true;
+			  }
+			  
+			function eval_user_input()
+			{
+				var user_select = 0;
+				var type = document.signupForm.user_type;
+				var len  = type.length;   
+				for(var   i   =   0;i<len;i++){   
+				   if(type[i].checked   ==   true){
+				   		user_select = type[i].value;  
+				   	}
+				}   
+			  	if (user_select==1)
+				{
+					user_login();
+				}
+				else 
+				{
+					user_register_edit("insert");
+				}
+				return eval_user;			
+			}			  
+		  </script>        
           
   <p><img alt="报名流程" src="images/lc.jpg"/></p>
- <form id="theForm" name="theForm" method="post" action="flow.php">
+ <form id="signupForm" name="signupForm" method="post" action="flow.php" onsubmit="return eval_user_input();">
   <div class="ddlc">
     <div class="kuang"><img height="6" width="983" src="images/kuang_top.gif"/></div>
     <div class="kuang_con">
@@ -127,10 +282,10 @@
             <td colspan="3">
 	            <table width="100%" style="width: 640px;"><tbody>
 					<tr>
-					    <td width="250"><a href="goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name}</a>
+					    <td width="250" class="childclasslist_title"><a href="goods.php?id={$goods.goods_id}" target="_blank">{$goods.goods_name}</a>
 					      <input type="hidden" name="course_id" value="{$goods.goods_id}" />
 					    </td>
-					    <td><a href="{$goods.goods_brand_url}">{$goods.brand_name}</a></td>
+					    <td>{$lang.brand}：<a href="{$goods.goods_brand_url}">{$goods.brand_name|escape:html}</a></td>
 					    <td align="right"><a href="javascript:if (confirm('{$lang.drop_goods_confirm}')) location.href='flow.php?step=drop_goods&amp;id={$goods.rec_id}'; ">{$lang.drop}</a></td>
 					</tr>
 					<tr>
@@ -146,7 +301,7 @@
 						<td colspan="2">{$lang.course_start_time}：{$goods.course_start_time}</td>
 					</tr>
 					<tr>
-						<td colspan="3">{$lang.course_address}：{$goods.course_address}</td>
+						<td colspan="3">{$lang.course_address}：{$goods.course_address} </td>
 					</tr>
 	            </tbody></table>
             </td>
@@ -169,156 +324,31 @@
 						<td width="145" valign="middle">
 						  <div align="center"><img src="images/bt_02.gif" width="22" height="100" /></div>
 						</td>
+					
+		                <!-- {if $user_login eq "1"} -->
+						<td valign="top"> 
+							<div id="is_user_login" style="display:login;">
+							  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:700px;">
+				                <tr>
+									<td> 
+									  <input name="user_type" id="user_type" type="hidden"  value="1" />
+									  {$lang.hello} <strong>{$user_name}</strong> {$lang.welcome_user}！
+									</td>
+				                </tr>
+							  </table>
+							</div>														
+						</td>
+		                
+		                <!-- {else} -->							
+						
 						<td valign="top">
-						  <script language="JavaScript" type="text/javascript">
-							function select_user_type(type)
-							{
-							  if (type)
-								{
-								  document.getElementById('is_user').style.display = "";
-									document.getElementById('is_not_user').style.display = "none";
-								}
-								else
-								{
-								  document.getElementById('is_user').style.display = "none";
-									document.getElementById('is_not_user').style.display = "";
-								}
-							}
-
-							function user_login()
-							{
-							  var user_name = Utils.trim(document.getElementById('login_user_name').value);
-								var user_pass = Utils.trim(document.getElementById('login_user_pass').value);
-
-								var msg ='';
-								if (user_name.length == 0)
-								{
-								  msg += '- 请填写会员名称\n';
-								}
-								if (user_pass.length == 0)
-								{
-								  msg += '- 请输入您的登陆密码\n';
-								}
-
-								if (msg.length != 0)
-								{
-								  alert(msg);
-									return false;
-								}
-
-								var Response = function(result)
-								{
-									if (result.error)
-									{
-									  alert (result.content);
-									  return false;
-									}
-									else
-									{
-									  //alert ("欢迎回来！window.location.href = document.location.href");	
-									  //alert (result.content);
-									  select_user_type(1);
-									  document.getElementById("is_user_login").innerHTML=result.content;
-									}
-								}
-
-								var captcha = '';
-								alert(user_name);
-								Ajax.call('user.php?act=signin', 'username=' + user_name + '&password=' + encodeURIComponent(user_pass) + '&captcha=' + captcha, Response, "POST", "JSON");
-
-								return true;
-							}
-
-							function user_register_edit(frm, action)
-							{
-							  var user = new Object;
-
-							    user.user_name = Utils.trim(document.getElementById('user_name').value);
-								user.true_name = Utils.trim(document.getElementById('true_name').value);
-								user.sex       = 0;
-								user.record    = Utils.trim(document.getElementById('record').value);
-								user.telephone = Utils.trim(document.getElementById('telephone').value);
-								user.mobile_phone = Utils.trim(document.getElementById('mobile_phone').value);
-								user.address   = Utils.trim(document.getElementById('address').value);
-								user.email     = Utils.trim(document.getElementById('email').value);
-								user.age       = Utils.trim(document.getElementById('age').value);
-
-								for (i = 0; i < frm.elements['sex'].length; i++)
-								{
-									if (frm.elements['sex'][i].checked)
-									{
-										 user.sex = frm.elements['sex'][i].value;
-									}
-								}
-
-								if (user.user_name.length == 0)
-								{
-								  alert('请填写您的注册会员名称');
-									return false;
-								}
-								if (user.true_name.length == 0)
-								{
-								  alert('请填写您的真实姓名');
-									return false;
-								}
-								if (user.email.length == 0)
-								{
-								  alert('请填写您的个人E-mail');
-									return false;
-								}
-								else if (!Utils.isEmail(user.email))
-								{
-								  alert('请正确填写您的个人邮件帐户\n以便我们将您的密码发到您的邮箱！');
-									return false;
-								}
-
-								if (!Utils.isInt(user.age))
-								{
-								  alert('请正确填写您的年龄');
-									return false;
-								}
-
-                                if (user.mobile_phone == 0)
-								{
-								  alert('请填写您的手机');
-									return false;
-								}
-
-								var Response = function (result)
-								{
-								   if (result.error)
-									 {
-									   alert(result.message);
-										 return false;
-									 }
-									 else
-									 {
-									   alert(result.content);
-									   window.location.href = document.location.href + '#step2';
-									 }
-								}
-
-								if (action == 'insert')
-								{
-                                  //alert(user.toJSONString());
-                                  //return false;
-								  Ajax.call('flow.php?step=user_register', 'user=' + user.toJSONString(), Response, 'POST', 'JSON');
-								}
-								else
-								{
-								  Ajax.call('flow.php?step=user_update', 'user=' + user.toJSONString(), Response, 'POST', 'JSON');
-								}
-                				return false;
-							  }
-							  </script>
-
 						  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:700px;">
 							  <tr>
 				                  <td width="50%">
-				                    <input name="user_type" type="radio" onclick="select_user_type(1)" value="1" checked="checked" />&nbsp;我已是学习网会员
+				                    <input name="user_type" id="user_type" type="radio" onclick="select_user_type(1)" value="1" />&nbsp;我已是学习网会员
 				                  </td>
 				                  <td width="50%">
-				                    <input name="user_type" type="radio" checked="checked" value="2" onclick="select_user_type(0)" />&nbsp;个人报名信息
+				                    <input name="user_type" id="user_type" type="radio" onclick="select_user_type(0)" value="0" checked="checked" />&nbsp;非会员直接报名
 				                  </td>
 							  </tr>
 						  </table>
@@ -341,6 +371,7 @@
 			                </tr>
 						  </table>
 						</div>
+						
 						<div id="is_user_login" style="display:login;">
 						  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:700px;">
 			                <tr>
@@ -356,107 +387,134 @@
 						<div id="is_not_user" style="display:;">
 						  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:700px;">
 			                <tr>
-			                  <td width="80" >会&nbsp;员&nbsp;名：</td>
-			                  <td width="200">
-			                    <input name="user_name" type="text" id="user_name" value=""  /></span>
-			                  </td>
 			                  <td width="80" style="color:red;"><span class="STYLE2">真实姓名：</span></td>
 			                  <td width="200">
 			                    <input name="true_name" type="text" class="inp2" id="true_name" value="" /><span class="STYLE1">(必填)</span>
 			                  </td>
-			                </tr>
-			                <tr>
-			                  <td>性&nbsp;别：</td>
-			                  <td>
+			                  <td width="80" style="color:red;">性&nbsp;别：</td>
+			                  <td width="250">
 			                    <label>
 								<input name="sex" type="radio" value="0" checked />保密
 								<input name="sex" type="radio" value="1"  />男
 								<input name="sex" type="radio" value="2"  />女
 			                    </label>
 			                  </td>
+			                </tr>
+			                <tr>
+			                  <td style="color:red;"><span class="STYLE2">手&nbsp;机：</span></td>
+			                  <td>
+			                    <input name="mobile_phone" type="text" class="inp2" id="mobile_phone" value="" />
+			                    <span class="STYLE1">(必填)</span></td>	
 			                  <td style="color:red;"><span class="STYLE2">联系电话：</span></td>
 			                  <td>
 			                    <label></label>
 			                    <label>
-			                    <input name="telephone" type="text" class="inp2" id="telephone2" value="" />
+			                    <input name="telephone" type="text" class="inp2" id="telephone" value="" />
 			                    </label>
-			                    <span class="STYLE1">(必填)</span> </td>
+			                    <span class="STYLE1">(必填! 含电话区号)</span> 
+			                  </td>
 			                </tr>
 			                <tr>
-			                  <td>教育程度：</td>
+			                  <td style="color:red;"><span class="STYLE2">身份证号码：</span></td>
 			                  <td>
-			                    <label>
-			                    <input name="record" type="text" class="inp2" id="record" value="" />
-			                    </label>
+			                    <input name="idcardno" type="text" class="inp2" id="idcardno" value="" />
 			                  </td>
 			                  <td style="color:red;"><span class="STYLE2">电子邮件：</span></td>
 			                  <td>
-			                    <label></label>
 			                    <input name="email" type="text" class="inp2" id="email" value="" />
-			                    <span class="STYLE1">(必填)</span>                  </td>
-			                </tr>
-			                <tr>
-			                  <td><span style="color:#FF0000;">年&nbsp;龄：</span></td>
-			                  <td>
-			                    <label>
-			                    <input name="age" type="text" class="inp2" id="age" value="" />
-			                    <span class="STYLE1">(必填)</span></label></td>
-			                  <td style="color:red;"><span class="STYLE2">手&nbsp;机：</span></td>
-			                  <td>
-			                    <input name="mobile_phone" type="text" class="inp2" id="mobile_phone" value="" />
-			                    <span class="STYLE1">(必填)</span></td>
-			                </tr>
-			                <tr>
-			                  <td>地&nbsp;址：</td>
-			                  <td colspan="3">
-			                    <label>
-			                    <input name="address" type="text" class="inp" id="address" value="" />
-			                    </label>
-			                    <span class="STYLE1">（选择免费送听课证的需要填写）</span></td>
-			                </tr>
-			                <tr>
-			                  <td>简短附言：</td>
-			                  <td colspan="3">
-			                    <label>
-			                    <textarea name="postscript" class="lc_text" id="postscript"></textarea>
-			                    </label>
 			                  </td>
 			                </tr>
 			                <tr>
-			                  <td colspan="4" align="center">
-			                   <!--  <input name="" value="注册" type="button" onclick="return user_register_edit(this.form, 'insert');" />
-			                    <span class="STYLE1">（注册后请继续选择支付方式，以便完成报名）</span>  -->
-			                   </td>
-			                  </tr>
+			                  <td><span style="color:#FF0000;">通信地址：</span></td>
+			                  <td colspan="3">
+			                    <input name="address" type="text" class="inp" id="address" value="" />
+			                    	（含邮编，请准确填写以便于邮寄资料和入学通知书等）
+			                  </td>
+			                </tr>			                
+			                <tr>
+			                  <td>年&nbsp;龄：</td>
+			                  <td>
+			                    <input name="age" type="text" class="inp2" id="age" value="" />
+			                  </td>
+			                  <td>教育程度：</td>
+			                  <td>
+			                    <input name="record" type="text" class="inp2" id="record" value="" />
+			                  </td>
+			                </tr>
+			                <tr>
+			                  <td>QQ：</td>
+			                  <td>
+			                    <input name="qq" type="text" class="inp2" id="qq" value="" />
+			                  </td>
+			                  <td></td>
+			                  <td>
+			                    
+			                  </td>
+			                </tr>			                
 						  </table>
 						</div>
 						</td>
+						<!-- {/if} -->	
 					</tr>
 				</table>
       </div>
     </div>
     <div class="kuang"><img src="images/kuang_bot.gif" width="983" height="25" /></div>
   </div>
+        
   <div class="ddlc">
     <div class="kuang"><img src="images/kuang_top.gif" width="983" height="6" /></div>
     <div class="kuang_con">
       <div class="lc3">
-        <ul>
-          <li class="bt_03"><img src="images/bt_03.gif" width="22" height="132" /></li>
-          <li>
-            <p><input type="radio" name="payment" value="1"  isCod="1" checked="checked" pay_desc="在上网网吧预付50元报名费，并请在简短附言注明，招生学校将据此邮寄入学通知书，余款在上学报到时在学校交清!" /><b>网吧预付款</b>--在上网网吧预付50元报名费，并请在简短附言注明，招生学校将据此邮寄入学通知书，余款在上学报到时在学校交清!</p>
-            <p>  </p>
-            <p><input type="radio" name="payment" value="2"  isCod="0" pay_desc="开通城市：北京,付款区域：北京五环内用户报名免费上门办理入学手续" /><b>上门收款</b>--开通城市：北京,付款区域：北京五环内用户报名免费上门办理入学手续</p>
-          </li>
-        </ul>
+			  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td width="145" valign="middle">
+						  <div align="center"><img src="images/bt_03.gif" width="22" height="100" /></div>
+						</td>
+						<td valign="top"> 
+						  <div>
+							<table width="100%" border="0" cellspacing="0" cellpadding="0">
+					            <tr>
+					              <td><input type="radio" name="payment" value="3" checked="checked"><b>&nbsp;到校付款</b></td>
+					              <td>
+					                	入学报到时付款。请与咨询老师沟通确保已预报名成功并已妥善安排接待事宜!
+					              </td>
+					              <td></td>
+					            </tr>
+					            <tr>
+					              <td><input type="radio" name="payment" value="2" ><b>上门收款</b></td>
+					              <td>
+					                	开通城市：北京,付款区域：北京五环内用户报名免费上门办理入学手续!
+					              </td>
+					              <td></td>
+					            </tr>
+					            <tr>
+					              <td width="20%"><input type="radio" name="payment" value="1" ><b>&nbsp;网吧预付款</b></td>
+					              <td width="50%">
+					                	与网吧联系填写报名表并在上网网吧预付50元报名费，并请在简短附言注明，招生学校将据此邮寄入学通知书，余款在入学报到时在学校交清!
+					              </td>
+					              <td width="30%"></td>
+					            </tr>
+					            <tr>
+					              <td><span style="color:#FF0000;">&nbsp;简短附言：</span></td>
+					              <td>
+					                <textarea name="postscript" class="lc_text2" id="postscript"></textarea>
+					              </td>
+					              <td>如果需要附加报名信息，或需要我们帮您安排住宿，需要由他人代付款及对回访时间有要求等，请在此注明。</td>
+					            </tr>
+							</table> 	
+				    	  </div>															
+						</td> 
+					</tr>	
+			  </table>										       
+
       </div>
     </div>
-
     <div class="kuang"><img src="images/kuang_bot.gif" width="983" height="25" /></div>
   </div>
   <div class="baoming">
 	 <input type="hidden" name="step" value="done2" />
-	 <input name="" type="image" src="images/bm.gif" />
+	 <input name="" type="image" src="images/bm.gif"/>
 	</div>
  </form>
  
@@ -614,6 +672,7 @@
     <div class="clearing">&nbsp;</div>
   </div>
 </div>
+
 <!-- #BeginLibraryItem "/library/help.lbi" -->
 <div id="help">
 <!--{if $helps}-->

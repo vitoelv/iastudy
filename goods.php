@@ -66,7 +66,7 @@ if (!empty($_REQUEST['act']) && $_REQUEST['act'] == 'price')
         $attr_amount = get_attr_amount($goods_id, $attr_id);
         $shop_price  = ($goods_info['promote_price_org'] > 0) ? $goods_info['promote_price_org'] : $goods_info['rank_price'];
         $shop_price += $attr_amount;
-
+		$goods_info['goods_brand_url'] = build_uri('brand', array('bid'=>$goods_info['brand_id']), $goods_info['goods_brand']);
         $res['result'] = price_format($shop_price * $number);
     }
 

@@ -1,6 +1,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <div class="title-03">
-              <div class="title">课程列表</div>
+              <div class="title">
+                <!-- {if $brand.brand_type=="0"}-->
+                	{$lang.course_major_list0}<!-- 专业列表 -->
+                <!-- {elseif $brand.brand_type=="1"} -->
+                	{$lang.course_major_list1}<!-- 课程列表 -->
+                <!-- {else} -->
+                	{$lang.course_major_list}<!-- 课程/专业列表 -->
+                <!--{/if}-->
+              </div>
              <form method="get" action="../category.php" class="goods_form" name="listform">
       <span>
          <a href="javascript:;" onclick="javascript:display_mode('list')"><img src="../images/btn_display_mode_list<!-- {if $pager.display == 'list'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.list}" /></a> <a href="javascript:;" onClick="javascript:display_mode('grid')"><img src="../images/btn_display_mode_grid<!-- {if $pager.display == 'grid'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.grid}" /></a> <a href="javascript:;" onClick="javascript:display_mode('text')"><img src="../images/btn_display_mode_text<!-- {if $pager.display == 'text'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.text}" /></a>
@@ -71,7 +79,7 @@
 		          <tr>
 		            <td width="40%">【{$lang.brand}】<a href="{$goods.goods_brand_url}" title="{$goods.brand_name|escape:html}">{$goods.brand_name|escape:html}</a></td>
 		            <td width="35%">【{$lang.shop_prices}】<strong><span class="goods-price">{$goods.shop_price}</span> </strong></td>
-		            <td align="right" width="25%"><a href="javascript:collect({$goods.goods_id})"><img src="images/collect.gif" alt="收藏" border="0" /></a></td>
+		            <td align="right" width="25%"><a href="{$goods.url}"><img src="images/course_detail.gif" alt="详细介绍" border="0" /></a></td>
 		          </tr>
 		          <tr>
 		            <td>【{$lang.course_start_date}】{$goods.course_start_date}</td>

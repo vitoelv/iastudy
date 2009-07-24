@@ -786,10 +786,13 @@ function get_order_sn()
  */
 function cart_goods($type = CART_GENERAL_GOODS)
 {
-    $sql = "SELECT rec_id, user_id, goods_id, goods_name, goods_sn, goods_number, " .
-            "market_price, goods_price, (market_price-goods_price) as save_money, goods_attr, is_real, parent_id, is_gift, " .
-            "goods_price * goods_number AS subtotal " .
-            "FROM " . $GLOBALS['ecs']->table('cart') .
+    $sql = "SELECT c.rec_id, c.user_id, c.goods_id, c.goods_name, c.goods_sn, c.goods_number, " .
+            "c.market_price, c.goods_price, (c.market_price-c.goods_price) as save_money, c.goods_attr, c.is_real, c.parent_id, c.is_gift, " .
+            "c.goods_price * c.goods_number AS subtotal, b.brand_id,b.brand_name, b.brand_name as goods_brand, b.brand_id as goods_brand_url, " .
+    		"g.course_start_date, g.course_start_time, g.course_address,g.course_telephone " .
+            "FROM " . $GLOBALS['ecs']->table('cart') ." AS c " .
+            "LEFT JOIN " . $GLOBALS['ecs']->table('goods') . " AS g ON g.goods_id = c.goods_id " . 
+    		"LEFT JOIN " . $GLOBALS['ecs']->table('brand') . " AS b ON g.brand_id = b.brand_id " .
             " WHERE session_id = '" . SESS_ID . "' " .
             "AND rec_type = '$type'";
 
@@ -801,6 +804,7 @@ function cart_goods($type = CART_GENERAL_GOODS)
         $arr[$key]['formated_market_price'] = price_format($value['market_price'], false);
         $arr[$key]['formated_goods_price']  = price_format($value['goods_price'], false);
         $arr[$key]['formated_subtotal']     = price_format($value['subtotal'], false);
+        $arr[$key]['goods_brand_url']     = build_uri('brand', array('bid'=>$arr[$key]['brand_id']), $arr[$key]['goods_brand']);       
     }
 
     return $arr;

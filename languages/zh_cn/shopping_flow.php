@@ -166,5 +166,8 @@ $_LANG['bonus_is_ok'] = '该红包序列号可以使用，可以抵扣 %s';
 $_LANG['shopping_myship'] = '我的配送';
 $_LANG['shopping_activity'] = '活动列表';
 
+$_LANG['no_valid_info'] = '必填项不能为空，请验证后重新提交。';
+$_LANG['back_index_page'] = '返回首页';
+
 $_LANG['course_signup_success'] = '您本次报名已经成功，我们将尽快与您联系确认。';
 ?>

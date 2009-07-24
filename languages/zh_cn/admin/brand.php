@@ -20,6 +20,7 @@ $_LANG['brand_desc'] = '品牌描述';
 $_LANG['brand_logo'] = '品牌LOGO';
 $_LANG['sort_order'] = '排序';
 $_LANG['is_show'] = '是否显示';
+$_LANG['brand_type'] = '品牌类型';
 $_LANG['drop_brand_logo'] = '删除图标';
 $_LANG['confirm_drop_logo'] = '你确认要删除该图标吗？';
 $_LANG['drop_brand_logo_success'] = '删除品牌logo成功';
@@ -52,6 +53,10 @@ $_LANG['upfile_type_error'] = "只能上传jpg，gif，png类型的图片";
 $_LANG['upfile_error'] = "图片无法上传，请确保data目录下所有子目录的可写性！";
 
 $_LANG['visibility_notes'] = '当品牌下还没有课程的时候，首页及分类页的品牌区将不会显示该品牌。';
+$_LANG['type_school'] = '高等院校';
+$_LANG['type_organize'] = '培训机构';
+
+$_LANG['type_notes'] = '当此品牌是高等院校时，对应的课程会显示为“专业”；当其为培训机构时，显示为“课程”，其它相关设置也会自动更新对应的显示。';
 
 /*JS 语言项*/
 $_LANG['js_languages']['no_brandname'] = '您必须输入品牌名称！';

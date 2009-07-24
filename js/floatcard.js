@@ -1,0 +1,22 @@
+var strUin='8695345';
+var tq_title='我爱学习网';
+var showtime=1;
+var tq_float_color=2;
+var tq_floater_x='-10px';
+var tq_floater_y='100px';
+var utf8=0;
+var iscallback=0;
+var sflag=1;
+var circleid=0;
+var tq_ltype='0';
+var tq_group_names  = new Array('咨询部','报名部');
+var tq_group_counts = new Array('2','1');
+var tq_member_uins  = new Array('8695352','8730791','8695345');
+var tq_member_titles= new Array('我是咨询部','我是咨询部咨询老师','我是');
+var OnLineFlagArray = new Array('0','26','0');
+var OnUserNameArray = new Array('吕老师','雷老师','我爱学习网<BR>');
+
+document.writeln('<script src="http://sysimages.tq.cn/js/tqhead.js" charset="gb2312">\<\/scr'+'ipt\>');
+document.writeln('<script src="http://sysimages.tq.cn/js/tqDragAndCommon.js" charset="gb2312">\<\/scr'+'ipt\>');
+document.writeln('<script src="http://sysimages.tq.cn/js/tqFloatWin_agent.js" charset="gb2312">\<\/scr'+'ipt\>');
+if(sflag)	document.writeln('<script src="http://sysimages.tq.cn/js/tqXunWen_agent.js" charset="gb2312">\<\/scr'+'ipt\>');

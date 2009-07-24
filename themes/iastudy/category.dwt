@@ -32,7 +32,7 @@
               <div id="main">
                 <!-- {if $best_goods} -->
                 <div class="title-03">
-                  <div class="title">精品课程</div>
+                  <div class="title">{$lang.recommend_best}<!--精品课程--></div>
                   <div class="more"><a href="search.php?intro=best">more...</a> </div>
                   <div class="box">
                     <ul class="product-list">
@@ -56,7 +56,7 @@
 						          <tr>
 						            <td width="45%">【{$lang.brand}】<a href="{$goods.goods_brand_url}" title="{$goods.brand_name|escape:html}">{$goods.brand_name|escape:html}</a></td>
 						            <td width="30%">【{$lang.shop_prices}】<strong><span class="goods-price">{$goods.shop_price}</span> </strong></td>
-						            <td align="right" width="25%"><a href="javascript:collect({$goods.id})"><img src="images/collect.gif" alt="收藏" border="0" /></a></td>
+						            <td align="right" width="25%"><a href="{$goods.url}"><img src="images/course_detail.gif" alt="详细介绍" border="0" /></a></td>
 						          </tr>
 						          <tr>
 						            <td>【{$lang.course_start_date}】{$goods.course_start_date}</td>
@@ -87,7 +87,7 @@
         <div id="right"><!-- #BeginLibraryItem "/library/recommend_promotion.lbi" -->
           <!-- {if $promotion_goods} -->
           <div class="title-02">
-            <div class="title">热门课程</div>
+            <div class="title">{$lang.recommend_hot}<!--热门课程--></div>
             <div>
               <!--{foreach from=$promotion_goods item=goods}-->
               <!-- <table width="100%" border="0" cellpadding="3" cellspacing="1" class="float-left" style="margin-bottom:3px;">
@@ -98,7 +98,7 @@
                     <div>
                       <table width="80" border="0" cellpadding="2" cellspacing="0">
                         <tr>
-                          <td height="28" align="center"><a href="javascript:collect({$goods.id})"><img src="library/images/sort-collect.gif" alt="收藏" border="0" /></a></td>
+                          <td height="28" align="center"><a href="{$goods.url}"><img src="images/course_detail.gif" alt="详细介绍" border="0" /></a></td>
                           <td align="center"><a href="javascript:addToCart({$goods.id})"><img src="library/images/sort-addcart.gif" alt="报名" border="0" /></a></td>
                         </tr>
                       </table>
@@ -125,7 +125,7 @@
 						          <tr>
 						            <td width="45%">【{$lang.brand}】<a href="{$goods.goods_brand_url}" title="{$goods.brand_name|escape:html}">{$goods.brand_name|escape:html}</a></td>
 						            <td width="30%">【{$lang.shop_prices}】<strong><span class="goods-price">{$goods.shop_price}</span> </strong></td>
-						            <td align="right" width="25%"><a href="javascript:collect({$goods.id})"><img src="images/collect.gif" alt="收藏" border="0" /></a></td>
+						            <td align="right" width="25%"><a href="{$goods.url}"><img src="images/course_detail.gif" alt="详细介绍" border="0" /></a></td>
 						          </tr>
 						          <tr>
 						            <td>【{$lang.course_start_date}】{$goods.course_start_date}</td>

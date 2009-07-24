@@ -1,84 +1,51 @@
-<script language=JavaScript src=http://float2006.tq.cn/floatcard?adminid=8695345&sort=0></script>
+<?php   
+define('IN_ECS', true);
 
-<script type="text/javascript">
+require(dirname(__FILE__) . '/includes/init.php');
+require(ROOT_PATH . 'includes/lib_order.php');
+require_once(ROOT_PATH . 'includes/lib_common.php');
 
-fileLoadingImage = "themes/21sj/" + fileLoadingImage;
-fileBottomNavCloseImage = "themes/21sj/" + fileBottomNavCloseImage;
-onload = function()
-{
-  initLightbox();
+$postscript=$_POST["contenthide"];
+$postscript = urldecode($postscript); 
+$true_name=$_POST["option1hide"];
+$true_name= urldecode($true_name); //rawurldecode
+
+$telephone=$_POST["phonehide"];
+$telephone = urldecode($telephone); 
+$request_url=$_POST["url"];
+$request_url = urldecode($request_url); 
+
+
+$status = -1;
+$business_type = 2; //1 is user signup, 2 is user consult
+$request_ip = GetIP();
+$time = gmtime();
+$signup_date = date("Y-m-d H:i:s");
+$sql = "INSERT INTO " . $GLOBALS['ecs']->table('course_signup') . 
+			"(true_name, telephone, " .
+			" postscript, signup_date,request_ip, request_url,business_type," .
+			"status,signup_time)".
+			" VALUES('" .$true_name. "','" .$telephone. "','" .
+					$postscript  ."', '" .$signup_date ."', '" 
+					.$request_ip ."', '".$request_url ."', '".$business_type ."', '".$status ."', '".$time . "')";    
+
+   					
+$db->query($sql);
+
+function GetIP(){ 
+	if (getenv("HTTP_CLIENT_IP") && strcasecmp(getenv("HTTP_CLIENT_IP"), "unknown")) 
+		$ip = getenv("HTTP_CLIENT_IP"); 
+	else if (getenv("HTTP_X_FORWARDED_FOR") && strcasecmp(getenv("HTTP_X_FORWARDED_FOR"), "unknown")) 
+		$ip = getenv("HTTP_X_FORWARDED_FOR"); 
+	else if (getenv("REMOTE_ADDR") && strcasecmp(getenv("REMOTE_ADDR"), "unknown")) 
+		$ip = getenv("REMOTE_ADDR"); 
+	else if (isset($_SERVER['REMOTE_ADDR']) && $_SERVER['REMOTE_ADDR'] && strcasecmp($_SERVER['REMOTE_ADDR'], "unknown")) 
+		$ip = $_SERVER['REMOTE_ADDR']; 
+	else 
+		$ip = "unknown"; 
+	return($ip); 
 }
 
-function  insert(frm)
-{
-  var insert = new Object;
-	insert.user_name = Utils.trim(frm.elements['user_name'].value);
-	insert.email = Utils.trim(frm.elements['email'].value);
-	insert.telephone = Utils.trim(frm.elements['telephone'].value);
-	insert.cat_id = Utils.trim(frm.elements['cat_id'].value);
-	insert.value = Utils.trim(frm.elements['brand_name'].value);
-	insert.value_id = frm.elements['brand_id'].value;
-	insert.type = frm.elements['type'].value;
-	brand_id = frm.elements['brand_id'].value;
-
-	var msg = '';
-
-    if (insert.user_name == '请填写真实姓名')
-    {
-      msg += '- 请填写真实的姓名。\n';
-    }
-    if (insert.telephone == '请填写真实电话号码')
-    {
-      msg += '- 请填写真实的电话号码。\n';
-    }
-
-	if (insert.user_name.length == 0)
-	{
-	  msg += '- 请填写您的名称。\n';
-	}
-	if (insert.email.length == 0)
-	{
-	  msg += '- 请填写您的邮件地址。\n';
-	}
-
-    if (!Utils.isEmail(insert.email))
-    {
-      msg += '- 邮件地址不符要求。\n';
-    }
-
-	if (msg.length > 0)
-	{
-	  alert(msg);
-		return;
-	}
-
-	var Response = function (result)
-	{
-	  alert(result);
-		frm.elements['user_name'].value = '';
-		frm.elements['email'].value = '';
-		frm.elements['telephone'].value = '';
-	}
-	Ajax.call('brand.php?act=insert&brand=' + brand_id, 'insert=' + insert.toJSONString(), Response, 'POST', 'TEXT');
-	return;
-}
-
-function clear_input(obj)
-{
-  var name = obj.name;
-  name = true;
-  if (name)
-  {
-    obj.value = '';
-		obj.style.color = '#000';
-	  name = false;
-  }
-}
-
-var process_request = "正在处理您的请求...";
-</script>
-
-
-<script type="text/javascript" src="http://sfhelp.baidu.com/msg/js/34/1339034.js" charset="gb2312"></script>
-
+?>  
+ 
 
