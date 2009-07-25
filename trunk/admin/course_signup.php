@@ -94,14 +94,15 @@ if ($_REQUEST['act'] == 'insert')
     $sql = "INSERT INTO ".$ecs->table('course_signup')."(user_name, true_name, sex, record, telephone, ".
                 "mobile_phone, address, postcode, postscript, course_id, course_name, ". 
                 "course_school, signup_date, status, request_ip, request_url, qq, ". 
-                "business_type, email, idcardno, age, payment, aux1, ". 
+                "business_type, email, idcardno, age, payment,admin_verify,admin_comment, aux1, ". 
                 "aux2) ".
             "VALUES ('$_POST[user_name]', '$_POST[true_name]', '$_POST[sex]', '$_POST[record]', ".
                 "'$_POST[telephone]', '$_POST[mobile_phone]', '$_POST[address]', '$_POST[postcode]', ".
                 "'$_POST[postscript]', '$_POST[course_id]', '$_POST[course_name]', '$_POST[course_school]', ".
                 "'$_POST[signup_date]', '$_POST[status]', '$_POST[request_ip]', '$_POST[request_url]', ".
                 "'$_POST[qq]', '$_POST[business_type]', '$_POST[email]', '$_POST[idcardno]', ".
-                "'$_POST[age]', '$_POST[payment]', '$_POST[aux1]', ".                
+                "'$_POST[age]', '$_POST[payment]', '$_POST[admin_verify]', ".    
+    			"'$_POST[admin_comment]', '$_POST[aux1]', ".              
                 "'$_POST[aux2]')";    				
     
     $db->query($sql);
@@ -149,7 +150,8 @@ if ($_REQUEST['act'] =='update')
     				postcode ='$_POST[postcode]', postscript='$_POST[postscript]', course_id ='$_POST[course_id]', 
     				course_name ='$_POST[course_name]', course_school='$_POST[course_school]', signup_date ='$_POST[signup_date]',
     				status ='$_POST[status]', request_ip='$_POST[request_ip]', request_url ='$_POST[request_url]', 
-    				qq ='$_POST[qq]',business_type='$_POST[business_type]', aux1 ='$_POST[aux1]', aux2 ='$_POST[aux2]', 
+    				qq ='$_POST[qq]',business_type='$_POST[business_type]', aux1 ='$_POST[aux1]', aux2 ='$_POST[aux2]',
+    				admin_verify ='$_POST[admin_verify]',admin_comment='$_POST[admin_comment]',     				 
     				email='$_POST[email]', idcardno='$_POST[idcardno]', age='$_POST[age]', payment='$_POST[payment]' ", $_POST['id']))
     {
         $link[0]['text'] = $_LANG['back_list'];
