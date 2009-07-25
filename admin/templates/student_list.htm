@@ -26,7 +26,9 @@
 	<th>{$lang.course_name}</th>
     <th>{$lang.business_type}</th>	
     <th>{$lang.status}</th>
-	<th>{$lang.request_url}</th>
+	<th>{$lang.admin_verify}</th>
+	<th>{$lang.postscript}</th>	
+	<!-- <th>{$lang.request_url}</th> -->
 	<th>{$lang.request_ip}</th>
 	<th><a href="javascript:listTable.sort('signup_date'); ">{$lang.signup_date}</a>{$sort_signup_date}</th>
     <th>{$lang.handler}</th>
@@ -37,11 +39,13 @@
     <td align="left"><span>{$list.true_name} {if $list.user_name neq ''}[{$list.user_name}]{/if}</span></td>
 	<td align="left"><span>{$list.telephone}</span></td>
 	<td align="left"><span>{$list.mobile_phone}</span></td>
-	<td align="left"><span>{$list.course_name} {if $list.course_id neq ''}[<a href="../goods.php?id={$list.course_id}" target="_blank" title="查看" >{$list.course_id}</a>]{/if}</span></td>
+	<td align="left"><span>{$list.course_name} {if $list.course_id neq ''}[<a href="../goods.php?id={$list.course_id}" target="_blank" title="查看" >{$list.course_id}--{$list.goods_name}</a>]{/if}</span></td>
     <td align="center"><span>{if $list.business_type eq 1}{$lang.business_type1}{elseif $list.business_type eq 2}{$lang.business_type2}{else}{$lang.business_type0}{/if}</span></td>
 	<td align="center"><span>{if $list.status eq 1}{$lang.status1}{else}{$lang.status0}{/if}</span></td>
-	<td align="center"><span>{$list.request_url}</span></td>
-	<td align="center"><span>{$list.request_ip}</span></td>
+	<td align="center"><span>{if $list.admin_verify eq 2}{$lang.admin_verify2}{elseif $list.admin_verify eq 1}{$lang.admin_verify1}{else}{$lang.admin_verify0}{/if}</span></td>	
+	<td align="center"><span>{if $list.postscript neq ''}<a href="course_signup.php?act=edit&id={$list.id}" title="{$list.postscript}">{$lang.postscript_yes}</a>{/if}</span> </td>
+	<!-- <td align="center"><span>{$list.request_url}</span></td> -->
+	<td align="center"><span>{if $list.request_url neq ''}<a href="{$list.request_url}"  target="_blank" title="{$lang.request_url}: {$list.request_url}">{$list.request_ip}</a>{else}{$list.request_ip}{/if}</span></td> 
 	<td align="center"><span>{$list.signup_date}</span></td>
 	<td align="center" nowrap="true"><span>
       <!--<a href="../course_signup.php?id={$list.id}" target="_blank" title="{$lang.view}"><img src="images/icon_view.gif" border="0" height="16" width="16" /></a>&nbsp; -->

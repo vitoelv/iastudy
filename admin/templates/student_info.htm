@@ -56,6 +56,10 @@
         <td class="narrow-label">{$lang.postscript}</td>
         <!-- <td><textarea name="postscript" cols="58" rows="3">{$student.postscript}</textarea></td> -->
 		<td><input type="text" name="postscript" size ="60" value="{$student.postscript}" /></td>
+      </tr>	
+      <tr>
+        <td class="narrow-label"></td>
+		<td>{$student.postscript}</td>
       </tr>		  
       <tr>
         <td class="narrow-label">{$lang.request_url}</td>
@@ -119,8 +123,19 @@
 			<input type="radio" name="status" value="1" {if $student.status eq 1}checked{/if}> {$lang.status1}
 		</td>
       </tr>	
-
-	  
+      <tr>
+        <td class="narrow-label">{$lang.admin_verify}</td>
+        <td>
+			<input type="radio" name="admin_verify" value="0" {if $student.admin_verify eq 0}checked{/if}> {$lang.admin_verify0}
+			<input type="radio" name="admin_verify" value="1" {if $student.admin_verify eq 1}checked{/if}> {$lang.admin_verify1}
+			<input type="radio" name="admin_verify" value="2" {if $student.admin_verify eq 2}checked{/if}> {$lang.admin_verify2}
+		</td>
+      </tr>	
+      <tr>
+        <td class="narrow-label">{$lang.admin_comment}</td>
+        <!-- <td><textarea name="admin_comment" cols="58" rows="3">{$student.admin_comment}</textarea></td> -->
+		<td><input type="text" name="admin_comment" size ="60" value="{$student.admin_comment}" /></td>
+      </tr>		  
     </table>
 
     <div class="button-div">

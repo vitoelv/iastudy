@@ -1627,7 +1627,8 @@ elseif ($_REQUEST['step'] == 'done2')
 	$payment       = isset($_POST['payment']) ? trim($_POST['payment']) : '';   
 	$course_id	= isset($_POST['course_id']) ? trim($_POST['course_id']) : ''; 
 	$postcode = isset($_POST['postcode']) ? trim($_POST['postcode']) : ''; 
-	$qq = isset($_POST['qq']) ? trim($_POST['qq']) : '';
+	$qq = isset($_POST['idcardno']) ? trim($_POST['idcardno']) : '';
+	$idcardno = isset($_POST['qq']) ? trim($_POST['qq']) : '';
 	$direct_signup = isset($_POST['direct_signup']) ? trim($_POST['direct_signup']) : '0';
 	if($direct_signup == 0 ){
 	    /* 检查购物车中是否有商品 */
@@ -1676,11 +1677,11 @@ elseif ($_REQUEST['step'] == 'done2')
 	$signup_date = date("Y-m-d H:i:s");
     $sql = "INSERT INTO " . $GLOBALS['ecs']->table('course_signup') . 
                 "(user_name, true_name, sex, record, telephone, mobile_phone, " .
-                "address,postcode, email, age, payment,postscript,course_id,signup_date,request_ip,qq," .
+                "address,postcode, email, age, payment,postscript,course_id,signup_date,request_ip,idcardno,qq," .
                 "status,signup_time)".
 	            " VALUES('".$user_name. "','" .$true_name. "','" .$sex. "','" .$record. "','" .$telephone. "','" .
     					$mobile_phone. "','" .$address. "','" .$postcode. "','" .$email. "','" .$age. "','" .$payment. "','" .
-    					$postscript. "','" .$course_id ."', '" .$signup_date ."', '".$request_ip ."', '".$qq ."', '". 
+    					$postscript. "','" .$course_id ."', '" .$signup_date ."', '".$request_ip ."', '".$idcardno."', '".$qq ."', '". 
     					$status ."', '".$time . "')";
     $db->query($sql);  
 	$new_signup_id = $db->insert_id();
