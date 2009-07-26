@@ -67,7 +67,6 @@ border-top: 1px solid #fff; /*Remove this to remove border between bar and tabs*
 .tabcontainer{
 clear: left;
 width:95%; /*width of 2nd level sub menus*/
-height:1.5em; /*height of 2nd level sub menus. Set to largest's sub menu's height to avoid jittering.*/
 }
 
 .tabcontent{
