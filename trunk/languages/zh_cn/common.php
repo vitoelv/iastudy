@@ -592,4 +592,5 @@ $_LANG['course_detail'] = '详情';
 
 
 $_LANG['QQ'] = 'tencent://message/?uin=1109811037&Site=www.iastudy.com&Menu=yes';
+
 ?>
