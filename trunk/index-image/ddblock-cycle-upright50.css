@@ -1,23 +1,23 @@
 DIV.ddblock-cycle-upright50 DIV#pager {
-	BORDER-RIGHT: #ccc 0px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ccc 0px solid; PADDING-LEFT: 2px; FLOAT: left; PADDING-BOTTOM: 2px; MARGIN-LEFT: 6px; BORDER-LEFT: #ccc 0px solid; WIDTH: 200px; PADDING-TOP: 2px; BORDER-BOTTOM: #ccc 0px solid; HEIGHT: 250px; background-color:#FF0000;
+	BORDER-RIGHT: #ccc 0px solid; PADDING-RIGHT: 2px; BORDER-TOP: #ccc 0px solid; PADDING-LEFT: 2px; FLOAT: left; PADDING-BOTTOM: 2px; MARGIN-LEFT: 6px; BORDER-LEFT: #ccc 0px solid; WIDTH: 270px; PADDING-TOP: 2px; BORDER-BOTTOM: #ccc 0px solid; HEIGHT: 250px; 
 }
 .slider_border {
 	FLOAT: left; WIDTH: 410px; 
 }
 .container {
-	WIDTH: 650px;  
+	WIDTH: 700px; FLOAT: left;  
 }
 .slide-inner {
-	WIDTH: 410px; border-style: solid;  border-color: blue blue blue blue;
+	WIDTH: 410px; 
 }
 .custom-pager-inner {
-	FLOAT: left; WIDTH: 200px
+	FLOAT: right; WIDTH: 270px
 }
 #pager {
-	FLOAT: left; WIDTH: 200px
+	FLOAT: right; WIDTH: 270px
 }
 #ddblock-custom-pager-8 {
-	FLOAT: left; WIDTH: 200px
+	FLOAT: right; WIDTH: 270px
 }
 DIV.ddblock-cycle-upright50 DIV.slider {
 	FLOAT: left; WIDTH: 410px; 
@@ -71,7 +71,7 @@ DIV.ddblock-cycle-upright50 DIV.slide-body-vertical {
 	WIDTH: 132px
 }
 DIV.ddblock-cycle-upright50 DIV.slide-body-horizontal {
-	FLOAT: left; WIDTH: 290px
+	FLOAT: left; WIDTH: 270px
 }
 DIV.ddblock-cycle-upright50 DIV.slide-body-inner {
 	COLOR: white
@@ -110,19 +110,24 @@ DIV.ddblock-cycle-upright50 DIV.custom-pager-inner {
 	HEIGHT: 101px
 }
 DIV.ddblock-cycle-upright50 DIV.custom-pager .custom-pager-item {
-	FLOAT: left
+	FLOAT: right
 }
 DIV.ddblock-cycle-upright50 DIV.custom-pager .custom-pager-item-inner {
-	WIDTH: 182px
+	WIDTH: 270px
 }
+
 DIV.ddblock-cycle-upright50 DIV.custom-pager A {
-	DISPLAY: block; FONT-WEIGHT: bold; FONT-SIZE: 0.9em; FLOAT: left; BACKGROUND-IMAGE: url(header-image/slide_back.gif); WIDTH: 182px; COLOR: #000; LINE-HEIGHT: 50px; FONT-FAMILY: Tahoma,Arial,sans-serif; HEIGHT: 60px; TEXT-ALIGN: left; TEXT-DECORATION: none; opacity: 0.7
+	DISPLAY: block; FONT-SIZE: 0.9em; FLOAT: left; BACKGROUND-IMAGE: url(header-image/slide_back.gif); WIDTH: 270px; COLOR: #000; LINE-HEIGHT: 40px; FONT-FAMILY: Tahoma,Arial,sans-serif; HEIGHT: 50px; TEXT-ALIGN: left; TEXT-DECORATION: none; opacity: 0.7;
 }
+
+DIV.ddblock-cycle-upright50 DIV.custom-pager A STRONG {LINE-HEIGHT: 25px; HEIGHT: 25px; }
+DIV.ddblock-cycle-upright50 DIV.custom-pager A p {border-style: none; }
+
 DIV.ddblock-cycle-upright50 DIV.custom-pager A.activeSlide {
 	BACKGROUND-IMAGE: url(header-image/slide_hover.gif); COLOR: #fff; opacity: 1
 }
 DIV.ddblock-cycle-upright50 DIV.custom-pager A:hover {
-	BACKGROUND: #fff; COLOR: #96f; opacity: 1
+	BACKGROUND: #ccc; COLOR: #96f; opacity: 1
 }
 DIV.ddblock-cycle-upright50 DIV.custom-pager A:focus {
 	outline: none
@@ -136,3 +141,30 @@ DIV.ddblock-cycle-upright50 DIV.spacer-vertical {
 DIV.ddblock-cycle-upright50 DIV.spacer-horizontal {
 	CLEAR: both; HEIGHT: 5px; BACKGROUND-COLOR: #ccc
 }
+
+/**  Adds-on CSS */
+
+/*
+** Markup free clearing
+** Details: http://www.positioniseverything.net/easyclearing.html
+*/
+.clear-block:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clear-block {
+  display: inline-block;
+}
+
+/* Hides from IE-mac \*/
+* html .clear-block {
+  height: 1%;
+}
+.clear-block {
+  display: block;
+}
+/* End hide from IE-mac */
