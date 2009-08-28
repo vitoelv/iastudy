@@ -180,7 +180,7 @@ th {
 }
 #top_nav {
 	float:left;
-	margin-top:31px;
+	margin-top:1px;
 }
 #top_nav li {
 	float:left;
@@ -199,7 +199,7 @@ th {
 	background-color: #DBF0C4;
 	background:url(images/gnav_bbanner_left.gif) no-repeat;
 	display:block;
-	line-height:34px;
+	line-height:24px;
 	padding-left:18px;
 	cursor:pointer;
 	float:left;
