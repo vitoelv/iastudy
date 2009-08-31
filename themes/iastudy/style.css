@@ -178,10 +178,28 @@ th {
 	padding:0 30px;
 	overflow:hidden;
 }
+/*
 #top_nav {
 	float:left;
 	margin-top:1px;
 }
+*/
+#top_nav {
+	MARGIN-TOP:20px; FLOAT: left;
+	width:730px;
+}
+
+#top_nav  td{
+	padding:0;
+	margin:0;
+}
+#top_nav  a{
+	text-align: center;
+}
+#top_nav  a:hover{
+	color: #FF9900;
+}
+
 #top_nav li {
 	float:left;
 	margin-left:2px;

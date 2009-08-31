@@ -21,13 +21,35 @@
   <div>
     <div id="logo"><img src="images/logo.gif" alt="IAStudy" /></div>
     <div id="top_nav">
-      <ul>
-    <li{if $navigator_list.config.index eq 1} id="cur"{/if}><a href="../index.html"><span>{$lang.home}</span></a></li>
-    <!-- {foreach name=nav_middle_list from=$navigator_list.middle item=nav} -->
-    <li{if $nav.active eq 1} class="current"{/if}><a href="{$nav.url}" <!-- {if $nav.opennew eq 1} -->target="_blank"<!-- {/if} -->><span>{$nav.name}</span></a></li>
-    <!-- {/foreach} -->
-      </ul>
-    </div>
+     <table width="100%" border="0" cellspacing="0" cellpadding="0" background="images/ttt.gif" height="50">
+        <tr>
+          <td width="55" ><a href="index.html">首&nbsp;&nbsp;&nbsp;&nbsp;页</a></td><td width="1">|</td>
+          <td width="55"><a href="category.php?id=15" >高校招生</a></td> <td width="1">|</td>
+		  <td width="55"><a href="category.php?id=355" >计算机</a></td> <td width="1">|</td>
+		  <td width="55"><a href="category.php?id=357" >外&nbsp;&nbsp;语</a></td><td width="1">|</td>
+          <td width="55" ><a href="category.php?id=360" >管理类</a></td><td width="1">|</td>
+          <td width="55" ><a href="category.php?id=354" >金融类</a></td><td width="1">|</td>
+          <td width="55" ><a href="category.php?id=359" >建筑类</a></td><td width="1">|</td>
+          <td width="55" ><a href="category.php?id=97" >市场营销</a></td><td width="1">|</td>
+          <td width="25" ><a href="category.php?id=362" >法&nbsp;&nbsp;律</a></td> <td width="1">|</td>	
+          <td width="65" ><a href="category.php?id=356" >艺术/设计</a></td> 
+        </tr>
+        <tr>
+		  <td  width="55"><a href="category.php?id=358" >新闻传媒</a></td> <td width="1">|</td>
+          <td width="55"><a href="category.php?id=364" >通信工程</a></td> <td width="1">|</td>
+          <td  width="55"><a href="category.php?id=363" >游戏动漫</a></td> <td width="1">|</td>
+          <td width="55"><a href="category.php?id=4" >成教自考</a></td> <td width="1">|</td>
+          <td width="55"><a href="category.php?id=17" >出国留学</a></td> <td width="1">|</td>
+          <td width="55"><a href="category.php?id=3" >考研培训</a></td> <td width="1">|</td>
+          <td width="55"><a href="category.php?id=8" >司法考试</a></td> <td width="1">|</td>		  
+          <td width="55" ><a href="category.php?id=21" >外语培训</a></td> <td width="1">|</td>
+          <td width="25" ><a href="category.php?id=170" >会&nbsp;&nbsp;计</a></td><td width="1">|</td>		  
+          <td width="65"><a href="category.php?id=9" >计算机培训</a></td>
+        </tr>
+      </table>
+    </div>	
+	
+	
   </div>
   </div>
   <div id="top-bg">
