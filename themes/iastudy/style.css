@@ -171,12 +171,13 @@ th {
 	float:right;
 	width:95%;
 	text-align:right;
-	padding:5px 20px 0 0;
+	padding:0px 10px 0 0;
 }
 #logo {
 	float:left;
-	padding:0 30px;
-	overflow:hidden;
+	width:183px;
+	height:82px;
+
 }
 /*
 #top_nav {
@@ -185,8 +186,8 @@ th {
 }
 */
 #top_nav {
-	MARGIN-TOP:20px; FLOAT: left;
-	width:730px;
+	 FLOAT: right;
+	width:787px;
 }
 
 #top_nav  td{
@@ -265,7 +266,8 @@ th {
 }
 #top-bg {
 	height:71px;
-	width:100%;
+	width:1003px;
+	margin:0 auto;
 	background-color:#00CCFF;
 	background-image:url(images/top_bg.gif);
 	clear:both;
@@ -307,8 +309,12 @@ a:hover#catalog-list {
 	background-color:#F3F6EB;
 	padding-top:6px;
 	clear:both;
+	margin:0 auto;
+	width:1003px;
+	background-image: url(images/sybj.gif);
+	background-repeat: repeat-x;
 }
-#ur-here .ur-here2{ width:980px; margin:0 auto;}
+.ur-here2{ width:980px; margin:0 auto;}
 .ur-here-left {
 	float:left;
 	padding-left:30px;
@@ -1880,6 +1886,56 @@ overflow:hidden;
 }
 #advisor li {
 	list-style-type:none;
+}
+#top{
+	text-align: right;
+	height: 20px;
+	width: 990px;
+	line-height:20px;
+	margin:0 auto;
+
+}
+#dh{
+	height: 30px;
+	width: 1003px;
+	margin:0 auto;
+	background-image: url(images/dhbj.gif);
+	background-repeat: repeat-x;
+	clear:both;
+
+}
+.daohang{
+
+width:1000px;
+height:30px;
+
+
+}
+.daohang ul{
+width:995px;
+height:30px;
+padding-left:5px;
+
+}
+.daohang ul li{
+
+float:left;
+height:30px;
+
+}
+.daohang ul li a{
+
+height:30px;
+line-height:30px;
+text-align:center;
+padding-left:5px;
+padding-right:5px;
+BORDER-RIGHT: #fff 1px solid;
+color:#FFFFFF;
+
+}
+.daohang ul li a.hidd {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px
 }
 
 

@@ -1504,24 +1504,3 @@ CREATE TABLE `ecs_auto_manage` (
   `endtime` int(10) NOT NULL,
   PRIMARY KEY  (`item_id`,`type`)
 ) TYPE=MyISAM;
-
-
-CREATE TABLE `ecs_course_signup` (
-  `id` mediumint(8) NOT NULL auto_increment,
-  `user_name` varchar(60) NULL,
-  `true_name` varchar(60) NULL,
-  `sex` varchar(10) NULL,
-  `record` varchar(60) NULL,
-  `telephone` varchar(60) NULL,  
-  `mobile_phone` varchar(60) NULL,  
-  `address` text NULL,  
-  `email` varchar(60) NULL,  
-  `age` varchar(60) NULL,  
-  `payment` varchar(60) NULL,  
-  `postscript` text NULL, 
-  `course_id` varchar(255) NULL,  
-  `signup_time` datetime NOT NULL default '0000-00-00 00:00:00',
-  PRIMARY KEY  (`id`)
-) TYPE=MyISAM;
-
-ENGINE=MyISAM DEFAULT CHARSET=utf8;

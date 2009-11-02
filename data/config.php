@@ -6,10 +6,10 @@ $db_host   = "localhost:3306";
 $db_name   = "iastudy";
 
 // database username
-$db_user   = "bc50";
+$db_user   = "iastudy";
 
 // database password
-$db_pass   = "bc50";
+$db_pass   = "XIvLDu2nPm";
 
 // table prefix
 $prefix    = "IA_";
