@@ -1,0 +1,63 @@
+﻿<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<form name="searchForm" method="get" action="search.php" onSubmit="return checkSearchForm()"  ><table width="100%" border="0" cellpadding="0" cellspacing="0" >
+  <tr>
+    <td width="6"><img src="../images/search-rl.gif" width="6" height="34"></td>
+    <td background="../images/search-bg.gif">
+	
+	<table id="globalSearch1">
+      <tr><td width="20"></td>
+        <td ><div>
+        
+		 
+        <input name="keywords" type="text" id="keyword" value="{$search_keywords|escape}" />
+     </div> </td> <td><div> <select name="category" id="category" style="float:left;height:20px;margin-left:10px;">
+          <option value="0">{$lang.all_category}</option>
+          
+    {$category_list}
+    
+        </select></div>
+      </td>  <td><input type="image" src="../images/search-submit.gif" style="float:left;margin-left:10px !important;margin-left:8px;" />
+        
+      </td>
+        <td width="80"> <a href="search.php?act=advanced_search"><img src="../images/search-bg2.gif"></a></td>
+        <td> <!-- {if $searchkeywords} -->
+        
+          {$lang.hot_search}：
+          <!-- {foreach from=$searchkeywords item=val} -->
+          <a href="search.php?keywords={$val|escape:url}">{$val}</a>
+          <!-- {/foreach} -->
+        
+        <!-- {/if} --></td>
+      </tr>
+    </table>
+	</td>
+    <td width="6"><img src="../images/search-rl2.gif" width="6" height="34"></td>
+  </tr>
+<tr>
+  <td height="2"></td>
+</tr></table>
+
+</form>
+<table width="100%" cellpadding="3" >
+  <tr>
+    <td class="gg"><img src="../images/gg.gif" align="absmiddle">{$shop_notice}</td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+//<![CDATA[
+{literal}
+  function checkSearchForm()
+  {
+      if(document.getElementById('keyword').value)
+      {
+          return true;
+      }
+      else
+      {
+          return false;
+      }
+  }
+{/literal}
+//]]>
+</script>

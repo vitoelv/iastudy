@@ -1,0 +1,15 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $brand_list} 品牌区 -->
+<div class="col-box2">
+  <h3>品牌专区</h3>
+  <div class="col-box2-content">
+    <!-- {foreach from=$brand_list item=brand} -->
+    <!-- {if $brand.brand_logo} -->
+    <a href="{$brand.url}"><img src="data/brandlogo/{$brand.brand_logo}" alt="{$brand.brand_name|escape:html} ({$brand.goods_num})" border="0" /></a>
+    <!-- {else} -->
+    <p><img src="../images/list-arrow.gif" alt="arrow" width="10" height="9" /> <a href="{$brand.url}" class="a01">{$brand.brand_name|escape:html} {if $brand.goods_num}({$brand.goods_num}){/if}</a></p>
+    <!-- {/if} -->
+    <!-- {/foreach} -->
+  </div>
+</div><!-- /col-box2 -->
+<!-- {/if} -->

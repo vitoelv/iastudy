@@ -1,0 +1,15 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $promotion_goods} -->
+<div id="promotion" class="col-box2">
+  <h3>特价促销</h3>
+  <ul>
+    <!--{foreach from=$promotion_goods item=goods}-->
+    <li>
+      <span class="goods-price" style="float:right;">{$goods.promote_price}</span>
+      <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name|escape:html}</a>
+    </li>
+    <!--{/foreach}-->
+  </ul>
+  <p class="more"><a href="../search.php?intro=promotion">more&gt;</a></p>
+</div><!-- /col-box -->
+<!--{/if}-->

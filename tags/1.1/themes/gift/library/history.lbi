@@ -1,0 +1,9 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="col-box">
+  <h3>浏览历史</h3>
+  <div id="history" class="col-box-content">
+    <ul>
+      {insert name="history"}
+    </ul>
+  </div>
+</div><!-- /col-box -->

@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}{insert_scripts files='common.js,global.js,compare.js'}
+</head>
+<body>
+  <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+  <div id="globalWrapper">
+    <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/search_form.lbi" --><!-- #EndLibraryItem -->
+    <div id="container2">
+    <div id="page-left">
+      <!-- TemplateBeginEditable name="主区域左侧" -->
+      <!-- #BeginLibraryItem "/library/member.lbi" --><!-- #EndLibraryItem -->
+      <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
+      <!-- #BeginLibraryItem "/library/history.lbi" --><!-- #EndLibraryItem -->
+      <!-- TemplateEndEditable -->
+    </div><!-- /page-left -->
+    <div id="page-right" style="width:784px;padding-left:1px;">
+      <div class="col-box">
+        <h3>{$brand.brand_name}</h3>
+        <div class="col-box-content">
+          <table width="100%" border="0">
+            <tr>
+              <td><!-- {if $brand.brand_logo} -->
+                <img src="data/brandlogo/{$brand.brand_logo}" alt="" />
+                <!-- {/if} --></td>
+              <td><p>{$brand.brand_desc|nl2br}</p>
+                <!-- {if $brand.site_url} -->
+                <p><b>{$lang.official_site}</b><a href="{$brand.site_url}" target="_blank">{$brand.site_url}</a></p>
+                <!-- {/if} -->
+                <p><b>{$lang.brand_category}</b>
+                  <!-- {foreach from=$brand_cat_list item=cat} -->
+                  <span><a href="{$cat.url}">{$cat.cat_name|escape:html} {if $cat.goods_count}({$cat.goods_count}){/if}</a></span>
+                  <!-- {/foreach} -->
+                </p></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- TemplateBeginEditable name="主区域右侧" -->
+      <!-- #BeginLibraryItem "/library/goods_list.lbi" --><!-- #EndLibraryItem -->
+      <!-- TemplateEndEditable -->
+      </div><!-- /page-right -->
+  </div><!-- /container -->
+</div><!-- /globalWrapper -->
+<div id="footer">
+  <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+  <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div><!-- /footer -->
+</body>
+</html>

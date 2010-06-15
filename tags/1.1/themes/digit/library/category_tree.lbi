@@ -1,0 +1,19 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="col-box">
+  <h3>商品分类</h3>
+  <div id="navcontainer">
+    <!--{foreach from=$categories item=cat}-->
+    <ul>
+      <li><a href="{$cat.url}"><strong>{$cat.name|escape:html}</strong></a> 
+        <!-- {if $cat.children} -->
+        <ul>
+          <!--{foreach from=$cat.children item=child}-->
+          <li><a href="{$child.url}">{$child.name|escape:html}</a></li>
+          <!--{/foreach}-->
+        </ul>
+        <!-- {/if} -->
+      </li>
+    </ul>
+    <!-- {/foreach}-->
+  </div>
+</div><!-- /col-box -->

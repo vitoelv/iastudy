@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files="common.js"}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" -->
+<div id="page-top">
+  <div id="logo-topnav">
+    <div id="logo"> <img src="images/logo.gif" alt="Gif Shop" style="float:left;" />
+      <div id="topnav"> <a href="flow.php">{$lang.view_cart}</a> - <a href="pick_out.php">{$lang.pick_out}</a> - <a href="group_buy.php">{$lang.group_buy_goods}</a> - <a href="snatch.php">{$lang.snatch}</a> - <a href="catalog.php" onmouseover="showCatalog(this)" onmouseout="hideCatalog()">{$lang.catalog}</a> - <a href="tag_cloud.php">{$lang.tag_cloud}</a> - <a href="user.php">{$lang.user_center}</a> </div>
+    </div>
+  </div>
+  <!--End #logo-nav-->
+  <div id="global-nav">
+    <div id="main-nav">
+      <ul>
+        <li><a href="index.php" name="top" id="top">{$lang.home}</a></li>
+        <!-- {foreach from=$nav_list item=nav} -->
+        <li><a href="{$nav.url}">{$nav.label}</a></li>
+        <!-- {/foreach} -->
+      </ul>
+    </div>
+    <!-- End #main-nav -->
+  </div>
+  <!-- global-nav -->
+</div>
+<!--End #page-top-->
+<div id="ECS_CATALOG" class="catalog-div" style="display:none"
+onmouseover="if (this.style.display != 'block') this.style.display='block';"
+onmouseout="if (this.style.display != 'none') this.style.display = 'none';">
+  <ul>
+    <!--{assign var="level" value=0}-->
+    <!-- {foreach from=$catalog_list item=cat} -->
+    <!-- {if $level > $cat.level} -->
+  </ul>
+  <!-- {/if}-->
+  <!-- {if $level < $cat.level} -->
+  <ul>
+    <!-- {/if} -->
+    <li class="{if" $cat.level eq="eq" "0"}"top-cate"{else}"snd-cate"{/if}><a href="{$cat.url}"{if $cat.cat_desc neq="neq" ''} title="{$cat.cat_desc}"{/if}>{$cat.cat_name}</a></li>
+    <!--{assign var="level" value=$cat.level}-->
+    <!-- {/foreach} -->
+  </ul>
+</div>
+<!-- #EndLibraryItem -->
+<div id="globalWrapper"><!-- #BeginLibraryItem "/library/search_form.lbi" -->
+  <div id="globalSearch">
+    <div style="background:url(images/search-rl.gif) no-repeat center left;">
+      <div style="background:url(images/search-rl.gif) no-repeat center right;height:44px;">
+        <form id="searchForm" name="searchForm" method="post" action="Library/search.php" style="padding:10px 0 0 30px;">
+          <img src="images/search-icon.gif" alt="" style="float:left;" />
+          <input name="keywords" type="text" id="keyword" />
+          <select name="category" id="category" style="float:left;height:20px;">
+            <option value="0">{$lang.all_category}</option>
+            
+          
+    {$category_list}
+    
+        
+          </select>
+          <input type="image" src="images/search-submit.gif" style="float:left;margin-left:10px !important;margin-left:8px;" />
+          <span style="float:right;padding:5px 20px;"><a href="Library/search.php?act=advanced_search">{$lang.advanced_search}</a> | <a href="Library/index.php">使用帮助</a></span>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--End #globalSearch-->
+  <!-- #EndLibraryItem -->
+  <div id="container2">
+    <div id="page-left"> <!--TemplateBeginEditable name="主区域左侧"--><!--TemplateEndEditable-->
+      <!-- #BeginLibraryItem "/library/category_tree.lbi" -->
+        <div class="category1" > </div>
+        <div class="sort-box01" id="category-tree">
+          <!--{foreach from=$categories item=cat}-->
+          <ul>
+            <li>
+              <div class="parent-cat"><a href="library/%7B$cat.url%7D"><img src="images/catearrow.gif" />{$cat.name|escape:html}</a></div>
+              <!--{foreach from=$cat.children item=child}-->
+              <span><a href="library/%7B$child.url%7D">[{$child.name|escape:html}]</a></span>
+              <!--{/foreach}-->
+            </li>
+          </ul>
+          <!-- {/foreach}-->
+          <div class="hack"></div>
+        </div>
+        <!--End sort-box01 -->
+        <!-- #EndLibraryItem -->
+      <div class="title-02">
+        <div class="title-02-arrow">您的选择</div>
+      </div>
+      <div class="sort-box01" id="your-picking">
+        <ul>
+          <!--{foreach from = $picks item=pick }-->
+          <li><a href="{$pick.url}">{$pick.name}</a></li>
+          <!--{/foreach}-->
+        </ul>
+      </div>
+      <!--End sort-box02-->
+    </div>
+    <!--End #page-left-->
+    <div id="page-right" > 
+ 
+  <div class="title-04">
+        <div class="title-04-arrow">选购中心</div>
+      </div>
+      <div class="sort-box01" style="background:#FFF;padding:5px;">
+        <table style="margin:10px">
+          <!--{foreach from=$condition item=caption}-->
+          <tr>
+            <td><img src="images/list-arrow.gif" alt="" width="10" height="9" />&nbsp;&nbsp;<strong style="font-size:14px">{$caption.name}</strong></td>
+          </tr>
+          <!--{foreach from=$caption.cat item=cat}-->
+          <tr>
+            <td>&nbsp;&nbsp;<img src="images/news_arrow.gif" alt="" />&nbsp;&nbsp;<strong>{$cat.cat_name}</strong></td>
+          </tr>
+          <tr>
+            <td>&nbsp;&nbsp;
+              <!--{foreach from = $cat.list item=list}-->
+              &nbsp;&nbsp;<span><a href="{$list.url}">{$list.name}</a></span>
+              <!--{/foreach}-->            </td>
+          </tr>
+          <!--{/foreach}-->
+          <!--{/foreach}-->
+        </table>
+      </div>
+      <!--End sort-box01-->
+      <div class="title-01">
+        <div class="title-01-arrow">搜索结果 ({$count})</div>
+      </div>
+      <div id="result-div">
+          <!--{foreach from=$pickout_goods item=goods name=goods}-->
+          <table border="0" cellpadding="3" cellspacing="1" class="goods-table" style="float: left">
+            <tr>
+              <td align="center"><a href="{$goods.url}"><img src="{$goods.thumb}" border="0" alt="{$goods.name|escape:html}" class="thumb" /></a></td>
+            </tr>
+            <tr>
+              <td><a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name|escape:html}</a><br />
+                <!-- {if $goods.promote_price neq ""} -->
+                {$lang.promote_price}<span class="goods-price">{$goods.promote_price}</span>
+                <!-- {else}-->
+                {$lang.shop_price}<span class="goods-price">{$goods.shop_price}</span>
+                <!--{/if}-->
+              </td>
+            </tr>
+          </table>
+          <!--{/foreach}-->
+          <!--{if $count > 4}-->
+          <br style="clear:both"/>
+          <div style="text-align:right"><a href="{$url}">more...</a></div>
+          <!--{/if}-->
+        </div>
+      <!--End sort-box01-->
+    </div>
+    <!--End #page-right-->
+    <br />
+    <div class="hack"></div>
+  </div>
+  <!-- End #container -->
+</div>
+<!--End #globalWrapper-->
+<div id="footer"><!-- #BeginLibraryItem "/library/page_footer.lbi" -->
+  <div id="article"><img src="images/nav-line.gif" alt="" />
+    <!-- 开始相关声明{foreach from=$declaration item=article} -->
+    <a href="{$article.url}" target="_blank">{$article.title}</a> <img src="images/nav-line.gif" alt="" />
+    <!-- 相关声明{/foreach}-->
+  </div>
+  <!--End #article-->
+  <img src="images/footer-logo.gif" alt="" id="footer-logo" />
+  <div>{$copyright}</div>
+  <div>
+    <!-- ICP 证书{if $icp_number} -->
+    {$lang.icp_number}:<a href="http://www.miibeian.gov.cn/" target="_blank">{$icp_number}</a><br />
+    <!-- 结束ICP 证书{/if} -->
+    {insert name="query_info"}<br />
+    <a href="http://www.ecshop.com" target="_blank" style="font-size:10px">Powered by <strong><span style="color: #3366FF">ECSHOP</span> <span style="color: #FF9966">{$ecs_version}</span></strong></a> </div>
+  <script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+{$stats_code}<!-- #EndLibraryItem --></div>
+<!--End #footer-->
+</body>
+</html>

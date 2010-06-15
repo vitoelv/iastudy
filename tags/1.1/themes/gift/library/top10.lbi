@@ -1,0 +1,13 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="col-box2">
+  <h3>销售排行</h3>
+  <div id="top10" class="col-box2-content">
+    <!-- {if $top_goods} -->
+    <ul>
+      <!-- {foreach name=top_goods from=$top_goods item=goods}-->
+      <li><img src="../images/top_{$smarty.foreach.top_goods.iteration}.gif" alt="" /> <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.short_name}</a></li>
+      <!--{/foreach}-->
+    </ul>
+    <!-- {/if} -->
+  </div>
+</div><!-- /col-box2 -->

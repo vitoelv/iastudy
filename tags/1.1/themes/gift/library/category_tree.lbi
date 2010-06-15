@@ -1,0 +1,16 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div class="col-box" id="category-tree">
+  <h3>商品分类</h3>
+  <div class="col-box-content">
+    <!-- {foreach from=$categories item=cat} -->
+    <ul>
+      <li>
+        <h4><a href="{$cat.url}">{$cat.name|escape:html}</a></h4>
+        <!-- {foreach from=$cat.children item=child} -->
+        <a href="{$child.url}">{$child.name|escape:html}</a>
+        <!-- {/foreach} -->
+      </li>
+    </ul>
+    <!-- {/foreach} -->
+  </div>
+</div><!-- /col-box -->

@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}
+{insert_scripts files='common.js,lefttime.js'}
+<script type="text/javascript">
+  {foreach from=$lang.js_languages item=item key=key}
+    var {$key} = "{$item}";
+  {/foreach}
+</script>
+</head>
+<body><!-- #BeginLibraryItem "/library/page_header.lbi" -->
+<div id="page-top">
+  <div id="logo-topnav">
+    <div id="logo"> <img src="images/logo.gif" alt="Gif Shop" style="float:left;" />
+      <div id="topnav"> <a href="flow.php">{$lang.view_cart}</a> - <a href="pick_out.php">{$lang.pick_out}</a> - <a href="group_buy.php">{$lang.group_buy_goods}</a> - <a href="snatch.php">{$lang.snatch}</a> - <a href="catalog.php" onmouseover="showCatalog(this)" onmouseout="hideCatalog()">{$lang.catalog}</a> - <a href="tag_cloud.php">{$lang.tag_cloud}</a> - <a href="user.php">{$lang.user_center}</a> </div>
+    </div>
+  </div>
+  <!--End #logo-nav-->
+  <div id="global-nav">
+    <div id="main-nav">
+      <ul>
+        <li><a href="index.php" name="top" id="top">{$lang.home}</a></li>
+        <!-- {foreach from=$nav_list item=nav} -->
+        <li><a href="{$nav.url}">{$nav.label}</a></li>
+        <!-- {/foreach} -->
+      </ul>
+    </div>
+    <!-- End #main-nav -->
+  </div>
+  <!-- global-nav -->
+</div>
+<!--End #page-top-->
+<div id="ECS_CATALOG" class="catalog-div" style="display:none"
+onmouseover="if (this.style.display != 'block') this.style.display='block';"
+onmouseout="if (this.style.display != 'none') this.style.display = 'none';">
+  <ul>
+    <!--{assign var="level" value=0}-->
+    <!-- {foreach from=$catalog_list item=cat} -->
+    <!-- {if $level > $cat.level} -->
+  </ul>
+  <!-- {/if}-->
+  <!-- {if $level < $cat.level} -->
+  <ul>
+    <!-- {/if} -->
+    <li class="{if" $cat.level eq="eq" "0"}"top-cate"{else}"snd-cate"{/if}><a href="{$cat.url}"{if $cat.cat_desc neq="neq" ''} title="{$cat.cat_desc}"{/if}>{$cat.cat_name}</a></li>
+    <!--{assign var="level" value=$cat.level}-->
+    <!-- {/foreach} -->
+  </ul>
+</div>
+<!-- #EndLibraryItem --><div id="globalWrapper"><!-- #BeginLibraryItem "/library/search_form.lbi" -->
+<div id="globalSearch">
+  <div style="background:url(images/search-rl.gif) no-repeat center left;">
+    <div style="background:url(images/search-rl.gif) no-repeat center right;height:44px;">
+      <form id="searchForm" name="searchForm" method="post" action="library/search.php" style="padding:10px 0 0 30px;">
+        <img src="images/search-icon.gif" alt="" style="float:left;" />
+        <input name="keywords" type="text" id="keyword" />
+        <select name="category" id="category" style="float:left;height:20px;">
+          <option value="0">{$lang.all_category}</option>
+          
+    {$category_list}
+    
+        </select>
+        <input type="image" src="images/search-submit.gif" style="float:left;margin-left:10px !important;margin-left:8px;" />
+        <span style="float:right;padding:5px 20px;"><a href="library/search.php?act=advanced_search">{$lang.advanced_search}</a> | <a href="library/index.php">使用帮助</a></span>
+      </form>
+    </div>
+  </div>
+</div>
+<!--End #globalSearch-->
+<!-- #EndLibraryItem -->
+  <div id="container2">
+    <div id="page-left"><!-- TemplateBeginEditable name="主区域左侧" --><!-- #BeginLibraryItem "/library/member.lbi" -->
+
+{insert_scripts files="transport.js,utils.js"}
+<div id="ECS_MEMBERZONE" style="float:left;width:185px;height:193px;"> {* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面 *}{insert name="member_info"} </div>
+<!--End #login-->
+<!-- #EndLibraryItem --><!-- #BeginLibraryItem "/library/category_tree.lbi" -->
+<div class="title-01" >
+  <div class="title-01-arrow">商品分类</div>
+</div>
+<div class="sort-box01" id="category-tree">
+  <!--{foreach from=$categories item=cat}-->
+  <dl>
+    <dt><a href="{$cat.url}">{$cat.name|escape:html}</a></dt>
+    <!--{foreach from=$cat.children item=child}-->
+    <dd><a href="{$child.url}">{$child.name|escape:html}</a></dd>
+    <!--{/foreach}-->
+  </dl>
+  <!-- {/foreach}-->
+  <div class="hack"></div>
+</div>
+<!--End sort-box01 -->
+<!-- #EndLibraryItem --><!-- #BeginLibraryItem "/library/history.lbi" -->
+<div class="title-01">
+  <div class="title-01-arrow">浏览历史</div>
+</div>
+<div class="sort-box01" id="history">
+  <ul>
+    {insert name="history"}
+  </ul>
+</div>
+<!--End sort-box02-->
+<!-- #EndLibraryItem --><!-- TemplateEndEditable --></div>
+    <!--End #page-left-->
+    <div id="page-middle">
+        <table width="100%" border="0" style="background:#FFF;">
+          <tr>
+            <td width="200" valign="top" style="padding-right:30px;">
+              <a href="{$goods.url}"> <img src="{$goods.goods_img}" alt="{$goods.goods_name|escape:html}" border="0" /> </a>            </td>
+            <td valign="top">
+              <form name="theForm" action="auction.php" method="post">
+                <table width="100%" border="0">
+                  <tr>
+                    <td width="90">{$lang.goods_name} </td>
+                    <td><span style="font-size: 14px; font-weight: bold; color: #2359B1;">{$auction.goods_name|escape:html}</span></td>
+                  </tr>
+                  <tr>
+                    <td>{$lang.au_current_price}</td>
+                    <td><strong>{$auction.formated_current_price}</strong></td>
+                  </tr>
+                  <tr>
+                    <td>{$lang.act_start_time}</td>
+                    <td>{$auction.start_time}</td>
+                  </tr>
+                  <tr>
+                    <td>{$lang.act_end_time}</td>
+                    <td>{$auction.end_time}</td>
+                  </tr>
+                  <tr>
+                    <td>{$lang.au_start_price}</td>
+                    <td>{$auction.formated_start_price}</td>
+                  </tr>
+                  <tr>
+                    <td>{$lang.au_amplitude}</td>
+                    <td>{$auction.formated_amplitude}</td>
+                  </tr>
+                  <!-- {if $auction.end_price gt 0} -->
+                  <tr>
+                    <td>{$lang.au_end_price}</td>
+                    <td>{$auction.formated_end_price}</td>
+                  </tr>
+                  <!-- {/if} -->
+                  <!-- {if $auction.deposit gt 0} -->
+                  <tr>
+                    <td>{$lang.au_deposit}</td>
+                    <td>{$auction.formated_deposit}</td>
+                  </tr>
+                  <!-- {/if} -->
+                  <!-- {if $auction.status_no eq 0} 未开始 -->
+                  <tr>
+                    <td colspan="2"><strong>{$lang.au_pre_start}</strong></td>
+                  </tr>
+                  <!-- {elseif $auction.status_no eq 1} 进行中 -->
+                  <tr>
+                    <td height="51" colspan="2"><strong>{$lang.au_under_way}<br />
+                    <span id="leftTime">{$lang.please_waiting}</span></strong></td>
+                  </tr>
+                  <tr>
+                    <td>{$lang.au_i_want_bid}</td>
+                    <td><input name="price" type="text" id="price" size="8" />
+                      <input name="bid" type="submit" id="bid" value="{$lang.button_bid}" />
+                      <input name="act" type="hidden" value="bid" />
+                      <input name="id" type="hidden" value="{$auction.act_id}" /></td>
+                  </tr>
+                  <!-- {else} 已结束 -->
+                  <tr>
+                    <td colspan="2">
+                      <!-- {if $auction.is_winner} -->
+                      <div>
+                        <span style="color:red">{$lang.au_is_winner}</span>
+                        <input name="buy" type="submit" value="{$lang.button_buy}" />
+                        <input name="act" type="hidden" value="buy" />
+                        <input name="id" type="hidden" value="{$auction.act_id}" />
+                      </div>
+                      <!-- {else} -->
+                      <strong>{$lang.au_finished}</strong>
+                      <!-- {/if} -->
+                    </td>
+                  </tr>
+                  <!-- {/if} -->
+              </table>
+            </form>
+          </td>
+          </tr>
+        </table>
+      </div>
+      <div id="page-right" >
+        <!-- {if $auction.act_desc} 如果有说明，显示 -->
+        <div class="title-04">
+        <div class="title-04-arrow">活动介绍</div>
+      </div>
+	    <div class="content-div">{$auction.act_desc|escape:html|nl2br}</div>
+        <!-- {/if} -->
+        <div class="title-04">
+        <div class="title-04-arrow">出价记录</div>
+      </div>
+        <div>
+      <table width="100%" border="0" cellpadding="3" cellspacing="1" class="form-table">
+            <tr>
+              <th>{$lang.au_bid_user}</th>
+              <th>{$lang.au_bid_price}</th>
+              <th>{$lang.au_bid_time}</th>
+              <th>{$lang.au_bid_status}</th>
+            </tr>
+      <!-- {foreach from=$auction_log item=log name=fe_bid_log} -->
+            <tr>
+              <td>{$log.user_name}</td>
+              <td align="right">{$log.formated_bid_price}</td>
+              <td align="center">{$log.bid_time}</td>
+              <td align="center">{if $smarty.foreach.fe_bid_log.first} {$lang.au_bid_ok}{else}&nbsp;{/if}</td>
+            </tr>
+      <!-- {foreachelse} -->
+      <tr>
+        <td colspan="4" align="center"><p>{$lang.no_bid_log}</p></td>
+      </tr>
+      <!-- {/foreach} -->
+          </table>
+        </div>
+      </div>
+      <!-- End #page-middle -->
+      <!-- End #page-right -->
+    <br />
+    <div class="hack"></div>
+  </div>
+  <!-- End #container -->
+</div>
+<!--End #globalWrapper-->
+<div id="footer"><!-- #BeginLibraryItem "/library/page_footer.lbi" -->
+<div id="article"><img src="images/nav-line.gif" alt="" />
+  <!-- 开始相关声明{foreach from=$declaration item=article} -->
+  <a href="{$article.url}" target="_blank">{$article.title}</a> <img src="images/nav-line.gif" alt="" />
+  <!-- 相关声明{/foreach}-->
+</div>
+<!--End #article-->
+<img src="images/footer-logo.gif" alt="" id="footer-logo" />
+<div>{$copyright}</div>
+<div>
+  <!-- ICP 证书{if $icp_number} -->
+  {$lang.icp_number}:<a href="http://www.miibeian.gov.cn/" target="_blank">{$icp_number}</a><br />
+  <!-- 结束ICP 证书{/if} -->
+  {insert name="query_info"}<br />
+  <a href="http://www.ecshop.com" target="_blank" style="font-size:10px">Powered by <strong><span style="color: #3366FF">ECSHOP</span> <span style="color: #FF9966">{$ecs_version}</span></strong></a> </div>
+<script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+{$stats_code}<!-- #EndLibraryItem --></div>
+<!--End #footer-->
+<script type="text/javascript">
+var gmt_end_time = "{$auction.gmt_end_time|default:0}";
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+<!-- {literal} -->
+
+onload = function()
+{
+  try
+  {
+    onload_leftTime();
+  }
+  catch (e)
+  {}
+}
+<!-- {/literal} -->
+</script>
+</body>
+</html>

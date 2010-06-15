@@ -1,0 +1,412 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}{* 包含脚本文件 *}{insert_scripts files='common.js,global.js,compare.js'}
+</head>
+<body>
+<!-- #BeginLibraryItem "/library/page_header.lbi" -->
+<div id="page-top">
+  <div id="logo-topnav">
+    <div id="logo"> <img src="images/logo.gif" alt="Gif Shop" style="float:left;" />
+      <div id="topnav"> <a href="flow.php">{$lang.view_cart}</a> - <a href="pick_out.php">{$lang.pick_out}</a> - <a href="group_buy.php">{$lang.group_buy_goods}</a> - <a href="snatch.php">{$lang.snatch}</a> - <a href="catalog.php" onmouseover="showCatalog(this)" onmouseout="hideCatalog()">{$lang.catalog}</a> - <a href="tag_cloud.php">{$lang.tag_cloud}</a> - <a href="user.php">{$lang.user_center}</a> </div>
+    </div>
+  </div>
+  <!--End #logo-nav-->
+  <div id="global-nav">
+    <div id="main-nav">
+      <ul>
+        <li><a href="index.php" name="top" id="top">{$lang.home}</a></li>
+        <!-- {foreach from=$nav_list item=nav} -->
+        <li><a href="{$nav.url}">{$nav.label}</a></li>
+        <!-- {/foreach} -->
+      </ul>
+    </div>
+    <!-- End #main-nav -->
+  </div>
+  <!-- global-nav -->
+</div>
+<!--End #page-top-->
+<div id="ECS_CATALOG" class="catalog-div" style="display:none"
+onmouseover="if (this.style.display != 'block') this.style.display='block';"
+onmouseout="if (this.style.display != 'none') this.style.display = 'none';">
+  <ul>
+    <!--{assign var="level" value=0}-->
+    <!-- {foreach from=$catalog_list item=cat} -->
+    <!-- {if $level > $cat.level} -->
+  </ul>
+  <!-- {/if}-->
+  <!-- {if $level < $cat.level} -->
+  <ul>
+    <!-- {/if} -->
+    <li class="{if" $cat.level eq="eq" "0"}"top-cate"{else}"snd-cate"{/if}><a href="{$cat.url}"{if $cat.cat_desc neq="neq" ''} title="{$cat.cat_desc}"{/if}>{$cat.cat_name}</a></li>
+    <!--{assign var="level" value=$cat.level}-->
+    <!-- {/foreach} -->
+  </ul>
+</div>
+<!-- #EndLibraryItem -->
+<div id="globalWrapper"><!-- #BeginLibraryItem "/library/search_form.lbi" -->
+  <div id="globalSearch">
+    <div style="background:url(images/search-rl.gif) no-repeat center left;">
+      <div style="background:url(images/search-rl.gif) no-repeat center right;height:44px;">
+        <form id="searchForm" name="searchForm" method="post" action="Library/search.php" style="padding:10px 0 0 30px;">
+          <img src="images/search-icon.gif" alt="" style="float:left;" />
+          <input name="keywords" type="text" id="keyword" />
+          <select name="category" id="category" style="float:left;height:20px;">
+            <option value="0">{$lang.all_category}</option>
+            
+          
+    {$category_list}
+    
+        
+          </select>
+          <input type="image" src="images/search-submit.gif" style="float:left;margin-left:10px !important;margin-left:8px;" />
+          <span style="float:right;padding:5px 20px;"><a href="Library/search.php?act=advanced_search">{$lang.advanced_search}</a> | <a href="Library/index.php">使用帮助</a></span>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!--End #globalSearch-->
+  <!-- #EndLibraryItem -->
+  <div id="container2">
+    <div id="page-left"> <!--TemplateBeginEditable name="主区域左侧"--><!-- #BeginLibraryItem "/library/member.lbi" --> {insert_scripts files="transport.js,utils.js"}
+      <div id="ECS_MEMBERZONE" style="float:left;width:185px;height:193px;"> {* ECSHOP 提醒您：根据用户id来调用member_info.lbi显示不同的界面 *}{insert name="member_info"} </div>
+      <!--End #login-->
+      <!-- #EndLibraryItem --><br /><br />
+	  <!-- #BeginLibraryItem "/library/history.lbi" -->
+      <div class="title-01">
+        <div class="title-01-arrow">浏览历史</div>
+      </div>
+      <div class="sort-box01" id="history">
+        <ul>
+          {insert name="history"}
+        </ul>
+      </div>
+      <!--End sort-box02-->
+    <!-- #EndLibraryItem --><!--TemplateEndEditable--> </div>
+    <!--End #page-left-->
+    <div id="page-right"> 
+      <!-- {if $action eq "form"} -->
+      <!--  搜索的表单 -->
+      <!-- #BeginLibraryItem "/library/ur_here.lbi" -->
+  <div class="title-03">
+    <div class="title-05-arrow">{$lang.ur_here}</div>
+    <span>{$ur_here}</span></div>
+  <!-- #EndLibraryItem --><br />
+      
+       <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+              <td><img src="images/searchbbg.gif" /></td>
+            </tr>
+            <tr>
+              <td background="images/searchbbg2.gif"><form action="search.php" method="get" name="advancedSearchForm" id="advancedSearchForm">
+            <table width="90%" border="0" align="center" cellpadding="3">
+              <tr>
+                <td valign="top">{$lang.keywords}:</td>
+                <td>
+                  <input name="keywords" id="keywords" type="text" size="40" maxlength="120" value="{$adv_val.keywords}" />
+                  <label for="sc_ds"><input type="checkbox" name="sc_ds" value="1" id="sc_ds" {$scck} />{$lang.sc_ds}</label>
+                  <br />{$lang.searchkeywords_notice}
+                </td>
+              </tr>
+              <tr>
+                <td>{$lang.category}:</td>
+                <td><select name="category" id="select">
+                    <option value="0">{$lang.all_category}</option>{$cat_list}</select>
+                </td>
+              </tr>
+              <tr>
+                <td>{$lang.brand}:</td>
+                <td><select name="brand" id="brand">
+                    <option value="0">{$lang.all_brand}</option>
+                    {html_options options=$brand_list selected=$adv_val.brand}
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td>{$lang.price}:</td>
+                <td><input name="min_price" type="text" id="min_price" value="{$adv_val.min_price}" size="10" maxlength="8" />
+                  -
+                  <input name="max_price" type="text" id="max_price" value="{$adv_val.max_price}" size="10" maxlength="8" />
+                </td>
+              </tr>
+              <!--{if $goods_type_list}-->
+              <tr>
+                <td>{$lang.extension}</td>
+                <td><select name="goods_type" onchange="this.form.submit()">
+                    <option value="0">{$lang.all_option}</option>
+                    {html_options options=$goods_type_list selected=$goods_type_selected}
+                  </select>
+                </td>
+              </tr>
+              <!--{/if}-->
+              <!--{if $goods_type_selected > 0}-->
+              <!--{foreach from=$goods_attributes item=item}-->
+              <!--{if $item.type eq 1}-->
+              <tr>
+                <td>{$item.attr}:</td>
+                <td colspan="3"><input name="attr[{$item.id}]" value="{$item.value}" type="text" size="20" maxlength="120" /></td>
+              </tr>
+              <!--{/if}-->
+              <!--{if $item.type eq 2}-->
+              <tr>
+                <td>{$item.attr}:</td>
+                <td colspan="3"><input name="attr[{$item.id}][from]" value="{$item.value.from}" type="text" size="5" maxlength="5" />
+                  -
+                  <input name="attr[{$item.id}][to]" value="{$item.value.to}" type="text" maxlength="5" /></td>
+              </tr>
+              <!--{/if}-->
+              <!--{if $item.type eq 3}-->
+              <tr>
+                <td>{$item.attr}:</td>
+                <td colspan="3"><select name="attr[{$item.id}]">
+                    <option value="0">{$lang.all_option}</option>
+                    {html_options options=$item.options selected=$item.value}
+                  </select></td>
+              </tr>
+              <!--{/if}-->
+              <!--{/foreach}-->
+              <!--{/if}-->
+
+              <!-- {if $use_storage eq 1} -->
+              <tr>
+                <td>&nbsp;</td>
+                <td><label for="outstock"><input type="checkbox" name="outstock" value="1" id="outstock" /> {$lang.hidden_outstock}</label>
+                </td>
+              </tr>
+              <!--{/if}-->
+
+              <tr>
+                <td colspan="4" align="center"><input type="hidden" name="action" value="form" />
+                  <input src="images/searchbbgt.gif" type="image" name="Submit" value="{$lang.button_search}" /></td>
+              </tr>
+            </table>
+          </form></td>
+            </tr>
+            <tr>
+              <td><img src="images/searchbbg3.gif" /></td>
+            </tr>
+      </table> 
+       
+      <!-- {/if} -->
+     <!--{if isset($goods_list)}-->
+      <div class="col-box">
+        <!-- {if $intromode eq 'best'} -->
+        <div class="title-04">
+        <div class="title-04-arrow">精品推荐</div>
+      </div>
+        <!-- {elseif $intromode eq 'new'} -->
+        <div class="title-04">
+        <div class="title-04-arrow">新品上市</div>
+      </div>
+        <!-- {elseif $intromode eq 'hot'} -->
+        <div class="title-04">
+        <div class="title-04-arrow">热卖商品</div>
+      </div>
+        <!-- {elseif $intromode eq 'promotion'} -->
+        <div class="title-04">
+        <div class="title-04-arrow">促销商品</div>
+      </div>
+        <!-- {else} -->
+        <div class="title-04">
+        <div class="title-04-arrow">搜索结果</div>
+      </div>
+        <!-- {/if} -->
+        <!--{if $goods_list}-->
+        <div style="text-align:right;padding:5px 10px 0 0;height:25px;background:url(images/tabbar_bg.gif) repeat-x;">
+          <form action="search.php" method="post" class="sort" name="listform">
+            <div style="float:left;padding-left:10px;">
+              {$lang.btn_display} <a href="javascript:;" onclick="javascript:display_mode('list')"><img src="../images/btn_display_mode_list<!-- {if $pager.display == 'list'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.list}" /></a> <a href="javascript:;" onClick="javascript:display_mode('grid')"><img src="../images/btn_display_mode_grid<!-- {if $pager.display == 'grid'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.grid}" /></a> <a href="javascript:;" onClick="javascript:display_mode('text')"><img src="../images/btn_display_mode_text<!-- {if $pager.display == 'text'} -->_act<!-- {/if} -->.gif" alt="{$lang.display.text}" /></a>
+            </div>
+            <select name="sort">
+              {html_options options=$lang.sort selected=$pager.sort}
+            </select>
+            <select name="order">
+              {html_options options=$lang.order selected=$pager.order}
+            </select>
+            <input name="submit1" type="submit" value="提交" />
+            <input type="hidden" name="page" value="{$pager.page}" />
+            <input type="hidden" name="display" value="{$pager.display}" id="display" />
+            <!-- {foreach from=$pager.search key=key item=item} -->
+            <!-- {if $key neq "sort" and $key neq "order"} -->
+            <input type="hidden" name="{$key}" value="{$item}" />
+            <!-- {/if} -->
+            <!-- {/foreach} -->
+          </form>
+        </div>
+        <!-- {if $category > 0} -->
+        <form name="compareForm" action="compare.php" method="post" onSubmit="return compareGoods(this);">
+        <!-- {/if} -->
+        <!-- {if $pager.display == 'list'} -->
+        <div class="itemList">
+          <!-- {foreach from=$goods_list item=goods} -->
+          <div class="item">
+            <p class="pic">
+              <a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" /></a>
+            </p>
+            <div class="itemListInfo">
+              <p class="name">
+                 <!-- {if $goods.watermark_img} -->
+                  <span class="waterMark watermark_small {$goods.watermark_img}">{$goods.watermark_img}</span>
+                  <!-- {/if} -->
+                <a href="{$goods.url}" title="{$goods.name|escape:html}">
+                  <!-- {if $goods.goods_style_name} -->
+                  {$goods.goods_style_name}
+                  <!-- {else} -->
+                  {$goods.goods_name}
+                  <!-- {/if} -->
+                </a>
+              </p>
+              <p class="price">
+                <!-- {if $show_marketprice} -->
+                {$lang.market_price}<span class="marketPrice">{$goods.market_price}</span><br />
+                <!-- {/if} -->
+                <!-- {if $goods.promote_price neq ""} -->
+                {$lang.promote_price}<span class="goodsPrice">{$goods.promote_price}</span>
+                <!-- {else}-->
+                {$lang.shop_price}<span class="goodsPrice">{$goods.shop_price}</span>
+                <!--{/if}-->
+              </p>
+              <p class="brief">
+							<!--{if $goods.goods_brief}-->
+				{$lang.goods_brief}{$goods.goods_brief|truncate:50}
+				<!--{/if}-->
+							</p>
+              <p class="btnList">
+                <a href="javascript:collect({$goods.goods_id})"><img src="images/fav-btn.gif" alt="fav" /></a> <a href="javascript:addToCart({$goods.goods_id})"><img src="images/buy-btn.gif" alt="buy" /></a> <a href="javascript:;" onClick="Compare.add({$goods.goods_id},'{$goods.goods_name}')"><img src="images/comp-btn.gif" alt="{$lang.compare}" /></a>
+              </p>
+            </div>
+          </div>
+          <!-- {/foreach} -->
+        </div>
+        <!-- {elseif $pager.display == 'grid'} -->
+        <div class="itemGrid">
+          <!-- {foreach from=$goods_list item=goods} -->
+          <!-- {if $goods.goods_id} -->
+          <div class="item" style="height:300px;">
+            <p class="pic">
+              <a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name}" /></a>
+            </p>
+             
+				<p class="name" align="left" style="position:relative; padding-left:35px;">
+				<!-- {if $goods.watermark_img} -->
+          <span  class="waterMark watermark_small {$goods.watermark_img}" style="position:absolute;top:0px; left:0px;">{$goods.watermark_img}</span>
+          <!-- {/if} -->
+              <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.goods_name}</a>
+            </p>
+            <p class="price" align="left">
+              <!-- {if $show_marketprice} -->
+              {$lang.market_price}<span class="marketPrice">{$goods.market_price}</span><br />
+              <!-- {/if} -->
+              <!-- {if $goods.promote_price neq ""} -->
+              {$lang.promote_price}<span class="goodsPrice">{$goods.promote_price}</span><br />
+              <!-- {else}-->
+              {$lang.shop_price}<span class="goodsPrice">{$goods.shop_price}</span><br />
+              <!--{/if}-->
+							<!--{if $goods.goods_brief} 商品描述-->
+				<span style="color:#9c9b9b;">{$lang.goods_brief}</span><span title="{$goods.goods_brief}">{$goods.goods_brief|truncate:50:"..."true}</span>
+				<!--{/if}-->
+            </p>
+            <p class="btnList" align="left">
+              
+              <a href="javascript:collect({$goods.goods_id})"><img src="images/fav-btn.gif" alt="fav" /></a> <a href="javascript:addToCart({$goods.goods_id})"><img src="images/buy-btn.gif" alt="buy" /></a> <a href="javascript:;" onClick="Compare.add({$goods.goods_id},'{$goods.goods_name}')"><img src="images/comp-btn.gif" alt="{$lang.compare}" /></a>
+            </p>
+            
+          </div>
+          <!-- {/if} -->
+          <!-- {/foreach} -->
+        </div>
+        <!-- {elseif $pager.display == 'text'} -->
+        <div class="itemText">
+          <!-- {foreach from=$goods_list item=goods} -->
+          <div class="item">
+            <p class="name">
+               <!-- {if $goods.watermark_img} -->
+                <span class="waterMark watermark_small {$goods.watermark_img}">{$goods.watermark_img}</span>
+                <!-- {/if} -->
+              <a href="{$goods.url}" title="{$goods.name|escape:html}">{$goods.goods_name}</a>
+            </p>
+            <p class="price">
+              <!-- {if $show_marketprice} -->
+              {$lang.market_price}<span class="marketPrice">{$goods.market_price}</span>
+              <!-- {/if} -->
+              <!-- {if $goods.promote_price neq ""} -->
+              {$lang.promote_price}<span class="goodsPrice">{$goods.promote_price}</span>
+              <!-- {else}-->
+              {$lang.shop_price}<span class="goodsPrice">{$goods.shop_price}</span>
+              <!--{/if}-->
+            </p>
+            <p class="btnList">
+              <a href="javascript:collect({$goods.goods_id})"><img src="images/fav-btn.gif" alt="fav" /></a> <a href="javascript:addToCart({$goods.goods_id})"><img src="images/buy-btn.gif" alt="buy" /></a> <a href="javascript:;" onClick="Compare.add({$goods.goods_id},'{$goods.goods_name}')"><img src="images/comp-btn.gif" alt="{$lang.compare}" /></a>
+            </p>
+            <p class="brief">
+						<!--{if $goods.goods_brief} 商品描述-->
+			{$lang.goods_brief}{$goods.goods_brief|truncate:100}
+			<!--{/if}-->
+						</p>
+          </div>
+          <!-- {/foreach} -->
+        </div>
+        <!-- {/if} -->
+        <!-- {if $category > 0} -->
+        </form>
+        <!-- {/if} -->
+        <!-- #BeginLibraryItem "/library/pages.lbi" --><!-- #EndLibraryItem -->
+        <script type="text/javascript">
+        //<![CDATA[
+          window.onload = function()
+          {
+            Compare.init();
+            fixpng();
+          }
+          {foreach from=$lang.compare_js item=item key=key}
+          var {$key} = "{$item}";
+          {/foreach}
+          var compare_no_goods = "{$lang.compare_no_goods}";
+        //]]>
+        </script>
+        <!-- {else} -->
+        <p class="col-box-content">
+          {$lang.no_search_result}
+        </p>
+        <!-- {/if} -->
+        <!-- {/if} -->
+      </div><!-- /col-box -->
+      </div>
+    <!--End #page-right-->
+    <br />
+    <div class="hack"></div>
+  </div>
+  <!-- End #container -->
+</div>
+<!--End #globalWrapper-->
+<div id="footer"><!-- #BeginLibraryItem "/library/page_footer.lbi" -->
+  <div id="article"><img src="images/nav-line.gif" alt="" />
+    <!-- 开始相关声明{foreach from=$declaration item=article} -->
+    <a href="{$article.url}" target="_blank">{$article.title}</a> <img src="images/nav-line.gif" alt="" />
+    <!-- 相关声明{/foreach}-->
+  </div>
+  <!--End #article-->
+  <img src="images/footer-logo.gif" alt="" id="footer-logo" />
+  <div>{$copyright}</div>
+  <div>
+    <!-- ICP 证书{if $icp_number} -->
+    {$lang.icp_number}:<a href="http://www.miibeian.gov.cn/" target="_blank">{$icp_number}</a><br />
+    <!-- 结束ICP 证书{/if} -->
+    {insert name="query_info"}<br />
+    <a href="http://www.ecshop.com" target="_blank" style="font-size:10px">Powered by <strong><span style="color: #3366FF">ECSHOP</span> <span style="color: #FF9966">{$ecs_version}</span></strong></a> </div>
+  <script type="text/javascript">
+var process_request = "{$lang.process_request}";
+</script>
+{$stats_code}<!-- #EndLibraryItem --></div>
+<!--End #footer-->
+</body>
+</html>

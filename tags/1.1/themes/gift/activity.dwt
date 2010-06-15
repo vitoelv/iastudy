@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}{insert_scripts files="common.js"}
+</head>
+<body>
+  <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+  <div id="globalWrapper">
+    <!-- TemplateBeginEditable name="当前位置区域" -->
+      <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+    <!-- TemplateEndEditable -->
+    <!-- TemplateBeginEditable name="搜索条上方通栏广告位" --><!-- TemplateEndEditable -->
+    <!-- TemplateBeginEditable name="搜索表单区域" -->
+      <!-- #BeginLibraryItem "/library/search_form.lbi" --><!-- #EndLibraryItem -->
+    <!-- TemplateEndEditable -->
+    <div id="container">
+      <div id="globalActivity" class="col-box">
+        <h3>活动列表</h3>
+        <div class="col-box-content">
+          <!-- {foreach from=$list item=val} -->
+          <table border="1" cellpadding="3" class="table-list" style="margin-bottom:20px;">
+            <tr>
+              <th width="110" align="left">{$lang.label_act_name}</th>
+              <td colspan="3">{$val.act_name}</td>
+            </tr>
+            <tr>
+              <th align="left">{$lang.label_start_time}</th>
+              <td width="200">{$val.start_time}</td>
+              <th width="110" align="left">{$lang.label_max_amount}</th>
+              <td>
+                <!-- {if $val.max_amount > 0} -->
+                {$val.max_amount}
+                <!-- {else} -->
+                {$lang.nolimit}
+                <!-- {/if} -->
+              </td>
+            </tr>
+            <tr>
+              <th align="left">{$lang.label_end_time}</th>
+              <td>{$val.end_time}</td>
+              <th align="left">{$lang.label_min_amount}</th>
+              <td width="200">{$val.min_amount}</td>
+            </tr>
+            <tr>
+              <th align="left">{$lang.label_act_range}</th>
+              <td>
+                {$val.act_range}
+                <!-- {if $val.act_range ne $lang.far_all} -->
+                :<br />
+                <!-- {foreach from=$val.act_range_ext item=ext} -->
+                <a href="{$val.program}{$ext.id}" target="_blank">{$ext.name}</a> 
+                <!-- {/foreach} -->
+                <!-- {/if} -->
+              </td>
+              <th align="left">{$lang.label_user_rank}</th>
+              <td>
+                <!-- {foreach from=$val.user_rank item=user} -->
+                {$user}
+                <!-- {/foreach} -->
+              </td>
+            </tr>
+            <tr>
+              <th align="left">{$lang.label_act_type}</th>
+              <td colspan="3">
+                {$val.act_type}<!-- {if $val.act_type ne $lang.fat_goods} -->{$val.act_type_ext}<!-- {/if} -->
+              </td>
+            </tr>
+            <!-- {if $val.gift} -->
+            <tr>
+              <td colspan="4">
+              <!-- {foreach from=$val.gift item=goods} -->
+              <table border="0" cellpadding="3" style="float:left;">
+                <tr>
+                  <td align="center"><a href="goods.php?id={$goods.id}"><img src="{$goods.thumb}" alt="{$goods.name}" /></a></td>
+                </tr>
+                <tr>
+                  <td align="center"><a href="goods.php?id={$goods.id}">{$goods.name}</a></td>
+                </tr>
+                <tr>
+                  <td align="center">
+                    <!-- {if $goods.price > 0} -->
+                    {$goods.price}{$lang.unit_yuan}
+                    <!-- {else} -->
+                    <span class="textDesc">{$lang.for_free}</span>
+                    <!-- {/if} -->
+                  </td>
+                </tr>
+              </table>
+              <!-- {/foreach} -->
+              </td>
+            </tr>
+            <!-- {/if} -->
+          </table>
+          <!-- {/foreach} -->
+        </div>
+      </div><!-- /globalActivity -->
+  </div><!-- /container -->
+</div><!-- /globalWrapper -->
+<div id="footer">
+  <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+  <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div><!-- /footer -->
+</body>
+</html>
