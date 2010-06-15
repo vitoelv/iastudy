@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}{insert_scripts files="common.js"}
+</head>
+<body>
+  <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+  <div id="globalWrapper">
+    <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/search_form.lbi" --><!-- #EndLibraryItem -->
+    <div id="container">
+      <div id="page-left">
+      <!--TemplateBeginEditable name="主区域左侧"-->
+        <!-- #BeginLibraryItem "/library/member.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/category_tree.lbi" --><!-- #EndLibraryItem -->
+        <!-- #BeginLibraryItem "/library/vote.lbi" --><!-- #EndLibraryItem -->
+      <!--TemplateEndEditable-->
+      </div><!-- /page-left -->
+    <div id="page-middle">
+      <!--{if $goods}-->
+      {insert_scripts files="lefttime.js"}
+      <!-- 包含倒计时js -->
+      <div class="title-03" >
+        <div class="title-03-arrow">宝贝详情</div>
+      </div>
+      <div class="sort-box01" style="padding:10px;">
+        <table border="0" cellpadding="3" cellspacing="1" width="100%">
+          <tr>
+            <td width="25%" align="center"><a href="{$goods.url}"><img src="{$goods.goods_thumb}" alt="{$goods.goods_name|escape:html}" border="0" /></a></td>
+            <td><h3 style="margin:0px;"><a href="{$goods.url}">{$goods.goods_name|escape:html}</a></h3>
+              <table width="100%" >
+                <tr>
+                  <td width="30%">{$lang.shop_price}</td>
+                  <td><span class="goods-price">{$goods.shop_price}</span></td>
+                </tr>
+                <tr>
+                  <td width="30%">{$lang.market_price}</td>
+                  <td><span class="goods-price">{$goods.market_price}</span></td>
+                </tr>
+                <tr>
+                  <td width="30%">{$lang.residual_time}</td>
+                  <td><font color="red"><span class="goods-price" id="leftTime">
+                    {$lang.please_waiting}
+                    </span></font></td>
+                </tr>
+                <tr>
+                  <td colspan="2">{$goods.desc}</td>
+                </tr>
+              </table></td>
+          </tr>
+        </table>
+      </div>
+      <div class="title-03" >
+        <div class="title-03-arrow">活动介绍</div>
+      </div>
+      <div class="sort-box01" style="padding:10px;">{$goods.snatch_time}<br />
+        {$lang.price_extent}{$goods.min_price} - {$goods.max_price} <br />
+        {$lang.user_to_use_up}{$goods.integral}{$points_name}<br />
+        {$lang.snatch_victory_desc}<br />
+        <!--{if $goods.price neq 0}-->
+        {$lang.price_less_victory}{$goods.price}，{$lang.price_than_victory}{$goods.price}，{$lang.or_can}{$goods.price}{$lang.shopping_product}。
+        <!--{else}-->
+        {$lang.victory_price_product}
+        <!--{/if}-->
+      </div>
+      <!-- 如果没有活动，活动参与部分也不显示 -->
+      <div id="ECS_SNATCH">
+        <!-- #BeginLibraryItem "/library/snatch.lbi" --><!-- #EndLibraryItem -->
+      </div>
+      <!--{/if}-->
+      <!--TemplateBeginEditable name="主区域中间"--><!--TemplateEndEditable-->
+    </div><!-- /page-middle -->
+    <div id="page-right">
+    <!--TemplateBeginEditable name="主区域右侧"-->
+      <!-- #BeginLibraryItem "/library/cart.lbi" --><!-- #EndLibraryItem -->
+    <!--TemplateEndEditable-->
+    <div id="ECS_PRICE_LIST">
+      <!-- #BeginLibraryItem "/library/snatch_price.lbi" --><!-- #EndLibraryItem -->
+    </div>
+    <div class="col-box2">
+      <h3>活动列表</h3>
+      <div id="snatch-list" class="col-box2-content">
+        <!--{if $snatch_list}-->
+        <ul>
+          <!--{foreach from=$snatch_list item=item}-->
+          <li>
+            <!--{if $item.overtime }-->
+            <span style="float:right;">({$lang.end})</span>
+            <!--{/if}-->
+            <a href="snatch.php?id={$item.snatch_id}">{$item.snatch_name}</a></li>
+          <!--{/foreach}-->
+        </ul>
+        <!--{else}-->
+        <h3 style="text-align:center;">当前没有活动</h3>
+        <!--{/if}-->
+      </div>
+    </div><!-- /col-box2 -->
+    </div><!-- /page-right -->
+  </div><!-- /container -->
+</div><!-- /globalWrapper -->
+<div id="footer">
+  <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+  <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div><!-- /footer -->
+<script type="text/javascript">
+//<![CDATA[
+var gmt_end_time = {$goods.gmt_end_time|default:0};
+var id = {$id};
+{foreach from=$lang.snatch_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+{foreach from=$lang.goods_js item=item key=key}
+var {$key} = "{$item}";
+{/foreach}
+{literal}
+
+onload = function()
+{
+  try
+  {
+    window.setInterval("newPrice(" + id + ")", 8000);
+    onload_leftTime();
+  }
+  catch (e)
+  {}
+}
+{/literal}
+//]]>
+</script>
+</body>
+</html>

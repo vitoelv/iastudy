@@ -1,0 +1,59 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<table width="183" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td><br><img src="../images/help1.gif"></td>
+  </tr>
+  <tr>
+    <td background="../images/help0.gif"><table align="center" class="helpbg">
+      <tr><td width="10" ></td>
+        <td> 
+      <!-- QQ 号码 {foreach from=$qq item=im}  -->
+      <!-- {if $im}  -->
+     QQ <a href="http://wpa.qq.com/msgrd?V=1&amp;Uin={$im}&amp;Site={$shop_name}&amp;Menu=yes" target="_blank">{$im}</a><br />
+      <!-- {/if} -->
+      <!-- {/foreach}    结束QQ号码 -->
+      <!-- 淘宝旺旺    {foreach from=$ww item=im} -->
+      <!-- {if $im}  -->
+      淘宝旺旺 <a href="http://amos1.taobao.com/msg.ww?v=2&uid={$im|escape:url}&s=2" target="_blank">{$im}</a><br />
+      <!--  {/if} -->
+      <!--{/foreach}  结束淘宝旺旺 -->
+      <!-- Yahoo Messenger    {foreach from=$ym item=im} -->
+      <!-- {if $im} -->
+      Yahoo <a href="http://edit.yahoo.com/config/send_webmesg?.target={$im}n&.src=pg" target="_blank">{$im}</a><br />
+      <!-- {/if} -->
+      <!-- {/foreach}   结束Yahoo Messenger -->
+      <!-- MSN Messenger   {foreach from=$msn item=im} -->
+      <!-- {if $im}  -->
+      MSN  {$im}<br />
+      <!-- {/if} -->
+      <!-- {/foreach}  结束MSN Messenger -->
+      <!-- Skype {foreach from=$skype item=im} -->
+      <!-- {if $im} -->
+      Skype <a href="skype:{$im|escape:url}?call">{$im}</a><br />
+      <!-- {/if} -->
+      <!-- {/foreach} -->      </td><td width="6"  whidth="10"></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><img src="../images/help3.gif"></td>
+  </tr>
+</table>
+<table width="100" border="0" cellpadding="0" cellspacing="0" class="contactt">
+  <tr>
+    <td><img src="../images/help4.gif"></td>
+  </tr>
+  <tr>
+    <td background="../images/help0.gif"><table width="100" align="center">
+      <tr>
+        <td>{$shop_address} {$shop_postcode} <br />
+      <!-- 客服电话{if $service_phone} -->
+      Tel: {$service_phone} <br />
+      <!-- 结束客服电话{/if} --></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td><img src="../images/help3.gif"></td>
+  </tr>
+</table>

@@ -1,0 +1,17 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="price-zone">
+  <div class="col-box2">
+    <h3>最新出价</h3>
+    <div id="snatch-price" class="col-box2-content">
+      <!--{if $price_list}-->
+      <ul>
+        <!--{foreach from=$price_list item=item}-->
+        <li><span style="float:right;">{$item.bid_price}</span>{$item.user_name}</li>
+        <!--{/foreach}-->
+      </ul>
+      <!--{else}-->
+      <p style="text-align:center;">无出价记录!</p>
+      <!--{/if}-->
+    </div>
+  </div><!-- /col-box2 -->
+</div>

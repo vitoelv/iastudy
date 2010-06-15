@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+<!-- TemplateEndEditable --><!-- TemplateBeginEditable name="head" --><!-- TemplateEndEditable -->
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+{* 包含脚本文件 *}{insert_scripts files='common.js'}
+</head>
+<body>
+  <!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+  <div id="globalWrapper">
+    <!-- #BeginLibraryItem "/library/ur_here.lbi" --><!-- #EndLibraryItem -->
+    <!-- #BeginLibraryItem "/library/search_form.lbi" --><!-- #EndLibraryItem -->
+    <div id="container2">
+      <div id="page-left">
+      <!--TemplateBeginEditable name="主区域左侧"-->
+        <!-- #BeginLibraryItem "/library/cart.lbi" --><!-- #EndLibraryItem -->
+      <!--TemplateEndEditable-->
+      <div class="col-box">
+        <h3>您的选择</h3>
+        <div class="col-box-content" id="your-picking">
+          <ul>
+            <!--{foreach from = $picks item=pick }-->
+            <li><a href="{$pick.url}">{$pick.name}</a></li>
+            <!--{/foreach}-->
+          </ul>
+        </div>
+      </div><!-- /col-box -->
+      <div class="col-box">
+        <h3>商品分类</h3>
+        <div id="navcontainer">
+          <ul>
+            <!-- {foreach from=$cat_list item=cat} -->
+            <li><a href="{$cat.url}">{$cat.cat_name|escape:html} <!-- {if $cat.goods_num} --><span class="textDesc">({$cat.goods_num})</span><!-- {/if} --></a></li>
+            <!-- {/foreach} -->
+          </ul>
+        </div>
+      </div><!-- /category-tree -->
+      <!-- #BeginLibraryItem "/library/brands.lbi" --><!-- #EndLibraryItem -->
+    </div><!-- /page-left -->
+    <div id="page-right" style="width:784px;padding-left:1px;">
+      <div class="col-box">
+        <h3>选购中心</h3>
+        <div class="col-box-content">
+          <table>
+            <!--{foreach from=$condition item=caption}-->
+            <tr>
+              <td><img src="images/list-arrow.gif" alt="" width="10" height="9" />&nbsp;&nbsp;<strong style="font-size:14px">{$caption.name}</strong></td>
+            </tr>
+            <!--{foreach from=$caption.cat item=cat}-->
+            <tr>
+              <td>&nbsp;&nbsp;<img src="images/news_arrow.gif" alt="" />&nbsp;&nbsp;<strong>{$cat.cat_name}</strong></td>
+            </tr>
+            <tr>
+              <td>&nbsp;&nbsp;
+                <!--{foreach from = $cat.list item=list}-->
+                &nbsp;&nbsp;<span><a href="{$list.url}">{$list.name}</a></span>
+                <!--{/foreach}-->            </td>
+            </tr>
+            <!--{/foreach}-->
+            <!--{/foreach}-->
+          </table>
+        </div>
+      </div><!-- /col-box -->
+      <div class="col-box">
+        <h3><span class="more"><a href="{$url}">more&gt;</a></span>搜索结果 ({$count})</h3>
+        <div class="sort-box01">
+          <ul class="item-list">
+            <!--{foreach from=$pickout_goods item=goods name=goods}-->
+            <li>
+              <div class="photo"><a href="{$goods.url}"><img src="{$goods.thumb}" alt="{$goods.name|escape:html}" /></a></div>
+              <div class="info">
+                <span class="name"><a href="{$goods.url}">{$goods.short_name|escape:html}</a></span>
+                <div class="price">
+                <!-- {if $goods.promote_price neq ""} -->
+                {$lang.market_price}<span class="market-price">{$goods.market_price}</span><br />
+                {$lang.promote_price}<span class="goods-price">{$goods.promote_price}</span><br />
+                <!--{else}-->
+                {$lang.market_price}<span class="market-price">{$goods.market_price}</span><br />
+                {$lang.shop_price}<span class="goods-price">{$goods.shop_price}</span><br />
+                <!--{/if}-->
+                </div>
+                <span class="buy-btn"><a href="javascript:addToCart({$goods.id})"><img src="../images/buy-btn.gif" alt="buy" /></a> <a href="javascript:collect({$goods.id})"><img src="../images/fav-btn.gif" alt="fav" /></a></span>
+              </div>
+            </li>
+            <!--{/foreach}-->
+          </ul>
+        </div>
+      </div><!-- /col-box -->
+      </div><!-- /page-right -->
+    <br />
+    <div class="hack"></div>
+  </div>
+  <!-- /container -->
+</div><!-- /globalWrapper -->
+<div id="footer">
+  <!-- #BeginLibraryItem "/library/help.lbi" --><!-- #EndLibraryItem -->
+  <!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</div><!-- /footer -->
+</body>
+</html>

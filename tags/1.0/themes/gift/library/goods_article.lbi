@@ -1,0 +1,13 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!-- {if $goods_article_list} -->
+<div class="col-box">
+  <h3>相关文章</h3>
+  <div id="goods_article" class="col-box-content">
+    <ul>
+      <!-- {foreach from=$goods_article_list item=article} 相关文章 -->
+      <li><span>{$article.add_time}</span><a href="{$article.url}">{$article.title}</a></li>
+      <!--{/foreach}-->
+    </ul>
+  </div>
+</div>
+<!-- {/if} -->
